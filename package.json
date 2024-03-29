@@ -9,19 +9,37 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.8.7",
+    "@supabase/auth-ui-react": "^0.4.6",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/supabase-js": "^2.39.1",
+    "bufferutil": "^4.0.8",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "next": "14.0.4",
+    "nodemailer": "^6.9.8",
+    "nodemon": "^3.0.2",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.4"
+    "ts-node": "^10.9.2",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/express": "^4.17.21",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/socket.io": "^3.0.2",
+    "@types/uuid": "^9.0.7",
     "autoprefixer": "^10.0.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
     "eslint": "^8",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "14.0.4",
+    "postcss": "^8",
+    "socket.io": "^4.7.3",
+    "socket.io-client": "^4.7.3",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
   }
 }
