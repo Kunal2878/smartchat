@@ -5,8 +5,10 @@ const nextConfig = {
         project_url: 'https://igscvhkqnkryacanuwqb.supabase.co'
       },
       images: {
-        domains: ['lh3.googleusercontent.com','igscvhkqnkryacanuwqb.supabase.co'],
+        domains: ['lh3.googleusercontent.com','igscvhkqnkryacanuwqb.supabase.co','png.pngtree.com','cdn.vox-cdn.com'],
+        unoptimized: true,
       },
+ 
       reactStrictMode: false,
 }
 

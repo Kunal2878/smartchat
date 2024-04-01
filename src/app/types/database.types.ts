@@ -1,6 +1,21 @@
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
 
 export interface Database {
+  auth:{
+    Tables:{
+  user: {
+
+  Row: {
+    // Data expected from.select()
+    id: string;
+    
+  
+}
+
+}
+    }
+
+}
   public: {
     Tables: {
       Userinfo: {
@@ -40,7 +55,8 @@ export interface Database {
           username: string;
           full_name: string;
           avatar_url: string | null;
-          website: string | null;
+          email:string|null;
+       
         },
         Insert: {
           // Data to be passed to .insert()
@@ -49,7 +65,7 @@ export interface Database {
           username: string;
           full_name: string;
           avatar_url?: string; // Nullable
-          website?: string; // Nullable
+          email:string|null;   
         },
         Update: {
           // Data to be passed to .update()
@@ -58,7 +74,37 @@ export interface Database {
           username?: string;
           full_name?: string;
           avatar_url?: string;
-          website?: string;
+          email:string;
+        },
+      },
+      Invite:{
+        Row:{
+sender:string,
+receiver:string,
+sender_name:string,
+isDone:boolean,
+created_at: Date | string;
+        },
+        Insert:{
+sender:string,
+receiver:string,
+sender_name:string,
+isDone:boolean,
+created_at: Date | string;
+        },
+        Update:{
+sender:string,
+receiver:string,
+sender_name:string,
+isDone:boolean,
+created_at: Date | string;
+        },
+        Delete:{
+sender:string,
+receiver:string,
+sender_name:string,
+isDone:boolean,
+created_at: Date | string;
         },
       },
       Chat_room: {

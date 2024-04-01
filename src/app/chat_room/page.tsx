@@ -1,11 +1,17 @@
 "use client"
+import {UseAppContext} from '../index'
 import React, { useCallback, useState, useEffect,useRef  } from 'react'
 import { Database } from '../types/database.types'
 import { Session, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 export default function Chat_room({ session } : { session: Session | null }){
+  const context = UseAppContext();
+
+ ;
+
+
   const supabase = createClientComponentClient<Database>(
-    {supabaseKey:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlnc2N2aGtxbmtyeWFjYW51d3FiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM1OTc2OTAsImV4cCI6MjAxOTE3MzY5MH0.1eKpXS6sRy2GWnZ_IaJ_RR3qLTfDwO3xcpwLGzG4AZE',
-    supabaseUrl:'https://igscvhkqnkryacanuwqb.supabase.co'
+    {supabaseKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    supabaseUrl:process.env.NEXT_PUBLIC_SUPABASE_URL
     }
   )
 const [invite, setInvite] = useState(true)
@@ -35,7 +41,7 @@ const handleSendEmail = async () => {
     {
       console.log("something went wrong in sending email");
     }
-    setSendEmailStatus(data.message); // Display success message
+    setSendEmailStatus(data.message);
   } catch (error) {
     console.error('Error sending email client :', error);
     setSendEmailStatus('Failed to send email. Please try again.');
@@ -95,17 +101,21 @@ setShowDiv(true)
 }, []);
 
 return (
-    <div>
+    <div className="text-white">Loading......
       {showDiv && (
-        <div className="pro">
-          {invite ? (
-            <div className='w-screen flex-col justify-center align-middle'>
+        <div className=" pro w-screen flex-col justify-center align-middle dark:bg-gray-900 dark:text-white bg-gray-white text-gray-900"> 
+          {invite && (
+            <div className='w-full'>
+          <div className='w-full md:text-base'>Welcome to SmartChat</div>
+            <div className='w-full flex-row justify-center align-middle'>
              <h2 className='text-slate-400'> You have no friends, Invite friends</h2> 
-            <button className='w-1/6 flex-row justify-center align-items-center' onClick={handleSendEmail}>Invite friends</button>
+ 
             </div>
-          ) : (
-            <button onClick={handleSendEmail}>Chat Room</button>
-          )}
+
+            <button className='w-1/6 text-white text-base flex-row justify-center align-items-center rounded-md bg-purple-700 hover:bg-purple-400' onClick={handleSendEmail}>Invite</button>
+            </div>
+          ) }
+
         </div>
       )}
     </div>
