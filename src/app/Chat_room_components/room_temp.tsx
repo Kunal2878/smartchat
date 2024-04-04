@@ -11,6 +11,7 @@ function RoomTemp() {
       {chk_frnd ? (
         <div className="w-screen h-full flex flex-row ">
           <div className="w-full md:w-2/5 h-full flex flex-col">
+            {/* top bar and chat profiles for mobile devices */}
             <div className="w-full"> <TopBar /></div>
             
             <div className='w-full overflow-hidden'>
@@ -18,7 +19,7 @@ function RoomTemp() {
             <div className=" w-full md:hidden  m-0 h-full"><Chat_content /></div>
           </div>
           </div>
-      
+      {/* //for md devices */}
           <div className="hidden md:block m-0 w-3/5 h-full">
             <Chat_content />
           </div>

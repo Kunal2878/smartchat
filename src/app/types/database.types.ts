@@ -1,21 +1,25 @@
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
-
+export interface Friend_list{
+  f_mail:string
+  f_name:string
+  f_avatar:string
+}
 export interface Database {
-  auth:{
-    Tables:{
-  user: {
+//   auth:{
+//     Tables:{
+//   user: {
 
-  Row: {
-    // Data expected from.select()
-    id: string;
+//   Row: {
+//     // Data expected from.select()
+//     id: string;
     
   
-}
+// }
 
-}
-    }
+// }
+//     }
 
-}
+// }
   public: {
     Tables: {
       Userinfo: {
@@ -79,34 +83,92 @@ export interface Database {
       },
       Invite:{
         Row:{
+id:string,
 sender:string,
 receiver:string,
 sender_name:string,
 isDone:boolean,
 created_at: Date | string;
+avatar_url:string,
+rec_avatar:string,
+rec_username:string
         },
         Insert:{
+       id:string
 sender:string,
 receiver:string,
 sender_name:string,
 isDone:boolean,
 created_at: Date | string;
+avatar_url:string,
+rec_avatar:string,
+rec_username:string
         },
         Update:{
+      id:string
 sender:string,
 receiver:string,
 sender_name:string,
 isDone:boolean,
 created_at: Date | string;
+avatar_url:string,
+rec_avatar:string,
+rec_username:string
         },
         Delete:{
+id:string
 sender:string,
 receiver:string,
 sender_name:string,
 isDone:boolean,
 created_at: Date | string;
+avatar_url:string,
+rec_avatar:string,
+rec_username:string
         },
       },
+Friends:{
+Row:{
+  id:string,
+  friend_name:string,
+  friend_avatar:string,
+  friend_email:string,
+  user_email:string,
+  isexist:string
+
+
+},
+Insert:{
+  id:string,
+  friend_name:string,
+  friend_avatar:string,
+  friend_email:string,
+  user_email:string,
+  isexist:string
+
+
+},
+Update:{
+  id:string,
+  friend_name:string,
+  friend_avatar:string,
+  friend_email:string,
+  user_email:string,
+  isexist:string
+
+
+},
+Delete:{
+  id:string,
+  friend_name:string,
+  friend_avatar:string,
+  friend_email:string,
+  user_email:string,
+  isexist:string
+
+
+},
+},
       Chat_room: {
         Row: {
           // Data expected from .select()

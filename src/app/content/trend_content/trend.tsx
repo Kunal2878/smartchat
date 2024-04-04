@@ -20,6 +20,7 @@ export default function Trend_show({ Trend }: { Trend: Article[] }) {
                     : article.urlToImage
                 })`,
                 backgroundSize: "cover",
+                objectFit:"cover"
               }}
             >
               <div className="w-1/4 h-full aspect-w-1 aspect-h-1 md:aspect-w-4 md:aspect-h-3 flex justify-start">

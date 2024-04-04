@@ -8,22 +8,22 @@ function Mob_sidebar({ IsSession }: { IsSession: boolean | undefined }) {
   const context = UseAppContext();
   const {  setIsLoading } =context || {};
   const theme3 = [
-    { icon: "smile.svg", text: "Jokes" },
-    { icon: "trend.svg", text: "Trending" },
-    { icon: "art.svg", text: "Stickers" },
-    { icon: "bell.svg", text: "Notifications" },
+    { icon: 'smile.svg', text:"Jokes",path:"/content/joke_content" },
+    { icon: 'trend.svg',text:"Trending",path:"/content/trend_content"},
+    { icon: 'art.svg',text:"Stickers",path:"/content/meme_content" },
+    { icon: 'bell.svg',text:"Notifications",path:"/" }
   ];
-  const handleLogout = async () => {
+  const handlePath = async (path:string) => {
 setIsLoading?.(true)
     try {
-      const response = await fetch('/auth/signout', {
+      const response = await fetch(path, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }, 
       });
 
       if (response.ok) {
-        window.location.href = "/";
-        console.log("Logout successful!");
+        window.location.href = path;
+        setIsLoading?.(false);
    
       } else {
         console.error("Logout error:", response.statusText);
@@ -32,9 +32,7 @@ setIsLoading?.(true)
     } catch (error) {
       console.error("Error during logout:", error);
 
-    } finally {
-   
-    }
+    } 
   };
 
   return (
@@ -42,6 +40,7 @@ setIsLoading?.(true)
       <div className="w-2/5 p-2 absolute right-0 mr-4 flex flex-col items-center dark:bg-gray-900 dark:text-white bg-white text-gray-900 text-sm">
         {theme3.map((itr) => (
           <button
+          onClick={()=>handlePath(itr.path)}
             className="w-full flex flex-row hover:bg-violet-500 p-2"
             key={itr.icon}
           >
@@ -61,20 +60,20 @@ setIsLoading?.(true)
             // <form action="/auth/signout" method="post" onSubmit={handleSubmit}>
               <button
                 className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
-                type="submit" onClick={handleLogout}
+                type="submit" onClick={()=>handlePath('/auth/signout')}
               >
                 Log out
               </button>
             // </form>
           ) : (
-            <Link href="/auth/signup">
+          
               <button
                 className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
-                type="submit"
+                type="submit" onClick={()=>handlePath('/auth/signup')}
               >
                 Login/Signup
               </button>
-            </Link>
+           
           )}
         </div>
       </div>

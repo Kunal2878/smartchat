@@ -26,7 +26,6 @@ function Navbar() {
       setWdth(60);
     }
   }, [wdth]);
-console.log(avatar)
   return (
     <div className="w-full flex flex-row justify-center md:justify-start">
       <div className="w-4/5 md:w-full flex flex-row justify-center items-center dark:bg-gray-900 dark:tect-white bg-white text-gray-900 md:p-2 border-b-2 rounded-full md:rounded-none border-cyan-300 md:mb-0 mb-3 fixed bottom-0">
@@ -98,7 +97,7 @@ console.log(avatar)
                 src={avatar||""}
                 width={wdth}
                 height={wdth}
-                className="h-full w-full object-cover text-xl"
+                className="h-full w-full object-cover rounded-full"
                 alt={avatar||""}
               />
             </Link>

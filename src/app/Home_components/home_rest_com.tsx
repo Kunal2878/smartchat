@@ -13,7 +13,7 @@ interface Theme {
 function Home_rest_com() {
   
   const context = UseAppContext();
-  const { isSession,isLoading } = context || {};
+  const { isSession,setIsLoading, isLoading } = context || {};
 
   const [isClient, setIsClient] = useState(false);
 const [currentThemeIndex, setCurrentThemeIndex] = useState(0);
@@ -88,7 +88,27 @@ const menuOpen =() =>
     setIsOpen(false)
   }
 }
-
+const handleLogout = async (path:string) => {
+  setIsLoading?.(true)
+      try {
+        const response = await fetch(path, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }, 
+        });
+  
+        if (response.ok) {
+          window.location.href = path;
+          setIsLoading?.(false);
+     
+        } else {
+          console.error("Logout error:", response.statusText);
+          // Handle logout error (optional)
+        }
+      } catch (error) {
+        console.error("Error during logout:", error);
+  
+      } 
+    };
 
 return (
 
@@ -122,7 +142,7 @@ return (
   {theme2.map((itr) => (  
 <div key={itr.icon} className='w-1/4 flex flex-row justify-end items-center mr-4'>
 
-<button className=" group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" onClick={() => router.push(itr.path)}>
+<button onClick={()=>handleLogout(itr.path)} className=" group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
 
 <Image
               width={20}

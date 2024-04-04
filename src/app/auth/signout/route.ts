@@ -1,8 +1,9 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import { type NextRequest, NextResponse } from 'next/server'
+import  {  type NextRequest, NextResponse } from 'next/server'
 import Loader from '../../loader'
 export  async function POST(req: NextRequest) {
+  // req: NextRequest
   console.log("outside")
   var isLoading: boolean = true;
   const cookieStore = cookies();
@@ -27,14 +28,11 @@ export  async function POST(req: NextRequest) {
   }
 
   return (
-    NextResponse.redirect(new URL("/", req.url), {
+
+    NextResponse.redirect(new URL("/", "http://localhost:3000"), {
       status: 302,
     })
-    // <div className='w-full dark:bg-gray-900 bg-white'>Loading 
-    //   {isLoading && (
-    //     <Loader/>
-    //   )}
-    // </div>
+
   );
 }
   
