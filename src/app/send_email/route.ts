@@ -20,7 +20,7 @@ export async function POST(req: NextRequest, res: NextResponse<ResponseData>) {
         return res.json(); 
       }
 
-      const { to, subject, info } = body;
+      const { to, sender ,subject, info} = body;
 
 
       const transporter = nodemailer.createTransport({
@@ -30,17 +30,17 @@ export async function POST(req: NextRequest, res: NextResponse<ResponseData>) {
           pass: "nfeplqsyhpgjwggo",  
         },
       });
-      const generateRandomCode = () => {
-        let code = '';
+      // const generateRandomCode = () => {
+      //   let code = '';
         
-        for (let i = 0; i < 6; i++) {
-          code += Math.floor(Math.random() * 10);
-        }
+      //   for (let i = 0; i < 6; i++) {
+      //     code += Math.floor(Math.random() * 10);
+      //   }
       
-        return code;
-      }
+      //   return code;
+      // }
       
-      const randomCode = generateRandomCode();
+      // const randomCode = generateRandomCode();
 
       const send_mail=await transporter.sendMail({
         from: "Smart Chat Team",
@@ -56,7 +56,7 @@ export async function POST(req: NextRequest, res: NextResponse<ResponseData>) {
   <body style="margin:1rem; padding:0.8rem; background-color:#161544; min-height:50vh; display: block; justify-content: center; align-items: center; border-radius: 10px;">
   
     <p style="color: yellow; font-size: 0.7rem; font-weight: 800;">
-      ${to} has invited you to join the chat room
+      ${sender} has invited you to join the chat room
     </p>
 
     <p style="color: cyan; display:flex; justify-content:center; align-items:center; font-size: 0.7rem; font-weight: 600; padding: 1rem;">
@@ -71,16 +71,13 @@ export async function POST(req: NextRequest, res: NextResponse<ResponseData>) {
  
     </p>
 
-    <p style="color: green; font-size: 1.2rem; font-weight: 900;">
-      Invitation Code: ${randomCode}  
-    </p>
+
   </body>
 </html>
 
     `,
 
     });
-    console.log(send_mail.response)
     if(send_mail.response)
     {
       return NextResponse.json({ status:200 });

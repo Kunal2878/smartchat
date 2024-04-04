@@ -55,12 +55,12 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
      
     const { data, error } = await supabase
     .from('profiles')
-    .update({ // Update the existing profile
-      email, // Replace with your email variable name
-      username, // Replace with your username variable name
-      avatar_url: avatar, // Replace with your avatarUrl variable name
+    .update({ 
+      email, 
+      username, 
+      avatar_url: avatar, 
     })
-    .eq('id', user?.id) // Update profile where id matches provided value
+    .eq('id', user?.id) 
     .single();
   
     } catch (error) {
@@ -91,10 +91,6 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
   },[email,avatar,username])
 
 
-
-
-
-  // Fetch data of friend requests
   const fetchInvites = async () => {
     try {
       const { data, error } = await supabase
@@ -113,13 +109,14 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
       console.error("Unexpected error:", error);
 
     } finally {
+    
     }
 
   };
 
 React.useEffect(() => {
    fetchInvites();
-},[invites])
+},[email])
 
 const fetchSendConfirmInvites = async () => {
 
@@ -131,8 +128,8 @@ const fetchSendConfirmInvites = async () => {
       .eq("sender", email)
       .eq("isDone",true)
       .order("created_at", { ascending: false });
-
-    if (!error) {
+      if (data) {
+      console.log("data",data)
       const flist = data.map((itr) => ({
         f_name: itr.rec_username,
         f_mail: itr.receiver,
@@ -149,48 +146,49 @@ const fetchSendConfirmInvites = async () => {
   } finally {
     // setIsLoading(false);
   }
-  // console.log(invites);
+  console.log(f_list);
 };
 
 React.useEffect(() => {
   fetchSendConfirmInvites();
-},[coinvites])
+},[email])
 
 
-const fetchRecConfirmInvites = async () => {
+// const fetchRecConfirmInvites = async () => {
 
 
-  try {
-    const { data, error } = await supabase
-      .from("Invite")
-      .select("sender, receiver, sender_name, avatar_url")
-      .eq("receiver", email)
-      .eq("isDone",true)
-      .order("created_at", { ascending: false });
+//   try {
+//     const { data, error } = await supabase
+//       .from("Invite")
+//       .select("sender, receiver, sender_name, avatar_url")
+//       .eq("receiver", email)
+//       .eq("isDone",true)
+//       .order("created_at", { ascending: false });
 
-    if (!error) {
-      const flist = data.map((itr) => ({
-        f_name: itr.sender_name,
-        f_mail: itr.sender,
-        f_avatar: itr.avatar_url,
-      }));
-      setFlist([...flist]);
-    } else {
-      console.error("Error fetching invites:", error);
-      // Handle error gracefully (e.g., display an error message)
-    }
-  } catch (error) {
-    console.error("Unexpected error:", error);
+//     if (!error) {
+//       // console.log(data)
+//       const flist = data.map((itr) => ({
+//         f_name: itr.sender_name,
+//         f_mail: itr.sender,
+//         f_avatar: itr.avatar_url,
+//       }));
+//       setFlist([...flist]);
+//     } else {
+//       console.error("Error fetching invites:", error);
+//       // Handle error gracefully (e.g., display an error message)
+//     }
+//   } catch (error) {
+//     console.error("Unexpected error:", error);
 
-  } finally {
-    // setIsLoading(false);
-  }
-  // console.log(invites);
-};
+//   } finally {
+//     // setIsLoading(false);
+//   }
+//   // console.log(invites);
+// };
 
-React.useEffect(() => {
-  fetchRecConfirmInvites();
-},[coinvites])
+// React.useEffect(() => {
+//   fetchRecConfirmInvites();
+// },[email])
 
 
 
@@ -236,9 +234,9 @@ if(!sessionCheck){
         <Feed />
         <Navbar />
         <Invite/>
-       {invites.length>=0&&(
+       {(invites.length>=0 ||f_list.length>=0)&&(
 
-         <div className=""><Notification invites={invites}/></div>
+         <div className=""><Notification invites={invites} f_list={f_list}/></div>
        )
        }
       </div>

@@ -1,4 +1,4 @@
-'use client'; // Ensure client-side rendering
+'use client'; 
 import {UseAppContext} from '../index'
 import React, { useState, useEffect,useRef } from 'react';
 import Image from 'next/image';
