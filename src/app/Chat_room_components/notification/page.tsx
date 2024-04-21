@@ -3,8 +3,9 @@ import Image from 'next/image'
 import * as React from 'react'
 import  {UseAppContext}  from '../../index'
 import { Database,Friend_list } from '../../types/database.types'
-import { Session, createClientComponentClient,createServerComponentClient} from '@supabase/auth-helpers-nextjs'
+import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 type Invite = Database['public']['Tables']['Invite']['Row']
+
 export default function Notification({ invites,f_list }: { invites: Invite[],f_list:Friend_list[] }) {
   const [accept, setAccept] = React.useState<string>("Add friend");
   const context = UseAppContext();
