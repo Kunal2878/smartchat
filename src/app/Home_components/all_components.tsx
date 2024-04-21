@@ -6,6 +6,7 @@ import Feed from './feed'
 import Navbar from '../navbar'
 import Notification from '../Chat_room_components/notification/page'
 import Invite from '../Chat_room_components/invite/page'
+import AuthForm from 'app/auth/signup/page'
 import * as React from "react";
 import  {UseAppContext}  from '../index'
 import { cookies } from 'next/headers'
@@ -21,12 +22,14 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
 
   const user=session?.user
   const supabase = createClientComponentClient<Database>(
-    {supabaseKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    supabaseUrl:process.env.NEXT_PUBLIC_SUPABASE_URL
+    {
+      supabaseKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      supabaseUrl:process.env.NEXT_PUBLIC_SUPABASE_URL
     }
   )
   const context = UseAppContext();
-  const {  isLoading, setIsLoading, email, setEmail,avatar,setAvatar,isSession, setIsSession,setId,userName,setUserName } = context || {};
+  const { isLogin,setIsNotify, isLoading, setIsLoading, email, setEmail,avatar,setAvatar,isSession, setIsSession,setId,userName,setUserName,isNotify } = context || {};
+
 
 
 
@@ -63,7 +66,7 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
     .eq('id', user?.id) 
     .single();
   
-    } catch (error) {
+    } catch (error) { 
       console.error('Error:', error);
       alert('Error loading user data!');
     } finally {
@@ -116,7 +119,7 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
 
 React.useEffect(() => {
    fetchInvites();
-},[email])
+},[])
 
 const fetchSendConfirmInvites = async () => {
 
@@ -234,11 +237,24 @@ if(!sessionCheck){
         <Feed />
         <Navbar />
         <Invite/>
-       {(invites.length>=0 ||f_list.length>=0)&&(
+       {isNotify && (
 
-         <div className=""><Notification invites={invites} f_list={f_list}/></div>
+       (invites.length>=0 ||f_list.length>=0) &&(
+
+         <div className=" z-40 w-full fixed top-8">
+         <Notification invites={invites} f_list={f_list}/>
+         
+         </div>
        )
-       }
+       )}
+
+{isLogin&&(
+<div className=' z-40 w-full fixed top-8'>
+<AuthForm/>
+
+</div>
+)}
+
       </div>
         )
         }

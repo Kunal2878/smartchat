@@ -9,7 +9,7 @@ import Navbar from "./navbar"
 import Landing_page from "./Home_components/landing_page"
 
 import Invite from "./Chat_room_components/invite/page"
-import Notification from "./Chat_room_components/notification/page"
+// import Notification from "./Chat_room_components/notification/page"
 
 import Loader from "./loader"
 export default async function Home() {

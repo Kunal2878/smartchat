@@ -83,7 +83,7 @@ export interface Database {
       },
       Invite:{
         Row:{
-id:string,
+id:string
 sender:string,
 receiver:string,
 sender_name:string,

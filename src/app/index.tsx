@@ -13,7 +13,9 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [avatar, setAvatar] = useState<string|undefined>("solid_user.svg");
   const [isSession, setIsSession] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
+  const [isNotify, setIsNotify] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  
   // const supaUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   // const supaKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 
@@ -28,14 +30,17 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
           avatar,
           isSession,
           isLoading,
-        
+          isNotify,
+          isLogin,
           setId,
           setEmail,
           setUserName,
           setTitle,
           setAvatar,
           setIsSession,
-          setIsLoading
+          setIsLoading,
+          setIsNotify,
+          setIsLogin
 
         }}
       >

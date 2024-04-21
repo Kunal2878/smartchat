@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Mob_sidebar from './mob_sidebar'
 import { useTheme } from 'next-themes';
 import Link from 'next/link'
+import Notification from 'app/Chat_room_components/notification/page';
 import { useRouter } from 'next/navigation'
 interface Theme {
   icon: string; 
@@ -13,7 +14,7 @@ interface Theme {
 function Home_rest_com() {
   
   const context = UseAppContext();
-  const { isSession,setIsLoading, isLoading } = context || {};
+  const { setIsLogin,setIsNotify,isSession,setIsLoading, isLoading } = context || {};
 
   const [isClient, setIsClient] = useState(false);
 const [currentThemeIndex, setCurrentThemeIndex] = useState(0);
@@ -30,7 +31,7 @@ const theme2=[
   { icon: 'smile.svg', text:"Jokes",path:"/content/joke_content" },
   { icon: 'trend.svg',text:"Trending",path:"/content/trend_content"},
   { icon: 'art.svg',text:"Stickers",path:"/content/meme_content" },
-  { icon: 'bell.svg',text:"Notifications",path:"/" }
+  { icon: 'bell.svg',text:"Notifications",path:"notifications" }
 ]
 
 
@@ -89,25 +90,33 @@ const menuOpen =() =>
   }
 }
 const handleLogout = async (path:string) => {
-  setIsLoading?.(true)
-      try {
-        const response = await fetch(path, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' }, 
-        });
-  
-        if (response.ok) {
-          window.location.href = path;
-          setIsLoading?.(false);
-     
-        } else {
-          console.error("Logout error:", response.statusText);
-          // Handle logout error (optional)
-        }
-      } catch (error) {
-        console.error("Error during logout:", error);
-  
-      } 
+  //handling notification drawer
+  if(path==="notifications"){
+setIsNotify?.(true);
+  }
+
+  else{
+
+    setIsLoading?.(true)
+        try {
+          const response = await fetch(path, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }, 
+          });
+    
+          if (response.ok) {
+            window.location.href = path;
+            setIsLoading?.(false);
+       
+          } else {
+            console.error("Logout error:", response.statusText);
+            // Handle logout error (optional)
+          }
+        } catch (error) {
+          console.error("Error during logout:", error);
+    
+        } 
+  }
     };
 
 return (
@@ -197,6 +206,9 @@ return (
         Login/Signup
         </button>
       </form>
+      // <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"   onClick={()=>{setIsLogin?.(true)}}>
+      // Login/Signup
+      // </button>
         )}
  
     

@@ -6,33 +6,40 @@ import Link from "next/link";
 
 function Mob_sidebar({ IsSession }: { IsSession: boolean | undefined }) {
   const context = UseAppContext();
-  const {  setIsLoading } =context || {};
+  const {  setIsLogin,setIsLoading,isNotify,setIsNotify,isSession } =context || {};
   const theme3 = [
     { icon: 'smile.svg', text:"Jokes",path:"/content/joke_content" },
     { icon: 'trend.svg',text:"Trending",path:"/content/trend_content"},
     { icon: 'art.svg',text:"Stickers",path:"/content/meme_content" },
-    { icon: 'bell.svg',text:"Notifications",path:"/" }
+    { icon: 'bell.svg',text:"Notifications",path:"notifications" }
   ];
   const handlePath = async (path:string) => {
-setIsLoading?.(true)
-    try {
-      const response = await fetch(path, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }, 
-      });
+    if(path==="notifications"){
+setIsNotify?.(true)
+    }
+ 
+    else{
 
-      if (response.ok) {
-        window.location.href = path;
-        setIsLoading?.(false);
-   
-      } else {
-        console.error("Logout error:", response.statusText);
-        // Handle logout error (optional)
-      }
-    } catch (error) {
-      console.error("Error during logout:", error);
-
-    } 
+      setIsLoading?.(true)
+          try {
+            const response = await fetch(path, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' }, 
+            });
+      
+            if (response.ok) {
+              window.location.href = path;
+              setIsLoading?.(false);
+         
+            } else {
+              console.error("Logout error:", response.statusText);
+              // Handle logout error (optional)
+            }
+          } catch (error) {
+            console.error("Error during logout:", error);
+      
+          } 
+    }
   };
 
   return (
@@ -73,6 +80,12 @@ setIsLoading?.(true)
               >
                 Login/Signup
               </button>
+              // <button
+              //   className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
+              //   onClick={()=>{setIsLogin?.(true)}}
+              // >
+              //   Login/Signup
+              // </button>
            
           )}
         </div>

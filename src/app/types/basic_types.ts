@@ -15,6 +15,8 @@ export interface Message {
     avatar: string|undefined;
     isSession: boolean;
     isLoading:boolean;
+    isNotify:boolean;
+    isLogin:boolean;
     setUserName: (userName: string|undefined) => void;
     setEmail: (email: string|undefined) => void;
     setId: (id: any|undefined) => void;
@@ -22,7 +24,8 @@ export interface Message {
     setAvatar: (avatar: string|undefined) => void;
     setIsSession: (isSession: boolean) => void;
     setIsLoading: (isLoading: boolean) => void;
-
+    setIsNotify: (isNotify: boolean) => void;
+    setIsLogin: (isLogin: boolean) => void;
   }
   // test.res246@gmail.com
   //Rest@2468
