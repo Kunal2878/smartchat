@@ -1,8 +1,11 @@
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
 export interface Friend_list{
-  f_mail:string
-  f_name:string
-  f_avatar:string
+  frnd:{
+    f_mail:string
+    f_name:string
+    f_avatar:string
+  }
+
 }
 export interface Database {
 //   auth:{

@@ -5,8 +5,9 @@ import  {UseAppContext}  from '../../index'
 import { Database,Friend_list } from '../../types/database.types'
 import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 type Invite = Database['public']['Tables']['Invite']['Row']
+type F_type=Friend_list['frnd']
 
-export default function Notification({ invites,f_list }: { invites: Invite[],f_list:Friend_list[] }) {
+export default function Notification({ invites,f_list }: { invites: Invite[],f_list:F_type[] }) {
   const [accept, setAccept] = React.useState<string>("Add friend");
   const context = UseAppContext();
   const { setIsNotify, isSession,setIsLogin } = context || {};
