@@ -4,13 +4,13 @@ import Image from 'next/image'
 import { Database,Friend_list , Room_names} from '../../types/database.types'
 import  {UseAppContext}  from '../../index'
 
-type F_type=Friend_list['frnd'][]
-type r_type=Room_names['Rooms'][]
-interface ChatProfilesProps {
-  profiles: Friend_list['frnd'][]; // Assuming Friend_list.frnd is an array of friend objects
-  roomNames: Room_names['Rooms'][]; // Assuming Room_names.Rooms is an array of room objects
-}
-function Chat_profiles({ profiles, roomNames }: ChatProfilesProps) {  
+// type F_type=Friend_list['frnd'][]
+// type r_type=Room_names['Rooms'][]
+// interface ChatProfilesProps {
+//   profiles: Friend_list['frnd'][]; 
+//   roomNames: Room_names['Rooms'][]; 
+// }
+function Chat_profiles({ profiles, roomNames }: any) {  
 const context = UseAppContext();
 const { email,room,setRoom } = context || {};
 const findRoom = (f_mail:string) => {
@@ -30,7 +30,7 @@ const findRoom = (f_mail:string) => {
       <div className='w-full h-full top-profiles grid grid-row-1 grid-flow-row gap-1 tb:gap-2'>
 
           <div className='add_profiles h-screen pb-8 dark:bg-indigo-800 bg-indigo-300 w-full flex flex-col p-2 hover:overflow-y-scroll'>
-          {profiles?.map((profile) => (
+          {profiles?.map((profile:any) => (
             <div
               key={profile.f_mail}
               className="profiles mb-2 w-full text-white flex flex-row justify-start align-middle"
