@@ -8,7 +8,7 @@ import Body_com from './body_com';
 import Footer from './footer'
 type F_type=Friend_list['frnd']
 type r_type=Room_names['Rooms']
-import RoomTmp from '../Chat_room_components/chat_tmp/page'
+import RoomTmp from '../chat_room/chat_tmp/page'
 export default async function LandingPage() {
 var c_data:F_type[]=[]
 var roomNames:r_type[]=[]
@@ -76,9 +76,9 @@ console.log("error")
   {/* <RoomTmp profile={c_data} rooms={roomNames} /> */}
 <Body_com/>
 </div> 
-       {/* <div className=' w-full h-full'>
+       <div className=' w-full h-full'>
   <RoomTmp  />
-</div>  */}
+</div> 
 <Footer/>
     </div>
   );
