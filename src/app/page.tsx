@@ -1,5 +1,3 @@
-import Signup from "./Components/Signup"
-import AuthForm from "./Components/Login"
 import Chat_msg from "./client/chat_page_handler/page"
 import Chat_server from "./server_runner/page"
 
