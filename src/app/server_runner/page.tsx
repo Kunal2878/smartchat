@@ -5,12 +5,10 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-type C_type=Database['public']['Tables']["Chat_room"]['Row']
+
 export default async function Chat_server()
 {
-var c_data:any=[]
-var run:boolean=true
-var msg:Message[]=[]
+
   const supabase = createServerComponentClient<Database>(
     { cookies },
 
