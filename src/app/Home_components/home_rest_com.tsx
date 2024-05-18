@@ -195,17 +195,17 @@ return (
       <div className="hidden md:w-1/5 md:flex justify-end ">
 
         {isSession ? (
-            <form action="/auth/signout" method="post">
-          <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500" type="submit">
+            <Link href="/auth/signout">
+          <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500" >
             Log out
           </button>
-        </form>
+        </Link>
         ) : (
-        <form action="/auth/signup" method="post">
-        <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500" type="submit">
+        <Link href="/auth/signup">
+        <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500">
         Login/Signup
         </button>
-      </form>
+      </Link>
       // <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"   onClick={()=>{setIsLogin?.(true)}}>
       // Login/Signup
       // </button>

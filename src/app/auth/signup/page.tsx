@@ -81,7 +81,8 @@ className='size-full'
       providerScopes={{
         google: scopes.calendar + " " + scopes.profile + " " + scopes.email,
       }}
-      redirectTo="http://localhost:3000/auth/callback"
+      // redirectTo="http://localhost:3000/auth/callback"
+      redirectTo={process.env.NEXT_PUBLIC_AUTH_URL}
     />
     </div>
     </div>

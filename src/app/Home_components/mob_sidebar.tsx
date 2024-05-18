@@ -46,8 +46,8 @@ setIsNotify?.(true)
     <div className="w-full">
       <div className="w-2/5 p-2 absolute right-0 mr-4 flex flex-col items-center dark:bg-gray-900 dark:text-white bg-white text-gray-900 text-sm">
         {theme3.map((itr) => (
-          <button
-          onClick={()=>handlePath(itr.path)}
+          <Link href={itr.path}
+          
             className="w-full flex flex-row hover:bg-violet-500 p-2"
             key={itr.icon}
           >
@@ -59,27 +59,28 @@ setIsNotify?.(true)
               className=" mr-2"
             />
             <span>{itr.text}</span>
-          </button>
+          </Link>
         ))}
 
         <div className="w-full flex flex-row justify-center items-center">
           {IsSession ? (
-            // <form action="/auth/signout" method="post" onSubmit={handleSubmit}>
-              <button
+              <Link href="/auth/signout"
                 className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
-                type="submit" onClick={()=>handlePath('/auth/signout')}
+                // type="submit" onClick={()=>handlePath('/auth/signout')}
               >
                 Log out
-              </button>
-            // </form>
+              </Link>
+           
           ) : (
           
-              <button
+              <Link
                 className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
-                type="submit" onClick={()=>handlePath('/auth/signup')}
+                // type="submit" 
+                // onClick={()=>handlePath('/auth/signup')}
+                href="/auth/signup"
               >
                 Login/Signup
-              </button>
+              </Link>
               // <button
               //   className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
               //   onClick={()=>{setIsLogin?.(true)}}
