@@ -6,7 +6,11 @@ import  {UseAppContext}  from '../../index'
 
 type F_type=Friend_list['frnd'][]
 type r_type=Room_names['Rooms'][]
-function Chat_profiles({profiles,roomNames}:{profiles:F_type,roomNames:r_type}) {  
+interface ChatProfilesProps {
+  profiles: Friend_list['frnd'][]; // Assuming Friend_list.frnd is an array of friend objects
+  roomNames: Room_names['Rooms'][]; // Assuming Room_names.Rooms is an array of room objects
+}
+function Chat_profiles({ profiles, roomNames }: ChatProfilesProps) {  
 const context = UseAppContext();
 const { email,room,setRoom } = context || {};
 const findRoom = (f_mail:string) => {
@@ -52,4 +56,5 @@ const findRoom = (f_mail:string) => {
   );
 }
 
-export default Chat_profiles
+export default Chat_profiles as React.FC<ChatProfilesProps>;
+
