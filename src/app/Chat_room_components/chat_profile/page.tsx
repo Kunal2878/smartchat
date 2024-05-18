@@ -56,5 +56,5 @@ const findRoom = (f_mail:string) => {
   );
 }
 
-export default Chat_profiles as React.FC<ChatProfilesProps>;
+export default Chat_profiles;
 
