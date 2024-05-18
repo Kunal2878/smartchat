@@ -2,10 +2,10 @@ import React from 'react'
 import Image from 'next/image'
 function Body_com() {
 const show=[
-    {img:"chat_img_1.png",text:"Effortless Communication",des:"Our platform is intuitive for smooth and enjoyable conversations"},
-    {img:"chat_img_2.png",text:"Secure Sign-In", des:"Your privacy matters. We offer secure login options to keep your chats safe"},
-    {img:"chat_img_3.png",text:"Login Your Way", des:"Choose your comfort. Login with social media, fingerprint, or password - it's up to you"},
-    {img:"chat_img_4.png",text:"Stay Connected, Simplified", des:"Choose your comfort. Login with social media, fingerprint, or password - it's up to you"},
+    {id:1,img:"chat_img_1.png",text:"Effortless Communication",des:"Our platform is intuitive for smooth and enjoyable conversations"},
+    {id:2,img:"chat_img_2.png",text:"Secure Sign-In", des:"Your privacy matters. We offer secure login options to keep your chats safe"},
+    {id:3,img:"chat_img_3.png",text:"Login Your Way", des:"Choose your comfort. Login with social media, fingerprint, or password - it's up to you"},
+    {id:4,img:"chat_img_4.png",text:"Stay Connected, Simplified", des:"Choose your comfort. Login with social media, fingerprint, or password - it's up to you"},
 ]
 
 
@@ -22,7 +22,7 @@ const show=[
         {
 show.map((itr)=>(
 
-      <div className=' w-full flex  flex-col justify-center items-center gap-2 '>
+      <div key={itr.id} className=' w-full flex  flex-col justify-center items-center gap-2 '>
 <div className='w-full md:w-1/2 flex flex-row justify-center items-center md:mt-1 mt-3 aspect-h-3 aspect-w-4 ' >
 <Image
 width={20}
