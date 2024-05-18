@@ -4,9 +4,9 @@ import Image from 'next/image'
 import { Database,Friend_list , Room_names} from '../../types/database.types'
 import  {UseAppContext}  from '../../index'
 
-type F_type=Friend_list['frnd']
-type r_type=Room_names['Rooms']
-function Chat_profiles({profiles,roomNames}:{profiles:F_type[],roomNames:r_type[]}) {  
+type F_type=Friend_list['frnd'][]
+type r_type=Room_names['Rooms'][]
+function Chat_profiles({profiles,roomNames}:{profiles:F_type,roomNames:r_type}) {  
 const context = UseAppContext();
 const { email,room,setRoom } = context || {};
 const findRoom = (f_mail:string) => {
