@@ -1,7 +1,7 @@
 import React from 'react';
 import { Article, NewsData } from '../contents_types';
 import Trend_show from './trend';
-export async function fetchTrend(): Promise<NewsData> {
+export async function FetchTrend(): Promise<NewsData> {
   const today = new Date();
   const threeDaysAgo = new Date(today.getTime() - (3 * 24 * 60 * 60 * 1000)); // Subtract 3 days in milliseconds
 
@@ -29,7 +29,7 @@ export async function fetchTrend(): Promise<NewsData> {
 
 export default async function Contents_trend() {
   try {
-    const trend = await fetchTrend(); // Wait for data to be fetched
+    const trend = await FetchTrend(); // Wait for data to be fetched
 
     return (
       <div>
