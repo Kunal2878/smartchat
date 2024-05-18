@@ -7,7 +7,7 @@ import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 type Invite = Database['public']['Tables']['Invite']['Row']
 type F_type=Friend_list['frnd']
 
-export default function Notification({ invites,f_list }: { invites: Invite[],f_list:F_type[] }) {
+export default function Notification({ invites,f_list }: any) {
   const [accept, setAccept] = React.useState<string>("Add friend");
   const context = UseAppContext();
   const { setIsNotify, isSession,setIsLogin } = context || {};
@@ -101,7 +101,7 @@ export default function Notification({ invites,f_list }: { invites: Invite[],f_l
 
         {(invites?.length >= 0 || f_list?.length >= 0) ? (
           <>
-            {invites.map((itr) => (
+            {invites.map((itr:any) => (
               <div
                 className="w-full flex flex-row  rounded-sm justify-start dark:bg-indigo-900 bg-indigo-200 backdrop-blur-sm p-3 mb-3"
                 key={itr.id}
@@ -128,7 +128,7 @@ export default function Notification({ invites,f_list }: { invites: Invite[],f_l
                 </div>
               </div>
             ))}
-            {f_list.map((itr) => (
+            {f_list.map((itr:any) => (
                <div
                className="w-full flex flex-row  rounded-sm justify-start dark:bg-indigo-900 bg-indigo-200 backdrop-blur-sm p-3 mb-3"
                key={itr.f_name}
