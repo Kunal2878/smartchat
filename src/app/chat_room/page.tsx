@@ -3,7 +3,7 @@ import {UseAppContext} from '../index'
 import React, { useCallback, useState, useEffect,useRef  } from 'react'
 import { Database } from '../types/database.types'
 import { Session, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-export default function Chat_room({ session } : { session: Session | null }){
+export default function Chat_room({ session } : any){
   const context = UseAppContext();
 
  ;
