@@ -1,15 +1,16 @@
-'use-client'
+// 'use-client'
 import React from 'react'
 import Image from 'next/image'
 function TopBar() {
   return (
-    <div className="w-full  flex justify-between">
-      <div className="w-full flex flex-col bg-red-200">
+    <div className="w-full  flex justify-between dark:bg-gray-900 dark:text-white text-gray-900 bg-white ">
+      <div className="w-full flex flex-col">
         <div className="w-full pl-1 flex flex-row justify-start">
           <div className="w-1/2 flex flex-row justify-between align-middle">
             <div className="w-10 h-10 mt-1 flex justify-between rounded-full bg-slate-400">
               <Image
-                src="plus_icon.svg"
+                unoptimized={true}
+                src="/brand.svg"
                 width={40}
                 height={40}
                 alt="Picture of the author"
@@ -47,7 +48,7 @@ function TopBar() {
                 alt="Picture of the author"
               /> */}
               <Image
-                src="dots_vertical.svg"
+                src="/dots_vertical.svg"
                 width={20}
                 height={20}
                 alt="Picture of the author"
@@ -61,7 +62,8 @@ function TopBar() {
             type="text"
           />
           <Image
-            src="search.svg"
+          unoptimized={true}
+            src="/search.svg"
             width={20}
             height={20}
             alt="Picture of the author"

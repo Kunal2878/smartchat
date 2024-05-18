@@ -6,19 +6,24 @@ import Feed from './feed'
 import Navbar from '../navbar'
 import Notification from '../Chat_room_components/notification/page'
 import Invite from '../Chat_room_components/invite/page'
-import AuthForm from 'app/auth/signup/page'
+import Chat_profiles from '../Chat_room_components/chat_profile/page'
 import * as React from "react";
+import RoomTmp from '../Chat_room_components/chat_tmp/page'
 import  {UseAppContext}  from '../index'
 import { cookies } from 'next/headers'
 import { Database,Friend_list } from '../types/database.types'
+
 import { Session, createClientComponentClient,createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 type Invite = Database['public']['Tables']['Invite']['Row']
+type F_type=Friend_list['frnd']
 export default   function All_components({ Email,pic,username,sessionCheck,Id,session } : { Email: string|undefined,pic:string|undefined,username:string|undefined,sessionCheck:boolean ,Id:any|undefined,session:Session| null}) 
 
 {
   const [invites, setInvites] = React.useState<Invite[]>([]);
   const [coinvites, setCoInvites] = React.useState<Invite[]>([]);
-  const [f_list, setFlist] = React.useState<Friend_list[]>([]);
+  const [f_list, setFlist] = React.useState<F_type[]>([]);
+  const [fr_list, setFrlist] = React.useState<F_type[]>([]);
+  const [chat_f, setChat_f] = React.useState<F_type[]>([]);
 
   const user=session?.user
   const supabase = createClientComponentClient<Database>(
@@ -59,6 +64,7 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
     const { data, error } = await supabase
     .from('profiles')
     .update({ 
+   
       email, 
       username, 
       avatar_url: avatar, 
@@ -98,7 +104,7 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
     try {
       const { data, error } = await supabase
         .from("Invite")
-        .select("sender, receiver, sender_name, isDone, created_at, avatar_url")
+        .select("sender, receiver, sender_name, avatar_url")
         .eq("receiver", email)
         .eq("isDone", false)
         .order("created_at", { ascending: false });
@@ -119,7 +125,7 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
 
 React.useEffect(() => {
    fetchInvites();
-},[])
+},[email])
 
 const fetchSendConfirmInvites = async () => {
 
@@ -130,15 +136,32 @@ const fetchSendConfirmInvites = async () => {
       .select(" receiver, rec_avatar,rec_username")
       .eq("sender", email)
       .eq("isDone",true)
+      .eq("isnew",true) 
       .order("created_at", { ascending: false });
       if (data) {
-      console.log("data",data)
+     
       const flist = data.map((itr) => ({
         f_name: itr.rec_username,
         f_mail: itr.receiver,
         f_avatar: itr.rec_avatar,
+        
       }));
-      setFlist([...flist]);
+   
+      setFlist([...flist])
+      const { } = await supabase
+      .from("Friends")
+      .insert(flist.map(item => ({
+          f_mail: item.f_mail,
+          f_avatar:item.f_avatar,
+          f_name:item.f_name,
+          user:Email // Assuming f_mail maps to column2
+          // ... other columns and their corresponding values
+        })))
+      const { } = await supabase
+      .from("Invite")
+      .update({isnew:false})
+      .eq("sender", email)
+      
     } else {
       console.error("Error fetching invites:", error);
 
@@ -149,81 +172,160 @@ const fetchSendConfirmInvites = async () => {
   } finally {
     // setIsLoading(false);
   }
-  console.log(f_list);
 };
 
+
+
+const fetchRecConfirmInvites = async () => {
+
+
+  try {
+    const { data, error } = await supabase
+      .from("Invite")
+      .select("sender, sender_name, avatar_url")
+      .eq("receiver", email)
+      .eq("isDone",true)
+      .eq("isnew",true) 
+      .order("created_at", { ascending: false });
+      
+      if (!error) {
+        const flist = data.map((itr) => ({
+          f_name: itr.sender_name,
+          f_mail: itr.sender,
+          f_avatar: itr.avatar_url,
+     
+        }));
+      
+        setFrlist([...flist])
+        const { } = await supabase
+        .from("Friends")
+        .insert(flist.map(item => ({
+            f_mail: item.f_mail,
+            f_avatar:item.f_avatar,
+            f_name:item.f_name,
+            user:Email // Assuming f_mail maps to column2
+            // ... other columns and their corresponding values
+          })))
+        const { } = await supabase
+      .from("Invite")
+      .update({isnew:false})
+      .eq("receiver", email)
+    
+      
+
+      } else {
+        console.error("Error fetching invites:", error);
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+      
+    } finally {
+      // setIsLoading(false);
+    }
+
+  };
+  
+
+
+
+
+
+  
+  // const uniqueFlist = React.useMemo(() => {
+//   const seen = new Set();
+  
+//   const uniqueArrays = f_list.filter((arr) => {
+//     const allUnique = !seen.has(arr);
+//     seen.add(arr);
+//     return allUnique;
+//   });
+  
+//   return uniqueArrays;
+// }, [f_list]);
+
+// React.useEffect(()=>{
+  // setFlist(uniqueFlist)
+// },[f_list])
+
+
+
+
+
+// React.useEffect(() => {
+//   fetchSendConfirmInvites();
+//   fetchRecConfirmInvites();
+//   makeChatRoom();
+// },[email])
+  React.useEffect(() => {
+    const runFunctionsSequentially = async () => {
+      try {
+     
+        const result1 = await fetchSendConfirmInvites();
+
+
+        const result2 = await fetchRecConfirmInvites();
+
+        
+      } catch (error) {
+        console.error("Error running functions:", error);
+      }
+    };
+
+    runFunctionsSequentially();
+
+  }, [email]);
+
+  const fetchFriends = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("Friends")
+        .select("f_name, f_avatar, f_mail")
+        .eq("user", email || "")
+        .eq("isChat",false)
+
+      if (!error) {
+        const { data: roomData, error: roomError } = await supabase
+          .from("Chat_room")
+          .insert(
+            data.map((item) => ({
+              room_name: `${email || ""}${item.f_mail}`,
+  
+            }))
+          )
+          
+        if (!roomError) {
+          setChat_f(data);
+        } else {
+          console.error("Error inserting chat rooms:", roomError);
+        }
+      } else {
+        console.error("Error fetching invites:", error);
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+    } finally {
+      // setIsLoading(false);
+    }
+  };
+
 React.useEffect(() => {
-  fetchSendConfirmInvites();
+fetchFriends();
 },[email])
 
 
-// const fetchRecConfirmInvites = async () => {
-
-
-//   try {
-//     const { data, error } = await supabase
-//       .from("Invite")
-//       .select("sender, receiver, sender_name, avatar_url")
-//       .eq("receiver", email)
-//       .eq("isDone",true)
-//       .order("created_at", { ascending: false });
-
-//     if (!error) {
-//       // console.log(data)
-//       const flist = data.map((itr) => ({
-//         f_name: itr.sender_name,
-//         f_mail: itr.sender,
-//         f_avatar: itr.avatar_url,
-//       }));
-//       setFlist([...flist]);
-//     } else {
-//       console.error("Error fetching invites:", error);
-//       // Handle error gracefully (e.g., display an error message)
-//     }
-//   } catch (error) {
-//     console.error("Unexpected error:", error);
-
-//   } finally {
-//     // setIsLoading(false);
-//   }
-//   // console.log(invites);
-// };
-
-// React.useEffect(() => {
-//   fetchRecConfirmInvites();
-// },[email])
 
 
 
 
 
-const uniqueFlist = React.useMemo(() => {
-  const seen = new Set();
-  
-  const uniqueArrays = f_list.filter((arr) => {
-    const allUnique = !seen.has(arr);
-    seen.add(arr);
-    return allUnique;
-  });
-  
-  return uniqueArrays;
-}, [f_list]);
-
-React.useEffect(()=>{
-setFlist(uniqueFlist)
-},[f_list])
-
-
-
-
-if(!sessionCheck){
-   
-         setTimeout(() => {
-           setIsLoading?.(false);
-         }, 2000); 
+  if(!sessionCheck){
+    
+    setTimeout(() => {
+      setIsLoading?.(false);
+    }, 2000); 
 
  } 
-    
+
 
   return (
     <div className="w-full">
@@ -234,9 +336,8 @@ if(!sessionCheck){
       <div className=" relative mt-0 h-full w-full">
         <Home_rest_com />
         <Home_beg />
-        <Feed />
         <Navbar />
-        <Invite/>
+        {/* <Invite/> */}
        {isNotify && (
 
        (invites.length>=0 ||f_list.length>=0) &&(
@@ -248,12 +349,14 @@ if(!sessionCheck){
        )
        )}
 
-{isLogin&&(
-<div className=' z-40 w-full fixed top-8'>
-<AuthForm/>
+{/* {isLogin&&( */}
 
-</div>
-)}
+ <div className='w-full h-full'>
+  {/* <RoomTmp profile={chat_f} /> */}
+
+</div> 
+
+{/* )} */}
 
       </div>
         )

@@ -3,18 +3,44 @@ import {Message,Namespace } from '../types/basic_types';
 import {Database } from '../types/database.types';
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { v4 as uuidv4 } from 'uuid';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+type C_type=Database['public']['Tables']["Chat_room"]['Row']
 export default async function Chat_server()
 {
+var c_data:any=[]
+var run:boolean=true
+var msg:Message[]=[]
+  const supabase = createServerComponentClient<Database>(
+    { cookies },
 
-  const supabaseUrl = 'https://igscvhkqnkryacanuwqb.supabase.co'
+    {
+      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    }
+  );
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  var sessionCheck = false;
+  var email = session?.user.email;
 
-  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlnc2N2aGtxbmtyeWFjYW51d3FiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM1OTc2OTAsImV4cCI6MjAxOTE3MzY5MH0.1eKpXS6sRy2GWnZ_IaJ_RR3qLTfDwO3xcpwLGzG4AZE' ;
-  const supabase = createClientComponentClient<Database>({
-    supabaseUrl,
-    supabaseKey: supabaseAnonKey
-  });
+    
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
 
   const httpServer = createServer();
   const io = new Server(httpServer, {
@@ -25,28 +51,39 @@ export default async function Chat_server()
 
   });
   const recentlyBroadcastMessages = new Set();
-  
+
   io.on("connection", (socket) => {
- 
+    io.on("connection", (socket) => {
+      console.log("Socket ID:", socket.id, "connected");
+      socket.on("disconnect", () => {
+        console.log("Socket ID:", socket.id, "disconnected");
+      });
+    });
+    
+    socket.on("join_room", (roomName,email) => {
+      console.log("room_name",roomName)
+      socket.join(roomName);
+      
+     
+    })
+    socket.on("leave_room", (roomName) => {
+
+    });
     socket.on("chat_message", async (message: Message) => {
       try {
         if (!recentlyBroadcastMessages.has(message.content)) {
           recentlyBroadcastMessages.add(message.content);
-          io.emit("chat_message", message);
-          console.log("Received message:", message.content);
-    
-          const newUUID = uuidv4();
+          console.log("message content",message.content)
+          if(message.room_name){
+            io.to(message.room_name).emit("chat_message", message);
 
-const { data, error } = await supabase
-.from('Chat_room')
-.insert([
-  { id:newUUID,room_name: 'someValue', info: {name:'otherValue',
+         
+       
 
-content:message.content}, Isfriend:false },
-])
-.select()
-console.log("Data",data, "error:", error)
-
+        }
+          else {
+            console.warn('Message received without room information, cannot broadcast.');
+          }
         }
 
 
@@ -63,7 +100,9 @@ console.log("Data",data, "error:", error)
     console.log("Server running")
   });
   return (
-    <Chat_msg />
+    <div className="w-full h-full">
+    <Chat_msg/>
+    </div>
     );
 
 }

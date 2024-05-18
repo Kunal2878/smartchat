@@ -7,6 +7,14 @@ export interface Friend_list{
   }
 
 }
+export interface Room_names{
+Rooms:{
+
+  room_name:string
+}
+
+
+}
 export interface Database {
 //   auth:{
 //     Tables:{
@@ -91,6 +99,7 @@ sender:string,
 receiver:string,
 sender_name:string,
 isDone:boolean,
+isnew:boolean,
 created_at: Date | string;
 avatar_url:string,
 rec_avatar:string,
@@ -102,6 +111,7 @@ sender:string,
 receiver:string,
 sender_name:string,
 isDone:boolean,
+isnew:boolean,
 created_at: Date | string;
 avatar_url:string,
 rec_avatar:string,
@@ -113,6 +123,7 @@ sender:string,
 receiver:string,
 sender_name:string,
 isDone:boolean,
+isnew:boolean,
 created_at: Date | string;
 avatar_url:string,
 rec_avatar:string,
@@ -124,6 +135,7 @@ sender:string,
 receiver:string,
 sender_name:string,
 isDone:boolean,
+isnew:boolean,
 created_at: Date | string;
 avatar_url:string,
 rec_avatar:string,
@@ -133,41 +145,45 @@ rec_username:string
 Friends:{
 Row:{
   id:string,
-  friend_name:string,
-  friend_avatar:string,
-  friend_email:string,
-  user_email:string,
-  isexist:string
+  f_name:string,
+  f_avatar:string,
+  f_email:string,
+  user:string,
+  isexist:string,
+  isChat:boolean
 
 
 },
 Insert:{
   id:string,
-  friend_name:string,
-  friend_avatar:string,
-  friend_email:string,
-  user_email:string,
+  f_name:string,
+  f_avatar:string,
+  f_email:string,
+  user:string,
   isexist:string
+  isChat:boolean
 
 
 },
 Update:{
   id:string,
-  friend_name:string,
-  friend_avatar:string,
-  friend_email:string,
-  user_email:string,
-  isexist:string
+  f_name:string,
+  f_avatar:string,
+  f_email:string,
+  user:string,
+  isexist:string,
+  isChat:boolean
 
 
 },
 Delete:{
   id:string,
-  friend_name:string,
-  friend_avatar:string,
-  friend_email:string,
-  user_email:string,
-  isexist:string
+  f_name:string,
+  f_avatar:string,
+  f_email:string,
+  user:string,
+  isexist:string,
+  isChat:boolean
 
 
 },
@@ -175,20 +191,25 @@ Delete:{
       Chat_room: {
         Row: {
           // Data expected from .select()
-          id: string; // UUID type represented as string
-          room_name:string
-          info:Json|null
+          id: string
+        room_name:string,
+          info:{mail:string,content:string,room_name:string}|null
         },
         Insert: {
           // Data to be passed to .insert()
-          id?: never;
-          room_name:string
-          info:Json|null
+          id: string
+          room_name:string,
+          info:{mail:string,content:string,room_name:string}|null
         },
         Update: {
-          id?: never;
-          room_name:string
-          info:Json|null
+          id: string
+          room_name:string,
+          info:{mail:string,content:string,room_name:string}|null
+        },
+        Delete: {
+          id: string
+          room_name:string,
+          info:{mail:string,content:string,room_name:string}|null
         },
       },
       Code_check: {

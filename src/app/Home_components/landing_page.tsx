@@ -3,9 +3,20 @@ import All_components from './all_components'
 import * as React from "react";
 import { Session,createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import { Database } from '../types/database.types'
+import { Database,Friend_list , Room_names} from '../types/database.types'
+import Body_com from './body_com';
+import Footer from './footer'
+type F_type=Friend_list['frnd']
+type r_type=Room_names['Rooms']
+import RoomTmp from '../Chat_room_components/chat_tmp/page'
 export default async function LandingPage() {
-  const supabase = createServerComponentClient<Database>(
+var c_data:F_type[]=[]
+var roomNames:r_type[]=[]
+var email:string|undefined
+var pic: string | undefined
+var username: string | undefined
+var id: any | undefined
+const supabase = createServerComponentClient<Database>(
     { cookies },
 
     {
@@ -16,24 +27,60 @@ export default async function LandingPage() {
   const {
     data: { session },
   } = await supabase.auth.getSession();
-  var sessionCheck=false
-if(session){
-  var email=session?.user.email
-  var pic:string|undefined=session?.user.user_metadata.avatar_url
-  var username:string|undefined=session?.user.user_metadata.full_name
-  sessionCheck=true
-var id:any|undefined=session?.user.id
-  if(username===undefined)
-  {
+  var sessionCheck = false;
+  if (session) {
+     email = session?.user.email;
+     pic = session?.user.user_metadata.avatar_url;
+     username = session?.user.user_metadata.full_name;
+    sessionCheck = true;
+    var id: any | undefined = session?.user.id;
+    if (username === undefined) {
+      username = email?.split("@")[0];
+    }
+    const { data:f_data, error:f_err } = await supabase
+      .from("Friends")
+      .select("f_name, f_avatar, f_mail")
+      .eq("user", email);
+    if (f_data) {
+        c_data=f_data
+        // console.log("friends are here",c_data)
+  
+ 
+    }
+    const { data:r_data, error:r_err } = await supabase
+    .from('Chat_room')
+    .select('room_name')
+    .ilike("room_name", `%${email}%`)
 
-    username = email?.split('@')[0]
+  if (r_data) {
+    roomNames = r_data;
+
   }
-}
+  
+  if(r_err){
+console.log("error")
+  }
+  }
+
   return (
     <div className=" relative mt-0 h-full w-full">
-  
-<All_components Email={email} pic={pic} username={username} sessionCheck={sessionCheck} Id={id} session={session}/>
-      </div>
+      <All_components
+        Email={email}
+        pic={pic}
+        username={username}
+        sessionCheck={sessionCheck}
+        Id={id}
+        session={session}
+      />
+       <div className='w-full h-full'>
+  {/* <RoomTmp profile={c_data} rooms={roomNames} /> */}
+<Body_com/>
+</div> 
+       {/* <div className=' w-full h-full'>
+  <RoomTmp  />
+</div>  */}
+<Footer/>
+    </div>
   );
 }
 

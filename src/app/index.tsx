@@ -15,7 +15,9 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isNotify, setIsNotify] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(false);
-  
+  const [f_chat, setF_chat] = useState<string>('');
+  const [room, setRoom] = useState<string>('');
+  const [rmsg, setRmsg] = useState<any>([]);
   // const supaUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   // const supaKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 
@@ -32,6 +34,9 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
           isLoading,
           isNotify,
           isLogin,
+          f_chat,
+          room,
+          rmsg,
           setId,
           setEmail,
           setUserName,
@@ -40,7 +45,10 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
           setIsSession,
           setIsLoading,
           setIsNotify,
-          setIsLogin
+          setIsLogin,
+          setF_chat,
+          setRoom,
+          setRmsg
 
         }}
       >

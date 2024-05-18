@@ -39,3 +39,39 @@ body {
   border-radius: 20px;
   background: #888; 
 }
+.dark .dark\:bg-search-dark{
+  background-image:url("../../public/search_light.svg")
+}
+.bg-search-light{
+
+    background-image:url("../../public/search.svg")
+}
+.dark .dark\:bg-dots-dark{
+  background-image:url("../../public/vertical_dots_light.svg")
+}
+.bg-dots-light{
+
+    background-image:url("../../public/dots_vertical.svg")
+}
+.bg-back-all{
+  background-image:url("../../public/ban_1.png");
+  background-position:center;
+  background-attachment: fixed;
+  
+}
+
+.line-animation{
+
+animation-direction:alternate;
+
+}
+/* 
+
+@keyframes showLine{
+  0%:{
+    left:0px
+  }
+  100%:{
+    left:75px
+  }
+} */

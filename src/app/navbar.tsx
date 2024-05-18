@@ -27,7 +27,7 @@ function Navbar() {
     }
   }, [wdth]);
   return (
-    <div className="w-full flex flex-row justify-center md:justify-start">
+    <div className="z-20 w-full flex flex-row justify-center md:justify-start">
       <div className="w-4/5 md:w-full flex flex-row justify-center items-center dark:bg-gray-900 dark:tect-white bg-white text-gray-900 md:p-2 border-b-2 rounded-full md:rounded-none border-cyan-300 md:mb-0 mb-3 fixed bottom-0">
         <div className="w-2/5 md:w-1/4 flex flex-row justify-between  md:justify-between items-center md:pl-3">
           <div className="size-6  md:size-6  ml-3 md:ml-0 md:mr-4">
@@ -42,7 +42,7 @@ function Navbar() {
             </Link>
           </div>
           <div className="size-6  md:size-6 md:mr-4">
-            <Link href="/">
+            <Link href="/about">
               <Image
                 width={wdth}
                 height={wdth}
@@ -56,7 +56,7 @@ function Navbar() {
         <div className="w-1/5 md:w-1/2 flex justify-center md:justify-center items-center  mr-4 ml-4 md:ml-0 md:mr-0">
           <div className="size-12 md:size-8 flex justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black ">
             {isSession?(
-  <Link href="/chat_room">
+  <Link href="/chat_room/chat_tmp">
   <Image
     src="/send_icon.png"
     width={10}
@@ -97,7 +97,7 @@ function Navbar() {
                 src={avatar||""}
                 width={wdth}
                 height={wdth}
-                className="h-full w-full object-cover rounded-full"
+                className="size-full object-cover rounded-full"
                 alt={avatar||""}
               />
             </Link>

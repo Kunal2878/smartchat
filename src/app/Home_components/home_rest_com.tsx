@@ -124,7 +124,7 @@ return (
 <div className="w-full">
 
 
-    <div className=" z-20 sticky w-full top-0" >
+    <div className=" z-40 sticky top-0 w-full " >
       {isClient && (
 
         <div className="w-full flex flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
@@ -139,14 +139,14 @@ return (
               src={"brand.svg"}
               alt='Loading....'
               />
-              <button className="ml-2 w-20 h-8 rounded-lg text-[16px]">
+              <Link href="/about" className="ml-2 w-20 h-8 rounded-lg text-[16px]">
              <span className='w-full font-black h-full bg-clip-text text-transparent  bg-gradient-to-r from-green-300 via-blue-500 to-purple-600'>SmartChat</span> 
-              </button>
+              </Link>
             </div>
           
 
 
-            <div className="w-2/3 flex flex-row justify-end items-center text-sm">
+<div className="w-2/3 flex flex-row justify-end items-center text-sm">
 <div className='hidden  md:w-4/5 md:flex flex-row justify-end items-center text-sm '>
   {theme2.map((itr) => (  
 <div key={itr.icon} className='w-1/4 flex flex-row justify-end items-center mr-4'>
@@ -158,7 +158,7 @@ return (
               height={20}
               src={itr.icon}
               alt='Loading....'
-              className='  '
+              className=''
               />
 <span className=" text-xs  text-white dark:text-gray-900 dark:group-hover:text-white group-hover:text-slate-900 "
   >{itr.text}</span>
@@ -223,11 +223,11 @@ return (
       {
       isOpen && (
         <div className="z-50 w-full md:pr-4" ref={menuRef} >
-        <div className=" absolute w-2/5 md:w-1/5 right-0 md:mr-4 mr-8 p-1  flex flex-col  rounded-md bg-slate-800  theme-dropdown">
+        <div className=" absolute w-2/5 md:w-1/5 right-0 md:mr-4 mr-8 p-1  flex flex-col  rounded-md dark:bg-gray-900 bg-white text-gray-900 dark:text-white   theme-dropdown">
           {themes.map((theme, index) => (
             <button
               key={index}
-              className="p-2 flex flex-row  items-center "
+              className="p-2 flex flex-row  items-center hover:bg-purple-200 hover:text-white "
               onClick={() => toggleTheme(index,theme.text)}
             >
               <Image

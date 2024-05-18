@@ -9,7 +9,43 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes:{ 
+        slide_right_left :{
+        "0%":{
+          transform: "translateX(0px)"
+        },
+        "50%":{
+          transform: "translateX(-80px)"
+        },"100%":{
+          transform: "translateX(-160px)"
+        }
+      },
+        slide_left :{
+        "0%":{
+          transform: "translateX(0px)"
+        },
+        "50%":{
+          transform: "translateX(80px)"
+        },"100%":{
+          transform: "translateX(160px)"
+        }
+      },
+      showLine:{
+        "0%":{
+          left:"0px"
+        },
+        "100%":{
+          left:"120px"
+        }
+      }
+    },
+      animation:{
+        slide_right_left:"slide_right_left 2s ease in",
+        slide_left:"slide_left 2s ease out",
+        showLine: " showLine 3s infinite ease-in"
+      },
       backgroundImage: {
+        'chatBg': "url('public/chatbg.jpg')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
