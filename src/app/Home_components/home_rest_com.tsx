@@ -151,7 +151,10 @@ return (
   {theme2.map((itr) => (  
 <div key={itr.icon} className='w-1/4 flex flex-row justify-end items-center mr-4'>
 
-<button onClick={()=>handleLogout(itr.path)} className=" group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
+<Link href={itr.path}
+// onClick={()=>handleLogout(itr.path)} 
+
+className=" group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
 
 <Image
               width={20}
@@ -163,7 +166,7 @@ return (
 <span className=" text-xs  text-white dark:text-gray-900 dark:group-hover:text-white group-hover:text-slate-900 "
   >{itr.text}</span>
 
-</button>
+</Link>
 </div>
 ))}
 
