@@ -1,7 +1,7 @@
 
 import {Joke,JokeCategory} from '../contents_types'
 import Joke_show from './joke';
-  export async function F_Joke(): Promise<Joke[]> {
+async function F_Joke(): Promise<Joke[]> {
   const allJokes: Joke[] = [];
 
 
@@ -28,7 +28,7 @@ return allJokes
  
 }
   
-    export default async function Content_jokes() {
+export default async function Content_jokes() {
   const allJokes: Joke[] = await F_Joke();
   return  ( <div className="w-full flex flex-row justify-center items-center">
   <Joke_show jokes={allJokes} />
