@@ -2,7 +2,6 @@
 import Loader from '../loader'
 import Home_beg from './home_beg'
 import Home_rest_com from './home_rest_com'
-import Feed from './feed'
 import Navbar from '../navbar'
 import Notification from '../Chat_room_components/notification/page'
 import Invite from '../Chat_room_components/invite/page'
