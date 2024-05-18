@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-function Terms() {
+function Contact() {
 const sty1="w-full flex flex-row justify-start items-center"
 const sty2="w-full flex flex-col"
 const sty3="w-full flex flex-row justify-start text-2xl font-bold mb-6"
@@ -53,4 +53,4 @@ className='size-full'
   )
 }
 
-export default Terms
+export default Contact
