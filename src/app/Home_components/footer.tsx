@@ -1,9 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-const Ql=[{img:"chat_icon.svg",text:"Chat Room",link:""},{img:"about_info.svg",text:"About Us",link:"/about"},{img:"contact_us_stroke.svg",text:"Contact Us",link:"/contact"},{img:"privacy.svg",text:"Privacy Policy",link:"/privacy"},{img:"terms.svg",text:"Terms and Conditions",link:"/terms"}]
-const api=[{img:"supabase.svg",text:"Supabase",link:""},{img:"g_apis.svg",text:"Google APIs",link:""}]
-const social=[{img:"facebook.svg"},{img:"instagram.svg"},{img:"linked_in.svg"}]
+const Ql=[{id:1,img:"chat_icon.svg",text:"Chat Room",link:""},{id:2,img:"about_info.svg",text:"About Us",link:"/about"},{id:3,img:"contact_us_stroke.svg",text:"Contact Us",link:"/contact"},{id:4,img:"privacy.svg",text:"Privacy Policy",link:"/privacy"},{id:5,img:"terms.svg",text:"Terms and Conditions",link:"/terms"}]
+const api=[{id:1,img:"supabase.svg",text:"Supabase",link:""},{id:2,img:"g_apis.svg",text:"Google APIs",link:""}]
+const social=[{id:1,img:"facebook.svg"},{id:2,img:"instagram.svg"},{id:3,img:"linked_in.svg"}]
 function Footer() {
   return (
     <div className='w-full flex flex-col  p-6 pb-16 dark:bg-gray-900 dark:text-white text-gray-900 bg-white'>
@@ -14,7 +14,7 @@ function Footer() {
 {
   Ql.map((itr)=>(
 <>
-<Link href={itr.link} className='w-full flex flex-row justify-start mt-2'>
+<Link key={itr.id} href={itr.link} className='w-full flex flex-row justify-start mt-2'>
 <div className='size-4 md:size-5 flex flex-row justify-center items-center mr-4'>
 <Image
 width={20}
@@ -40,7 +40,7 @@ className='size-full'
 {
   api.map((itr)=>(
 <>
-<Link href={itr.link} className='w-full flex flex-row justify-start mt-2'>
+<Link key={itr.id} href={itr.link} className='w-full flex flex-row justify-start mt-2'>
 <div className='size-4 md:size-5 flex flex-row justify-center items-center mr-4'>
 <Image
 width={20}
@@ -108,7 +108,7 @@ alt='Loading....'
         <div className='w-1/2 flex flex-row justify-end'>
         {
           social.map((itr)=>(
-            <div className='size-8  flex flex-row justify-center items-center mr-4 rounded-full border-2 border-purple-600 dark:hover:border-cyan-500 hover:border-red-500'>
+            <div key ={itr.id} className='size-8  flex flex-row justify-center items-center mr-4 rounded-full border-2 border-purple-600 dark:hover:border-cyan-500 hover:border-red-500'>
 <Image
 width={20}
 height={20}
