@@ -3,9 +3,9 @@ import * as React from 'react'
 import Image from 'next/image'
 import { Database,Friend_list , Room_names} from '../../types/database.types'
 import  {UseAppContext}  from '../../index'
-type F_type=Friend_list['frnd']
-type r_type=Room_names['Rooms']
-function Chat_profile_mob({profiles,roomNames}:{profiles:F_type[],roomNames:r_type[]})
+// type F_type=Friend_list['frnd']
+// type r_type=Room_names['Rooms']
+function Chat_profile_mob({profiles,roomNames}:any)
 {  console.log("profiles are here",profiles)
     const [isThemeMenu, setisThemeMenu]=React.useState<boolean>(false)
     const context = UseAppContext();
@@ -53,7 +53,7 @@ function Chat_profile_mob({profiles,roomNames}:{profiles:F_type[],roomNames:r_ty
       {
       
       
-      profiles?.map((profile) => (
+      profiles?.map((profile:any) => (
 <div key={profile.f_mail} className='w-1/4 flex flex-col items-center'>
 <div className="add size-10 flex flex-row justify-center rounded-full bg-slate-400">
                 <Image
