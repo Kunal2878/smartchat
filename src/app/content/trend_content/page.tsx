@@ -1,7 +1,7 @@
 import React from 'react';
 import { Article, NewsData } from '../contents_types';
 import Trend_show from './trend';
-export async function F_Trend(): Promise<NewsData> {
+async function F_Trend(): Promise<NewsData> {
   const today = new Date();
   const threeDaysAgo = new Date(today.getTime() - (3 * 24 * 60 * 60 * 1000)); // Subtract 3 days in milliseconds
 
