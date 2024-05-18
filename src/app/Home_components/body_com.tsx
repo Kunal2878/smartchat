@@ -20,9 +20,9 @@ const show=[
 
    
         {
-show.map((itr)=>(
+show.map((itr,index)=>(
 
-      <div key={itr.id} className=' w-full flex  flex-col justify-center items-center gap-2 '>
+      <div key={index} className=' w-full flex  flex-col justify-center items-center gap-2 '>
 <div className='w-full md:w-1/2 flex flex-row justify-center items-center md:mt-1 mt-3 aspect-h-3 aspect-w-4 ' >
 <Image
 width={20}

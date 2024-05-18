@@ -12,9 +12,9 @@ function Footer() {
           <span className="w-full font-black text-[12px] md:text-[18px] flex flex-row justify-start border-2 border-white dark:border-gray-900 border-b-red-600 dark:border-b-indigo-600 pb-2">Quick Links</span>
        <div className='w-full flex flex-col p-2 pl-4'>
 {
-  Ql.map((itr)=>(
+  Ql.map((itr,index)=>(
 <>
-<Link key={itr.id} href={itr.link} className='w-full flex flex-row justify-start mt-2'>
+<Link key ={index} href={itr.link} className='w-full flex flex-row justify-start mt-2'>
 <div className='size-4 md:size-5 flex flex-row justify-center items-center mr-4'>
 <Image
 width={20}
@@ -38,9 +38,9 @@ className='size-full'
           <span className="w-full font-black text-[12px] md:text-[18px] flex flex-row justify-start border-2 border-white dark:border-gray-900 border-b-red-600 dark:border-b-indigo-600 pb-2">API Integrations</span>
           <div className='w-full flex flex-col p-2'>
 {
-  api.map((itr)=>(
+  api.map((itr,index)=>(
 <>
-<Link key={itr.id} href={itr.link} className='w-full flex flex-row justify-start mt-2'>
+<Link key ={index} href={itr.link} className='w-full flex flex-row justify-start mt-2'>
 <div className='size-4 md:size-5 flex flex-row justify-center items-center mr-4'>
 <Image
 width={20}
@@ -107,8 +107,8 @@ alt='Loading....'
         <p className='w-1/2 dark:text-gray-500 text-gray-700  md:text-[12px] text-[8px]'>@copywright All rights reserved</p>
         <div className='w-1/2 flex flex-row justify-end'>
         {
-          social.map((itr)=>(
-            <div key ={itr.id} className='size-8  flex flex-row justify-center items-center mr-4 rounded-full border-2 border-purple-600 dark:hover:border-cyan-500 hover:border-red-500'>
+          social.map((itr,index)=>(
+            <div key ={index} className='size-8  flex flex-row justify-center items-center mr-4 rounded-full border-2 border-purple-600 dark:hover:border-cyan-500 hover:border-red-500'>
 <Image
 width={20}
 height={20}
