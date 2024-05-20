@@ -81,7 +81,7 @@ function Navbar() {
         </div>
         <div className="w-2/5 md:w-1/4 flex justify-between md:justify-between items-center md:pr-3">
           <div className="size-6 mr-4 md:size-6 md:mr-4">
-            <Link href="/">
+            <Link href="/contact">
               <Image
                 width={wdth}
                 height={wdth}
