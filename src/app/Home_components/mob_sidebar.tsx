@@ -64,11 +64,32 @@ setIsNotify?.(true)
 
         <div className="w-full flex flex-row justify-center items-center">
           {IsSession ? (
-              <Link href="/auth/signout"  >
-              <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500" >
-                Log out
-              </button>
-            </Link>
+            //   <Link href="/auth/signout"  >
+            //   <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500" >
+            //     Log out
+            //   </button>
+            // </Link>
+            <Link href="/auth/signout">
+  <button 
+    type="button" // Remove type="submit"
+    className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
+                onClick={async (e) => {
+                  e.preventDefault(); // Prevent default form submission
+
+                  const response = await fetch("/auth/signout", {
+                    method: "POST",
+                  });
+
+                  if (response.ok) {
+                    window.location.href = process.env.NEXT_PUBLIC_URL || "/"; // Redirect to home or fallback to '/'
+                  } else {
+                    // Handle any errors from the signout request
+                  }
+                }}
+  >
+    Log out
+  </button>
+</Link>
            
           ) : (
           
