@@ -348,14 +348,8 @@ fetchFriends();
        )
        )}
 
-{/* {isLogin&&( */}
 
- <div className='w-full h-full'>
-  {/* <RoomTmp profile={chat_f} /> */}
 
-</div> 
-
-{/* )} */}
 
       </div>
         )

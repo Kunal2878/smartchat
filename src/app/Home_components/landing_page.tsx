@@ -73,12 +73,10 @@ console.log("error")
         session={session}
       />
        <div className='w-full h-full'>
-  {/* <RoomTmp profile={c_data} rooms={roomNames} /> */}
+
 <Body_com/>
 </div> 
-       <div className=' w-full h-full'>
-  <RoomTmp  />
-</div> 
+
 <Footer/>
     </div>
   );
