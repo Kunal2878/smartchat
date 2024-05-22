@@ -29,7 +29,10 @@ export  async function POST(req: NextRequest) {
 
   return (
 
-    NextResponse.redirect(new URL("/", "http://localhost:3000"), {
+    // NextResponse.redirect(new URL("/", "http://localhost:3000"),
+    NextResponse.redirect(new URL("/", process.env.NEXT_PUBLIC_URL),
+    
+    {
       status: 302,
     })
 
