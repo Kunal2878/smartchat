@@ -65,7 +65,7 @@ setIsNotify?.(true)
         <div className="w-full flex flex-row justify-center items-center">
           {IsSession ? (
               <Link href="/auth/signout"  >
-              <button type="submit" className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500" >
+              <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500" >
                 Log out
               </button>
             </Link>

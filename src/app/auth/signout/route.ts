@@ -3,9 +3,7 @@ import { cookies } from 'next/headers'
 import  {  type NextRequest, NextResponse } from 'next/server'
 import Loader from '../../loader'
 export  async function POST(req: NextRequest) {
-  // req: NextRequest
-  console.log("outside")
-  var isLoading: boolean = true;
+
   const cookieStore = cookies();
   const supabase = createRouteHandlerClient(
     { cookies: () => cookieStore },
@@ -21,9 +19,9 @@ export  async function POST(req: NextRequest) {
   } = await supabase.auth.getSession();
 
   if (session) {
-    console.log("inside")
+
     await supabase.auth.signOut();
-    isLoading = false;
+
   
   }
 
