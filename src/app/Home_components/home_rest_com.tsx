@@ -198,11 +198,11 @@ className=" group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
       <div className="hidden md:w-1/5 md:flex justify-end ">
 
         {isSession ? (
-            <Link href="/auth/signout">
-          <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500" >
+            <form action="/auth/signout" method="post" >
+          <button type="submit" className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500" >
             Log out
           </button>
-        </Link>
+        </form>
         ) : (
         <Link href="/auth/signup">
         <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500">
