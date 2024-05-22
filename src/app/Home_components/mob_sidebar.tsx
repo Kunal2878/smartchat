@@ -64,12 +64,11 @@ setIsNotify?.(true)
 
         <div className="w-full flex flex-row justify-center items-center">
           {IsSession ? (
-              <Link href="/auth/signout"
-                className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
-                // type="submit" onClick={()=>handlePath('/auth/signout')}
-              >
+              <form action="/auth/signout" method="post" >
+              <button type="submit" className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500" >
                 Log out
-              </Link>
+              </button>
+            </form>
            
           ) : (
           
