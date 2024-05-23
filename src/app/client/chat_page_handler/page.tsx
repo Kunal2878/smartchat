@@ -76,10 +76,11 @@ const supabase = createClientComponentClient<Database>(
 
       if (!socketRef.current) {
 
-        socketRef.current = io('http://localhost:5000'); 
+        // socketRef.current = io('http://localhost:5000'); 
+        socketRef.current = io(process.env.NEXT_PUBLIC_URL||'/'); 
+
       }
   
-      // Cleanup function to disconnect on unmount
       return () => {
         if (socketRef.current) {
           socketRef.current.disconnect();
@@ -233,7 +234,6 @@ message.mail===email?(
     onClick={handleSendMessage}
   />
        </div>
-        {/* <button onClick={handleSendMessage}>Send</button> */}
      </div>
       </div>
     </div>

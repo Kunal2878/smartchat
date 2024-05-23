@@ -1,6 +1,6 @@
 
 import * as React from 'react'
-// import TopBar from '../top_bar'
+// import TopBar from '../../top_bar'
 import Chat_profiles from '../chat_profile/page'
 import Chat_profiles_mob from '../chat_profile_mob/page'
 import { Database,Friend_list , Room_names} from '../../types/database.types'

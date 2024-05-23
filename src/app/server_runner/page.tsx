@@ -23,23 +23,6 @@ export default async function Chat_server()
   var sessionCheck = false;
   var email = session?.user.email;
 
-    
-
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
   const httpServer = createServer();
   const io = new Server(httpServer, {
  cors:{
@@ -94,9 +77,10 @@ export default async function Chat_server()
 
   });
  
-   httpServer.listen(5000,()=>{
-    console.log("Server running")
-  });
+  //  httpServer.listen(5000,()=>{
+  //   console.log("Server running")
+  // });
+  
   return (
     <div className="w-full h-full">
     <Chat_msg/>
