@@ -145,7 +145,7 @@ const supabase = createClientComponentClient<Database>(
       setMessageInput("");
     }
   };
-  setRmsg?.(Room_msg)
+  // setRmsg?.(Room_msg)
   // setMessages([])
   return (
     <div className='w-full  h-full overflow-hidden'
