@@ -166,7 +166,7 @@ rmsg.length>0 &&(
 <div className='w-full h-full absolute right-0 flex flex-col mt-2 mr-2 '>
   {
     rmsg.map((itr:any)=>(
-    itr.mail==="kunalp"?(
+    itr.mail===email?(
   <div
             key={itr.mail}
             className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] right-0 mr-4 flex flex-row  bg-purple-800 mb-4"
@@ -198,7 +198,7 @@ messages.length>0&&(
   <div className='w-full h-full absolute right-0 flex flex-col mt-2 mr-2 '>
   {
 messages.map((message, index) => (
-message.mail==="kunalp"?(
+message.mail===email?(
   <div
             key={index}
             className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] right-0 mr-4 bg-purple-800 mb-4"
