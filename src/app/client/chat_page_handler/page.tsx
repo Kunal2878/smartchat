@@ -27,6 +27,8 @@ const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
 var Room_msg:M_type[]=[]
 var arr: any = [];
 var c_arr:any=[]
+// Room_msg=[{mail:'kunalp', content:"What happened", room_name:'kpr'},{mail:'royr', content:"What are you doing", room_name:'kpr'},]
+// setMessages([{mail:'kunalp', content:"What happened", room_name:'kpr'},{mail:'royr', content:"What have you done", room_name:'kpr'},])
 const supabase = createClientComponentClient<Database>(
   {
     supabaseKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -143,23 +145,31 @@ const supabase = createClientComponentClient<Database>(
       setMessageInput("");
     }
   };
-
+  setRmsg?.(Room_msg)
+  // setMessages([])
   return (
-    <div className='w-full  h-full overflow-hidden hover:overflow-y-auto'style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}>
+    <div className='w-full  h-full overflow-hidden'
+    
+    style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
+    
+    >
 
-<div className=' parent w-full flex flex-col h-full '>
+<div className=' w-full  h-full flex flex-col'>
 
 <div className='w-full flex flex-col  h-full  overflow-hidden hover:overflow-y-auto'>
+
+
 {
+
 
 rmsg.length>0 &&(
 <div className='w-full h-full absolute right-0 flex flex-col mt-2 mr-2 '>
   {
     rmsg.map((itr:any)=>(
-    itr.mail===email?(
+    itr.mail==="kunalp"?(
   <div
             key={itr.mail}
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] flex flex-row  bg-purple-800 mb-4"
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] right-0 mr-4 flex flex-row  bg-purple-800 mb-4"
      
           >
             {itr.content}
@@ -167,7 +177,7 @@ rmsg.length>0 &&(
     ):(
       <div
             key={itr.mail}
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] left-0 ml-2 bg-gray-600 mb-4 "
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] left-0 ml-4  bg-gray-600 mb-4 "
           >
             {itr.content}
           </div>
@@ -181,20 +191,24 @@ rmsg.length>0 &&(
 
 
 {
+messages.length>0&&(
+
+
+
   <div className='w-full h-full absolute right-0 flex flex-col mt-2 mr-2 '>
   {
 messages.map((message, index) => (
-message.mail===email?(
+message.mail==="kunalp"?(
   <div
             key={index}
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] right-0 mr-2 bg-purple-800 mb-4"
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] right-0 mr-4 bg-purple-800 mb-4"
           >
             {message.content}
           </div>
     ):(
       <div
       key={index}
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] left-0 ml-2 bg-gray-600 mb-4"
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] left-0 ml-4 bg-gray-600 mb-4"
           >
             {message.content}
           </div>
@@ -203,7 +217,9 @@ message.mail===email?(
         }
           </div>
 
-}
+)
+
+} 
      
  
         

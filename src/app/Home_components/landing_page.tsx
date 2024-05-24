@@ -64,7 +64,7 @@ console.log("error")
 
   return (
     <div className=" relative mt-0 h-full w-full">
-      {/* <All_components
+      <All_components
         Email={email}
         pic={pic}
         username={username}
@@ -77,8 +77,8 @@ console.log("error")
 <Body_com/>
 </div> 
 
-<Footer/> */}
-<RoomTmp/>
+<Footer/>
+
     </div>
   );
 }
