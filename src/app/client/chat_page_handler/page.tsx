@@ -1,6 +1,6 @@
 
 "use client"
-import { useEffect, useRef,useState } from 'react';
+import { useEffect, useRef,useState,useCallback } from 'react';
 import { io,Socket } from 'socket.io-client';
 import {Message,Message2 } from '../../types/basic_types';
 import  {UseAppContext}  from '../../index'
@@ -38,9 +38,8 @@ const supabase = createClientComponentClient<Database>(
 
     const socketRef = useRef<Socket | null>(null);
  
-  useEffect(() => {
-    const joinRoom = async () => {
-    Room_msg=[]
+    const joinRoom = useCallback(async () => {
+      Room_msg=[]
       setRmsg?.([]);
       setMessages([]);
       setPrevRoom(prevRoom|| room)
@@ -63,12 +62,13 @@ const supabase = createClientComponentClient<Database>(
         }
         socketRef.current?.emit("join_room", room, email);
         socketRef.current?.on("error", (error) => {
-     
-         window.alert("Error in joining room")
+          
+          window.alert("Error in joining room")
         });
       }
-    };
-
+    },[room]);
+    
+    useEffect(() => {
    
  joinRoom();
     //  updateRoom();
