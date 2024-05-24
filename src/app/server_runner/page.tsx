@@ -8,7 +8,7 @@ import { cookies } from 'next/headers'
 
 export default async function Chat_server()
 {
-
+console.log("Chat Server is running");
   const supabase = createServerComponentClient<Database>(
     { cookies },
 
