@@ -37,7 +37,6 @@ if(session)
       .eq("user", email);
     if (f_data) {
         c_data=f_data
-        console.log("friends are here",c_data)
   
  
     }
@@ -52,7 +51,7 @@ if(session)
   }
   
   if(r_err){
-console.log("error")
+// window.alert("Error in fetching chat")
   }
   
   }

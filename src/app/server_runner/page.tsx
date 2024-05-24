@@ -24,7 +24,7 @@ export default async function Chat_server()
   var email = session?.user.email;
 
   const httpServer = createServer();
-  const io = new Server(httpServer, {
+  const io = new Server({
  cors:{
   origin:'*',
   methods:['GET', 'POST']
