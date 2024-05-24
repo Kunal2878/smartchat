@@ -5,8 +5,8 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-
-export default async function Chat_server()
+import { NextApiRequest, NextApiResponse } from "next";
+export default async function Chat_server(req: NextApiRequest, res: NextApiResponse)
 {
 console.log("Chat Server is running");
   const supabase = createServerComponentClient<Database>(
@@ -31,6 +31,7 @@ console.log("Chat Server is running");
  }
 
   });
+
   const recentlyBroadcastMessages = new Set();
 
   io.on("connection", (socket) => {
@@ -89,3 +90,83 @@ console.log("Chat Server is running");
 
 }
 
+// import { Server } from "socket.io";
+
+// const io = new Server();
+
+// io.on("connection", (socket) => {
+//   console.log("A user connected");
+
+//   socket.on("disconnect", () => {
+//     console.log("A user disconnected");
+//   });
+// });
+
+// export default io;
+
+// Create an endpoint in the Next.js backend:
+// import { NextApiRequest, NextApiResponse } from "next";
+// import io from "./socket.js";
+
+// export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+
+//   // Initialize the Socket.IO connection
+//   io.init(req, res);
+
+//   // Handle the Socket.IO events
+//   io.on("connection", (socket) => {
+//     console.log("A user connected");
+
+//     socket.on("disconnect", () => {
+//       console.log("A user disconnected");
+//     });
+//   });
+// }
+
+// Make a request to the endpoint in the client to initialize the socket connection:
+
+// import io from "socket.io-client";
+
+// const socket = io();
+
+// socket.on("connect", () => {
+//   console.log("Connected to the server");
+// });
+
+// socket.on("disconnect", () => {
+//   console.log("Disconnected from the server");
+// });
+
+
+// Implement a component with an input field in the index.js file:
+// import React, { useState } from "react";
+// import io from "socket.io-client";
+
+// const socket = io();
+
+// const IndexPage = () => {
+//   const [message, setMessage] = useState("");
+
+//   const handleChange = (event) => {
+//     setMessage(event.target.value);
+//   };
+
+//   const handleSubmit = () => {
+//     socket.emit("message", message);
+//     setMessage("");
+//   };
+
+//   return (
+//     <div>
+//       <input
+//         type="text"
+//         value={message}
+//         onChange={handleChange}
+//       />
+//       <button onClick={handleSubmit}>Send</button>
+//     </div>
+//   );
+// };
+
+// export default IndexPage;
