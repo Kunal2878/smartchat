@@ -163,7 +163,7 @@ const supabase = createClientComponentClient<Database>(
 
 
 rmsg.length>0 &&(
-<div className='w-full h-full absolute right-0 flex flex-col mt-2 mr-2 '>
+<div className='w-full h-full  right-0 flex flex-col mt-2 mr-2 '>
   {
     rmsg.map((itr:any)=>(
     itr.mail===email?(
@@ -195,7 +195,7 @@ messages.length>0&&(
 
 
 
-  <div className='w-full h-full absolute right-0 flex flex-col mt-2 mr-2 '>
+  <div className='w-full h-full  right-0 flex flex-col mt-2 mr-2 '>
   {
 messages.map((message, index) => (
 message.mail===email?(
