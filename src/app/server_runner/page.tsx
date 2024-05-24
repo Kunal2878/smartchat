@@ -6,7 +6,7 @@ import { Server } from "socket.io";
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { NextApiRequest, NextApiResponse } from "next";
-export default async function Chat_server(req: NextApiRequest, res: NextApiResponse)
+export default async function Chat_server()
 {
 console.log("Chat Server is running");
   const supabase = createServerComponentClient<Database>(
