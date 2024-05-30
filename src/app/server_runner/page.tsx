@@ -8,7 +8,7 @@ import { cookies } from 'next/headers'
 import { NextApiRequest, NextApiResponse } from "next";
 export default async function Chat_server()
 {
-console.log("Chat Server is running");
+
   const supabase = createServerComponentClient<Database>(
     { cookies },
 
@@ -78,9 +78,10 @@ console.log("Chat Server is running");
 
   });
  
-  //  httpServer.listen(5000,()=>{
-  //   console.log("Server running")
-  // });
+   httpServer.listen(()=>{
+    // console.log("server is listening")
+    console.log((httpServer as any).address().port)
+  });
   
   return (
     <div className="w-full h-full">
