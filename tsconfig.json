@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    // "target": "es5",
     "target": "es2015",
-
     "downlevelIteration": true,
-
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -24,19 +25,28 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "*": ["*", "app/*"],
-      "../*": ["../*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "*": [
+        "*",
+        "app/*"
+      ],
+      "../*": [
+        "../*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
-
-
-
-
-
 // {
 //   "compilerOptions": {
 //     "target": "es5",
