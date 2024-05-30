@@ -34,7 +34,7 @@ const chat_bar_themes=[
     <div className='w-full h-auto flex flex-col items-center dark:bg-gray-900 bg-white text-gray-900 dark:text-white'>
       {
         chat_themes.map((itr)=>(
-<div className='w-full h-6 flex flex-row items-center hover:scale-50 transition-all p-4 mb-4'>
+<div key={itr.text} className='w-full h-6 flex flex-row items-center hover:scale-50 transition-all p-4 mb-4'>
 <Image
 unoptimized={true}
 src={itr.img}
@@ -49,7 +49,7 @@ className='size-6 rounded-full'
       }
       {
         chat_bar_themes.map((itr)=>(
-<div className='w-full h-6 flex flex-row items-center hover:scale-50 transition-all p-2 mb-4'>
+<div key={itr.text} className='w-full h-6 flex flex-row items-center hover:scale-50 transition-all p-2 mb-4'>
 <div
 
 className={`size-6 rounded-full ${itr.bg}`}

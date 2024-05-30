@@ -24,7 +24,7 @@ export default async function Chat_server()
   var email = session?.user.email;
 
   const httpServer = createServer();
-  const io = new Server({
+  const io = new Server(httpServer,{
  cors:{
   origin:'*',
   methods:['GET', 'POST']
@@ -78,10 +78,10 @@ export default async function Chat_server()
 
   });
  
-   httpServer.listen(()=>{
-    // console.log("server is listening")
-    console.log((httpServer as any).address().port)
-  });
+  //  httpServer.listen(()=>{
+  //   // console.log("server is listening")
+  //   console.log((httpServer as any).address().port)
+  // });
   
   return (
     <div className="w-full h-full">

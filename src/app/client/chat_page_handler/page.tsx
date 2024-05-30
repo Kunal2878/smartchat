@@ -79,7 +79,7 @@ const supabase = createClientComponentClient<Database>(
       if (!socketRef.current) {
 
         // socketRef.current = io('http://localhost:5000'); 
-        socketRef.current = io(); 
+        socketRef.current = io('https://smartchat-one.vercel.app/'); 
 
       }
   
