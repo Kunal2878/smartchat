@@ -7,7 +7,7 @@ import { cookies } from 'next/headers'
 import { Server, ServerOptions } from 'socket.io';
 import { NextApiRequest, NextApiResponse } from 'next';
 import Chat_msg from "../socket_client/client"
-const Chat_server=(req:any,res:any)=> {
+const GET=(req:any,res:any)=> {
 
   // if (!res.socket?.server.io) {
     console.log('*First use, starting socket.io');
@@ -45,4 +45,4 @@ const Chat_server=(req:any,res:any)=> {
 //     <div className='w-full '> <Chat_msg/></div>
 //   )
 // }
-export default Chat_server
+export default GET
