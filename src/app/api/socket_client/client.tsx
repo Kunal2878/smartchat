@@ -16,7 +16,7 @@ const Chat_msg = () => {
     fetch('/api/socket_server') 
       .finally(() => {
         console.log("ENterd")
-        socketRef.current = io('/',{path:'/api/socket_server'});
+        socketRef.current = io('/',{path:'/api/socket_server/socket'});
 
         socketRef.current?.on('connect', () => {
           console.log('connect');

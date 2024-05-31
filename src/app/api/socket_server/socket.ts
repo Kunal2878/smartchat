@@ -12,7 +12,7 @@ export default async function handler(res: any): Promise<void> {
     console.log('*First use, starting socket.io');
 
     const io = new Server(res.socket.server, {
-      path: '/api/socket_server',
+      path: '/api/socket_server/socket',
       cors: {
         origin: '*',
         methods: ['GET', 'POST', 'PUT']
