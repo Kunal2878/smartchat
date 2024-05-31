@@ -45,4 +45,4 @@ const Chat_server=(req:any,res:any)=> {
 //     <div className='w-full '> <Chat_msg/></div>
 //   )
 // }
-export default ioHandler
+export default Chat_server
