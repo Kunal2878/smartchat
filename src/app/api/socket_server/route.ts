@@ -7,7 +7,7 @@ import { cookies } from 'next/headers'
 import { Server, ServerOptions } from 'socket.io';
 import { NextApiRequest, NextApiResponse } from 'next';
 import Chat_msg from "../socket_client/client"
-export default async function handler(res: any) {
+export default async function handler(res: any): Promise<void> {
   if (!res.socket?.server.io) {
     console.log('*First use, starting socket.io');
 
