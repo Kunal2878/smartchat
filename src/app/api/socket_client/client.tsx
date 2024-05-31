@@ -13,7 +13,7 @@ const Chat_msg = () => {
     const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    fetch('/api/socket_server') 
+    fetch('/api/socket_server/socket') 
       .finally(() => {
         console.log("ENterd")
         socketRef.current = io('/',{path:'/api/socket_server/socket'});
