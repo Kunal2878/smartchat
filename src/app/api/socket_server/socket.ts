@@ -8,6 +8,7 @@ import { Server, ServerOptions } from 'socket.io';
 import { NextRequest, NextResponse } from 'next/server';
 import Chat_msg from "../socket_client/client"
 export default async function handler(req:any,res: any) {
+  console.log(res)
   // if (!res) {
     console.log('*First use, starting socket.io');
 
