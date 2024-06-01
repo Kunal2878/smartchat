@@ -13,10 +13,11 @@ const Chat_msg = () => {
     const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    fetch('/api/socket_server/socket') 
-      .finally(() => {
+    // fetch('/api/socket_server/socket') 
+    //   .finally(() => {
+
         console.log("ENterd")
-        socketRef.current = io('/',{path:'/api/socket_server/socket'});
+        socketRef.current = io('https://smartchat-one.vercel.app',{path:'/api/socket_server/socket'});
 
         socketRef.current?.on('connect', () => {
           console.log('connect');
@@ -34,7 +35,7 @@ const Chat_msg = () => {
         socketRef.current?.on('disconnect', () => {
           console.log('disconnect');
         });
-      });
+      // });
 
     // Cleanup function (optional for cleanup tasks on unmount)
     return () => {
