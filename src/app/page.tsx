@@ -1,4 +1,4 @@
-import Chat_msg from "./client/chat_page_handler/page"
+import Chat_msg from "./api/socket_client/client"
 import Chat_server from "./server_runner/page"
 import Theme_menu from './chat_room/theme_menu/page'
 import TopBar from "./Chat_room_components/top_bar"
