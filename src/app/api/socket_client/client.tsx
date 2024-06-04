@@ -1,51 +1,66 @@
 'use client'
-import React, { useEffect, useRef } from 'react';
-import { io,Socket } from 'socket.io-client';
-
-interface SocketEvents {
-  connect: () => void;
-  hello: (data: string) => void;
-  'a user connected': () => void;
-  disconnect: () => void;
-}
+import React, { useEffect, useState } from 'react';
+import Pusher from 'pusher-js';
 
 const Chat_msg = () => {
-    const socketRef = useRef<Socket | null>(null);
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState<string[]>([]);
+
+  // Replace with your Pusher credentials (store securely)
+  const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY!, {
+    cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER!,
+  });
 
   useEffect(() => {
-    fetch('/api/socket_server/socket') 
-      .finally(() => {
+    const channel = pusher.subscribe('chat-channel');
+    channel.bind('new-message', (data: any) => {
+      setMessages(prevMessages => [...prevMessages, data.message]);
+    });
 
-        console.log("ENterd")
-        socketRef.current = io('https://smartchat-one.vercel.app',{path:'/api/socket_server/socket'});
-
-        socketRef.current?.on('connect', () => {
-          console.log('connect');
-          socketRef.current?.emit('hello');
-        });
-
-        socketRef.current?.on('hello', (data) => {
-          console.log('hello', data);
-        });
-
-        socketRef.current?.on('a user connected', () => {
-          console.log('a user connected');
-        });
-
-        socketRef.current?.on('disconnect', () => {
-          console.log('disconnect');
-        });
-      });
-
-    // Cleanup function (optional for cleanup tasks on unmount)
-    return () => {
-      if (socketRef.current) {
-        socketRef.current.disconnect();
-      }
-    };
+    return () => channel.unsubscribe();
   }, []);
 
-  return <h1>Socket.io</h1>;
+  const sendMessage = async () => {
+    try {
+      const response = await fetch('https://pusher-chat-five.vercel.app/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      const data = await response.json();
+      console.log('Message sent:', data.message);
+      setMessage(''); // Clear message input after sending
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <div className="chat-container">
+      <h2>Chat Messages</h2>
+      <ul>
+        {messages.map((message, index) => (
+          <li key={index}>{message}</li>
+        ))}
+      </ul>
+      <input
+        type="text"
+        value={message}
+        onChange={e => setMessage(e.target.value)}
+        placeholder="Enter your message..."
+      />
+      <button onClick={sendMessage} disabled={!message}>
+        Send Message
+      </button>
+    </div>
+  );
 };
 
 export default Chat_msg;
+
+
