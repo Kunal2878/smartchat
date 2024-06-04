@@ -22,7 +22,7 @@ const Chat_msg = () => {
 
   const sendMessage = async () => {
     try {
-      const response = await fetch('https://pusher-chat-five.vercel.app/chat', {
+      const response = await fetch('https://pusher-chat-five.vercel.app/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message }),
