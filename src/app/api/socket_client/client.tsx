@@ -25,6 +25,7 @@ setRoom?.('chat')
   useEffect(() => {
     const channel = pusher.subscribe(`${room}`);
     channel.bind('new-message', (data: any) => {
+      console.log(data)
       setMessages(prevMessages => [...prevMessages, data.mesg.content]);
     });
 
