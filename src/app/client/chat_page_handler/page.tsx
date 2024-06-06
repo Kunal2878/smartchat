@@ -17,6 +17,7 @@ type C_msg=c_msg[]
 
 
 type M_type=Message2['info']
+
 const Chat_msg =   () => {
 const context = UseAppContext();
 const { email,room,rmsg,setRmsg } = context || {};
@@ -27,8 +28,7 @@ const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
 var Room_msg:M_type[]=[]
 var arr: any = [];
 var c_arr:any=[]
-// Room_msg=[{mail:'kunalp', content:"What happened", room_name:'kpr'},{mail:'royr', content:"What are you doing", room_name:'kpr'},]
-// setMessages([{mail:'kunalp', content:"What happened", room_name:'kpr'},{mail:'royr', content:"What have you done", room_name:'kpr'},])
+
 const supabase = createClientComponentClient<Database>(
   {
     supabaseKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -139,7 +139,8 @@ const supabase = createClientComponentClient<Database>(
       const message: Message = {
         content: messageInput,
         mail: email || "",
-        room_name:room || '' 
+        room_name:room || '' ,
+        time:'timw'
       };
       socketRef.current?.emit("chat_message", message);
       setMessageInput("");

@@ -2,8 +2,9 @@ import { AnyNode } from "postcss";
 
 export interface Message {
     mail:string
-    content: string;
+    content: string
     room_name:string
+    time:string
     // Add other properties as needed (e.g., sender, timestamp)
   }
 export interface Message2 {
