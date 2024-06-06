@@ -52,7 +52,7 @@ setRoom?.('chat')
   
 
   const sendMessage = async () => {
-    const mesg: Message = {
+    const mesg = {
       content: message,
       mail: email || "",
       room_name:room || '' ,
