@@ -62,7 +62,7 @@ setRoom?.('chat')
       const response = await fetch('https://pusher-chat-five.vercel.app/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mesg }),
+        body: JSON.stringify(mesg ),
       });
 
       if (!response.ok) {
