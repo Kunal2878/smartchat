@@ -7,6 +7,7 @@ import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import {Message,Message2 } from '../../types/basic_types';
 const Chat_msg = () => {
   const [message, setMessage] = useState('');
+  let Room='chat'
   const [messages, setMessages] = useState<string[]>([]);
   const [messageInput, setMessageInput] = useState<string>('');
   const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
@@ -23,8 +24,8 @@ const { email,room,rmsg,setRmsg,setRoom } = context || {};
 setRoom?.('chat')
 
   useEffect(() => {
-    console.log('useEffect')
-    const channel = pusher.subscribe(`${room}`);
+    console.log(room)
+    const channel = pusher.subscribe(`${Room}`);
     channel.bind('new-message', (mesg: any) => {
       console.log(mesg)
       setMessages(prevMessages => [...prevMessages, mesg.content]);
@@ -62,7 +63,7 @@ setRoom?.('chat')
       const response = await fetch('https://pusher-chat-five.vercel.app/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({room,message} ),
+        body: JSON.stringify({Room,message} ),
       });
 
       if (!response.ok) {
