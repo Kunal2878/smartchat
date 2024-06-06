@@ -23,6 +23,7 @@ const { email,room,rmsg,setRmsg,setRoom } = context || {};
 setRoom?.('chat')
 
   useEffect(() => {
+    console.log('useEffect')
     const channel = pusher.subscribe(`${room}`);
     channel.bind('new-message', (data: any) => {
       console.log(data)
