@@ -151,7 +151,7 @@ rmsg.length>0 &&(
           </div>
     ):(
       <div
-            key={itr.sender}
+            key={index}
             className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] left-0 ml-4  bg-orange-600 mb-4 "
           >
             {itr.message}
