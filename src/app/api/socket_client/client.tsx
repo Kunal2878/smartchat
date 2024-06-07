@@ -24,14 +24,14 @@ const { email,room,rmsg,setRmsg,setRoom } = context || {};
 setRoom?.('chat')
 
   useEffect(() => {
-    const channel = pusher.subscribe(Room);
+    const channel = pusher.subscribe(`${room}`);
     channel.bind('new-message', (data: any) => {
       console.log(data)
       setMessages(prevMessages => [...prevMessages, data.message]);
     });
 
     return () => channel.unsubscribe();
-  }, []);
+  }, [room]);
 
 
 
@@ -62,7 +62,7 @@ setRoom?.('chat')
       const response = await fetch('https://pusher-chat-five.vercel.app/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({Room,message} ),
+        body: JSON.stringify({room,message} ),
       });
 
       if (!response.ok) {
