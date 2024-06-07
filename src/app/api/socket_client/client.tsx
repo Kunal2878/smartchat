@@ -169,10 +169,10 @@ rmsg.length>0 &&(
   {
     rmsg.map((itr:any,index:any)=>(
     itr.sender===email?(
-      <div    key={index} className=' w-full flex flex-col items-center right-0 mb-4'>
+      <div    key={index} className=' w-full flex flex-col items-center right-0 mb-8'>
       <div    className='w-full flex flex-row justify-end items-center right-0'>
 
-      <div   className='group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col  '>
+      <div   className='group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '>
   <div
          
             className=" rounded-md w-full  p-2 mr-4 flex flex-row  items-center bg-cyan-400  "
@@ -180,7 +180,7 @@ rmsg.length>0 &&(
           >
             {itr.message}
           </div>
-          <span className={`${sty1}  mr-2`}>
+          <span className={`${sty1}  mr-2 transition-all duration-200 ease-in-out`}>
             <button >
             <Image
             alt="loading.."
