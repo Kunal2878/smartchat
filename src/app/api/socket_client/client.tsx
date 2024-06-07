@@ -171,13 +171,14 @@ rmsg.length>0 &&(
     itr.sender===email?(
       <div    key={index} className=' w-full flex flex-col items-center right-0 mb-4'>
       <div    className='w-full flex flex-row justify-end items-center right-0'>
+
+      <div   className='group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col  '>
   <div
          
-            className="group rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 mr-4 flex flex-row  items-center bg-cyan-400  "
+            className=" rounded-md w-full  p-2 mr-4 flex flex-row  items-center bg-cyan-400  "
      
           >
             {itr.message}
-          </div>
           </div>
           <span className={`${sty1}  mr-2`}>
             <button >
@@ -212,6 +213,8 @@ rmsg.length>0 &&(
         
 
           </span>
+          </div>
+          </div>
       
           </div>
 
@@ -220,7 +223,7 @@ rmsg.length>0 &&(
       <div    key={index} className='w-full flex flex-row justify-start items-center left-0 '>
       <div
             key={index}
-            className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 ml-4  bg-orange-600 mb-4 flex flex-row  items-center "
+            className="rounded-md md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 ml-4  bg-orange-600 mb-4 flex flex-row  items-center "
           >
             {itr.message}
           </div>
@@ -246,7 +249,7 @@ itr.sender===email?(
 <div   key={index} className='w-full flex flex-row justify-end items-center right-0 '>
   <div
           
-            className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 mr-4 bg-cyan-400 mb-4"
+            className="rounded-md md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 mr-4 bg-cyan-400 mb-4"
           >
             {itr.message}
           </div>
@@ -255,7 +258,7 @@ itr.sender===email?(
 <div key={index} className='w-full flex flex-row justify-start items-center left-0 '>
       <div
       key={index}
-            className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 ml-4 bg-orange-600 mb-4"
+            className="rounded-md md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 ml-4 bg-orange-600 mb-4"
           >
            {itr.message}
           </div>
