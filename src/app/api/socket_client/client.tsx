@@ -8,14 +8,15 @@ import {Message,Message2 } from '../../types/basic_types';
 import Image from 'next/image'
 
 const Chat_msg = () => {
-let Room_msg=[]
-const [message, setMessage] = useState('');
-const [messages, setMessages] = useState<string[]>([]);
-const [messageInput, setMessageInput] = useState<string>('');
-const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
-
-const context = UseAppContext();
-const { email,room,rmsg,setRmsg,setRoom } = context || {};
+  let Room_msg=[]
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState<string[]>([]);
+  const [messageInput, setMessageInput] = useState<string>('');
+  const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
+  
+  const context = UseAppContext();
+  const { email,room,rmsg,setRmsg,setRoom } = context || {};
+setRoom?.('chat')
 const supabase = createClientComponentClient<Database>(
   {
     supabaseKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -205,10 +206,10 @@ itr.sender===email?(
       <div className=' search w-full flex flex-row justify-center items-center  lg:h-16 mb-0 dark:bg-gray-900 bg-white '>
 
         <input
-     className='rounded-md mr-4 dark:bg-white bg-gray-900 dark:text-gray-900 text-white outline-none' placeholder='Message....'
+     className='rounded-md mr-4 dark:bg-white bg-gray-900 dark:text-red-900 text-red-400 outline-none' placeholder='Message....'
      type="text"
      value={message}
-     onChange={(e) => setMessageInput(e.target.value)}
+     onChange={(e) => setMessage(e.target.value)}
      />
 
 <button className="size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed"
