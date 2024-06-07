@@ -8,7 +8,7 @@ import {Message,Message2 } from '../../types/basic_types';
 import Image from 'next/image'
 
 const Chat_msg = () => {
-  const sty1="w-[300px]  flex-row items-center justify-end hidden group-hover:flex pl-2"
+  const sty1="w-[200px]  flex-row items-center justify-end hidden group-hover:flex pl-2"
   let Room_msg=[]
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
@@ -169,11 +169,11 @@ rmsg.length>0 &&(
   {
     rmsg.map((itr:any,index:any)=>(
     itr.sender===email?(
-      <div    key={index} className='group w-full flex flex-col items-center right-0 mb-4'>
+      <div    key={index} className=' w-full flex flex-col items-center right-0 mb-4'>
       <div    className='w-full flex flex-row justify-end items-center right-0'>
   <div
          
-            className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 mr-4 flex flex-row  items-center bg-cyan-400  "
+            className="group rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 mr-4 flex flex-row  items-center bg-cyan-400  "
      
           >
             {itr.message}
