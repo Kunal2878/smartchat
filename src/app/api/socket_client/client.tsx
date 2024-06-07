@@ -119,6 +119,21 @@ joinRoom();
     } catch (error) {
       console.error(error);
     }
+    let chat_data = {
+      message: message,
+      sender: email || '',
+      room:room || '' ,
+  
+    };
+    const { data, error } = await supabase.from('Chat').insert([chat_data]);
+
+  if (error) {
+    console.error('Error inserting data:', error);
+
+  } else {
+    console.log('Data inserted successfully:', data);
+
+  }
   };
 
 
@@ -145,7 +160,7 @@ rmsg.length>0 &&(
       <div    key={index} className='w-full flex flex-row justify-end items-center right-0 '>
   <div
          
-            className="md:min-w-[80px] md:max-w-[160px] min-w-[60px] max-w-[160px] p-1 mr-4 flex flex-row  items-center bg-cyan-400 mb-4 "
+            className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 mr-4 flex flex-row  items-center bg-cyan-400 mb-4 "
      
           >
             {itr.message}
@@ -157,7 +172,7 @@ rmsg.length>0 &&(
       <div    key={index} className='w-full flex flex-row justify-start items-center left-0 '>
       <div
             key={index}
-            className="md:min-w-[80px] md:max-w-[160px] min-w-[60px] max-w-[160px] p-1 ml-4  bg-orange-600 mb-4 flex flex-row  items-center "
+            className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 ml-4  bg-orange-600 mb-4 flex flex-row  items-center "
           >
             {itr.message}
           </div>
@@ -183,7 +198,7 @@ itr.sender===email?(
 <div   key={index} className='w-full flex flex-row justify-end items-center right-0 '>
   <div
           
-            className="md:min-w-[80px] md:max-w-[160px] min-w-[60px] max-w-[160px] p-1 mr-4 bg-cyan-400 mb-4"
+            className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 mr-4 bg-cyan-400 mb-4"
           >
             {itr.message}
           </div>
@@ -192,7 +207,7 @@ itr.sender===email?(
 <div key={index} className='w-full flex flex-row justify-start items-center left-0 '>
       <div
       key={index}
-            className="md:min-w-[80px] md:max-w-[160px] min-w-[60px] max-w-[160px] p-1 ml-4 bg-orange-600 mb-4"
+            className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 ml-4 bg-orange-600 mb-4"
           >
            {itr.message}
           </div>
