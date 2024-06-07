@@ -8,7 +8,7 @@ import {Message,Message2 } from '../../types/basic_types';
 import Image from 'next/image'
 
 const Chat_msg = () => {
-  const sty1="w-full flex flex-row items-center justify-end hidden group-hover:block pl-2 mt-4"
+  const sty1="w-[300px]  flex-row items-center justify-end hidden group-hover:flex pl-2"
   let Room_msg=[]
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
@@ -179,7 +179,7 @@ rmsg.length>0 &&(
             {itr.message}
           </div>
           </div>
-          <span className={`${sty1} top-0 right-0 mr-4`}>
+          <span className={`${sty1}  mr-2`}>
             <button >
             <Image
             alt="loading.."
