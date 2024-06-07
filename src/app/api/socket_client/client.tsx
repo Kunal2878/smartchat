@@ -144,9 +144,9 @@ joinRoom();
     
     >
 
-<div className=' w-full  h-full flex flex-col'>
+<div className=' w-full  h-full flex flex-col overflow-hidden hover:overflow-y-auto'>
 
-<div className='w-full flex flex-col  h-full  overflow-hidden hover:overflow-y-auto'>
+<div className='w-full flex flex-col  h-full '>
 
 
 {
