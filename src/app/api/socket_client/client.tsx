@@ -15,8 +15,9 @@ const Chat_msg = () => {
   const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
   
   const context = UseAppContext();
-  const { email,room,rmsg,setRmsg,setRoom } = context || {};
+  const { email,room,rmsg,setRmsg,setRoom,setEmail } = context || {};
 setRoom?.('chat')
+setEmail?.('kp')
 const supabase = createClientComponentClient<Database>(
   {
     supabaseKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -143,15 +144,15 @@ rmsg.length>0 &&(
     itr.sender===email?(
   <div
             key={index}
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] right-0 mr-4 flex flex-row  bg-purple-800 mb-4"
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] right-0 mr-4 flex flex-row  bg-cyan-400 mb-4"
      
           >
-            {itr.content}
+            {itr.message}
           </div>
     ):(
       <div
             key={itr.sender}
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] left-0 ml-4  bg-gray-600 mb-4 "
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] left-0 ml-4  bg-orange-600 mb-4 "
           >
             {itr.message}
           </div>
