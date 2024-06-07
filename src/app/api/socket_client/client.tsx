@@ -46,7 +46,7 @@ const joinRoom = useCallback(async () => {
       .order("time", { ascending: true })
     
     if(r_data){
-
+console.log(r_data)
       Room_msg = r_data
 
       setRmsg?.(Room_msg)
