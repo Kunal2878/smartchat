@@ -27,7 +27,7 @@ setRoom?.('chat')
     const channel = pusher.subscribe(`${room}`);
     channel.bind('new-message', (data: any) => {
       console.log(data)
-      setMessages(prevMessages => [...prevMessages, data.message]);
+      setMessages(prevMessages => [...prevMessages, data.content]);
     });
 
     return () => channel.unsubscribe();
@@ -62,7 +62,7 @@ setRoom?.('chat')
       const response = await fetch('https://pusher-chat-five.vercel.app/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({room,message} ),
+        body: JSON.stringify(mesg ),
       });
 
       if (!response.ok) {
