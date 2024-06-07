@@ -122,7 +122,7 @@ joinRoom();
 
 
   return (
-    <div className='w-full  h-full overflow-hidden'
+    <div className='w-full  h-screen overflow-hidden'
     
     style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     
