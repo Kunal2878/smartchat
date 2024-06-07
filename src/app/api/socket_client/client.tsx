@@ -138,13 +138,13 @@ joinRoom();
 
 
   return (
-    <div className='w-full  h-screen overflow-hidden hover:overflow-y-auto'
+    <div className='w-full  h-screen '
     
     style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     
     >
 
-<div className=' w-full   flex flex-col '>
+<div className=' w-full H-con overflow-hidden hover:overflow-y-auto flex flex-col 'style={{height:'calc(100vh - 60px)' }} >
 
 <div className='w-full flex flex-col '>
 
@@ -235,7 +235,7 @@ itr.sender===email?(
     </div>
 
 
-    <div className=' search  w-full flex flex-row justify-center items-center  lg:h-16 sticky mb-0 dark:bg-gray-900 bg-white'>
+    <div className=' search  w-full flex flex-row justify-center items-center  h-16 fixed mb-0 dark:bg-gray-900 bg-white'>
 
 <input
 className='rounded-md mr-4 dark:bg-white bg-gray-900 dark:text-red-900 text-red-400 outline-none' placeholder='Message....'
