@@ -24,15 +24,14 @@ const { email,room,rmsg,setRmsg,setRoom } = context || {};
 setRoom?.('chat')
 
   useEffect(() => {
-    console.log(room)
-    const channel = pusher.subscribe(`${Room}`);
-    channel.bind('new-message', (mesg: any) => {
-      console.log(mesg)
-      setMessages(prevMessages => [...prevMessages, mesg.content]);
+    const channel = pusher.subscribe(Room);
+    channel.bind('new-message', (data: any) => {
+      console.log(data)
+      setMessages(prevMessages => [...prevMessages, data.message]);
     });
 
     return () => channel.unsubscribe();
-  }, [room]);
+  }, []);
 
 
 
