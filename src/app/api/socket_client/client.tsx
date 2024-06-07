@@ -142,19 +142,25 @@ rmsg.length>0 &&(
   {
     rmsg.map((itr:any,index:any)=>(
     itr.sender===email?(
+      <div    key={index} className='w-full flex flex-row justify-end items-center right-0 '>
   <div
-            key={index}
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] right-0 mr-4 flex flex-row  bg-cyan-400 mb-4"
+         
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] mr-4 flex flex-row  items-center bg-cyan-400 mb-4"
      
           >
             {itr.message}
           </div>
+          </div>
+
+
     ):(
+      <div    key={index} className='w-full flex flex-row justify-start items-center left-0 '>
       <div
             key={index}
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] left-0 ml-4  bg-orange-600 mb-4 "
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] ml-4  bg-orange-600 mb-4 flex flex-row  items-center "
           >
             {itr.message}
+          </div>
           </div>
     )
   ))
