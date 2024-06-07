@@ -145,7 +145,7 @@ rmsg.length>0 &&(
       <div    key={index} className='w-full flex flex-row justify-end items-center right-0 '>
   <div
          
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] mr-4 flex flex-row  items-center bg-cyan-400 mb-4"
+            className="md:min-w-[80px] md:max-w-[160px] min-w-[60px] max-w-[160px] p-1 mr-4 flex flex-row  items-center bg-cyan-400 mb-4 "
      
           >
             {itr.message}
@@ -157,7 +157,7 @@ rmsg.length>0 &&(
       <div    key={index} className='w-full flex flex-row justify-start items-center left-0 '>
       <div
             key={index}
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] ml-4  bg-orange-600 mb-4 flex flex-row  items-center "
+            className="md:min-w-[80px] md:max-w-[160px] min-w-[60px] max-w-[160px] p-1 ml-4  bg-orange-600 mb-4 flex flex-row  items-center "
           >
             {itr.message}
           </div>
@@ -180,18 +180,22 @@ messages.length>0&&(
   {
 messages.map((itr:any, index) => (
 itr.sender===email?(
+<div   key={index} className='w-full flex flex-row justify-end items-center right-0 '>
   <div
-            key={index}
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] right-0 mr-4 bg-purple-800 mb-4"
+          
+            className="md:min-w-[80px] md:max-w-[160px] min-w-[60px] max-w-[160px] p-1 mr-4 bg-cyan-400 mb-4"
           >
             {itr.message}
           </div>
+          </div>
     ):(
+<div key={index} className='w-full flex flex-row justify-start items-center left-0 '>
       <div
       key={index}
-            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] left-0 ml-4 bg-gray-600 mb-4"
+            className="md:min-w-[80px] md:max-w-[160px] min-w-[60px] max-w-[160px] p-1 ml-4 bg-orange-600 mb-4"
           >
            {itr.message}
+          </div>
           </div>
     )
           ))
