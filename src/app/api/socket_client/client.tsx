@@ -8,6 +8,7 @@ import {Message,Message2 } from '../../types/basic_types';
 import Image from 'next/image'
 
 const Chat_msg = () => {
+  const sty1="w-full flex flex-row items-center justify-end hidden group-hover:block pl-1 mt-4"
   let Room_msg=[]
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
@@ -105,7 +106,6 @@ joinRoom();
       const response = await fetch('https://pusher-chat-five.vercel.app/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // body: JSON.stringify({message,room,email,time}),
         body: JSON.stringify(mesg)
       });
 
@@ -134,6 +134,18 @@ joinRoom();
     console.log('Data inserted successfully:', data);
 
   }
+  }
+// function to delete, update and copy a message a message 
+async function deleteMessage(id:any) {
+  const{data,error}= await supabase.from('Chat').delete().eq('id', id)
+if(error){window.alert("Error in deleting, retry after sometime")}
+}
+  
+async function updateMessage(id:any) {
+  const{data,error}= await supabase.from('Chat').update({
+    message:message
+  }).eq('id', id)
+  if(error){window.alert("Error in updating, retry after sometime")}
   };
 
 
@@ -157,7 +169,7 @@ rmsg.length>0 &&(
   {
     rmsg.map((itr:any,index:any)=>(
     itr.sender===email?(
-      <div    key={index} className='w-full flex flex-row justify-end items-center right-0 '>
+      <div    key={index} className='group w-full flex flex-row justify-end items-center right-0 '>
   <div
          
             className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 mr-4 flex flex-row  items-center bg-cyan-400 mb-4 "
@@ -165,6 +177,36 @@ rmsg.length>0 &&(
           >
             {itr.message}
           </div>
+          <span className={`${sty1} `}>
+            <button >
+            <Image
+            alt="loading.."
+            width={10}
+            height={10}
+            src={"/doc.svg"}
+            />
+            </button>
+            <button onClick={()=>updateMessage(itr.id)}>
+            <Image
+            alt="loading.."
+            width={10}
+            height={10}
+            src={"/edit.svg"}
+            />
+            </button>
+            <button onClick={()=>deleteMessage(itr.id)}>
+            <Image
+            alt="loading.."
+            width={10}
+            height={10}
+            src={"/delete.svg"}
+            />
+            </button>
+
+           
+        
+
+          </span>
           </div>
 
 
