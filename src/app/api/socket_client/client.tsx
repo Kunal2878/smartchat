@@ -229,7 +229,7 @@ itr.sender===email?(
 
 
 
-      <div className=' search  w-full flex flex-row justify-center items-center  lg:h-16 fixed mb-0 dark:bg-gray-900 bg-white '>
+      <div className=' search  w-full flex flex-row justify-center items-center  lg:h-16 sticky mb-0 dark:bg-gray-900 bg-white '>
 
         <input
      className='rounded-md mr-4 dark:bg-white bg-gray-900 dark:text-red-900 text-red-400 outline-none' placeholder='Message....'
