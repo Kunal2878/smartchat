@@ -169,7 +169,7 @@ rmsg.length>0 &&(
   {
     rmsg.map((itr:any,index:any)=>(
     itr.sender===email?(
-      <div    key={index} className='group w-full flex flex-row justify-end items-center right-0 '>
+      <div    key={index} className='group w-full flex flex-col justify-end items-center right-0 '>
   <div
          
             className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 mr-4 flex flex-row  items-center bg-cyan-400 mb-4 "
@@ -184,6 +184,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/doc.svg"}
+            className='size-6'
             />
             </button>
             <button onClick={()=>updateMessage(itr.id)}>
@@ -192,6 +193,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/edit.svg"}
+            className='size-6'
             />
             </button>
             <button onClick={()=>deleteMessage(itr.id)}>
@@ -200,6 +202,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/delete.svg"}
+            className='size-6'
             />
             </button>
 
