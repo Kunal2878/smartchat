@@ -1,18 +1,28 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useCallback } from 'react';
 import Pusher from 'pusher-js';
 import  {UseAppContext}  from '../../index'
 import { Database } from '../../types/database.types'
 import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import {Message,Message2 } from '../../types/basic_types';
+import Image from 'next/image'
+
 const Chat_msg = () => {
-  const [message, setMessage] = useState('');
-  let Room='chat'
-  const [messages, setMessages] = useState<string[]>([]);
-  const [messageInput, setMessageInput] = useState<string>('');
-  const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
-  const context = UseAppContext();
+let Room_msg=[]
+const [message, setMessage] = useState('');
+const [messages, setMessages] = useState<string[]>([]);
+const [messageInput, setMessageInput] = useState<string>('');
+const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
+
+const context = UseAppContext();
 const { email,room,rmsg,setRmsg,setRoom } = context || {};
+const supabase = createClientComponentClient<Database>(
+  {
+    supabaseKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    supabaseUrl:process.env.NEXT_PUBLIC_SUPABASE_URL
+  }
+)
+
   // Replace with your Pusher credentials (store securely)
   const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY!, {
     cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER!,
@@ -21,13 +31,43 @@ const { email,room,rmsg,setRmsg,setRoom } = context || {};
 
 // join in a room or channel
 
-setRoom?.('chat')
+const joinRoom = useCallback(async () => {
+  Room_msg=[]
+  setRmsg?.([]);
+  setMessages([]);
+  setPrevRoom(prevRoom|| room)
+  if (room) {
+  
+    const { data:r_data, error:r_error } = await supabase
+      .from("Chat")
+      .select("*")
+      .eq("room", room)
+      .order("time", { ascending: true })
+    
+    if(r_data){
+
+      Room_msg = r_data
+
+      setRmsg?.(Room_msg)
+
+    }
+    else if(r_error){
+    window.alert("Error in fetching data")
+    }
+  
+  }
+},[room]);
+
+useEffect(() => {
+
+joinRoom();
+}, [room]);
 
   useEffect(() => {
     const channel = pusher.subscribe(`${room}`);
     channel.bind('new-message', (data: any) => {
       console.log(data)
-      setMessages(prevMessages => [...prevMessages, data.message]);
+      setMessages(prevMessages => [...prevMessages, data.mesg]);
     });
 
     return () => channel.unsubscribe();
@@ -53,17 +93,18 @@ setRoom?.('chat')
 
   const sendMessage = async () => {
     let time=getFormattedDateTimeIso()
-    const mesg = {
-      content: message,
-      mail: email || "",
-      room_name:room || '' ,
-      time:getFormattedDateTimeIso()
+    let mesg = {
+      message: message,
+      sender: email || '',
+      room:room || '' ,
+      time:time
     };
     try {
       const response = await fetch('https://pusher-chat-five.vercel.app/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({message,room,email,time}),
+        // body: JSON.stringify({message,room,email,time}),
+        body: JSON.stringify(mesg)
       });
 
       if (!response.ok) {
@@ -78,25 +119,142 @@ setRoom?.('chat')
     }
   };
 
+
   return (
-    <div className="chat-container">
-      <h2>Chat Messages</h2>
-      <ul>
-        {messages.map((message, index) => (
-          <li key={index}>{message}</li>
-        ))}
-      </ul>
-      <input
-        type="text"
-        value={message}
-        onChange={e => setMessage(e.target.value)}
-        placeholder="Enter your message..."
-      />
-      <button onClick={sendMessage} disabled={!message}>
-        Send Message
-      </button>
+    <div className='w-full  h-full overflow-hidden'
+    
+    style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
+    
+    >
+
+<div className=' w-full  h-full flex flex-col'>
+
+<div className='w-full flex flex-col  h-full  overflow-hidden hover:overflow-y-auto'>
+
+
+{
+
+
+rmsg.length>0 &&(
+<div className='w-full h-full  right-0 flex flex-col mt-2 mr-2 '>
+  {
+    rmsg.map((itr:any,index:any)=>(
+    itr.sender===email?(
+  <div
+            key={index}
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] right-0 mr-4 flex flex-row  bg-purple-800 mb-4"
+     
+          >
+            {itr.content}
+          </div>
+    ):(
+      <div
+            key={itr.sender}
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] left-0 ml-4  bg-gray-600 mb-4 "
+          >
+            {itr.message}
+          </div>
+    )
+  ))
+}
+</div>
+)
+
+}
+
+
+{
+messages.length>0&&(
+
+
+
+  <div className='w-full h-full  right-0 flex flex-col mt-2 mr-2 '>
+  {
+messages.map((itr:any, index) => (
+itr.sender===email?(
+  <div
+            key={index}
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] right-0 mr-4 bg-purple-800 mb-4"
+          >
+            {itr.message}
+          </div>
+    ):(
+      <div
+      key={index}
+            className="md:min-w-[50px] md:max-w-[120px] min-w-[40px] max-w-[80px] left-0 ml-4 bg-gray-600 mb-4"
+          >
+           {itr.message}
+          </div>
+    )
+          ))
+        }
+          </div>
+
+)
+
+} 
+     
+ 
+        
+      </div>
+      <div>
+
+
+
+
+      <div className=' search w-full flex flex-row justify-center items-center  lg:h-16 mb-0 dark:bg-gray-900 bg-white '>
+
+        <input
+     className='rounded-md mr-4 dark:bg-white bg-gray-900 dark:text-gray-900 text-white outline-none' placeholder='Message....'
+     type="text"
+     value={message}
+     onChange={(e) => setMessageInput(e.target.value)}
+     />
+
+<button className="size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed"
+onClick={sendMessage} disabled={!message}
+>
+
+
+  <Image
+    src="/send_icon.png"
+    width={10}
+    height={10}
+    alt="Picture of the author"
+    className="w-full h-full object-cover"
+
+  />
+       </button>
+     </div>
+      </div>
     </div>
+        </div>
   );
+  // return (
+  //   <div className="chat-container">
+  //     <h2>Chat Messages</h2>
+  //     <ul>
+  //       {messages.map((message, index) => (
+  //         <li key={index}>{message}</li>
+  //       ))}
+  //     </ul>
+
+
+    
+
+
+
+  //     <input
+  //       type="text"
+  //       value={message}
+  //       onChange={e => setMessage(e.target.value)}
+  //       placeholder="Enter your message..."
+  //     />
+  //     <button onClick={sendMessage} disabled={!message}>
+  //       Send Message
+  //     </button>
+  //   </div>
+  // );
 };
 
 export default Chat_msg;
