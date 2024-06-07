@@ -8,7 +8,7 @@ import {Message,Message2 } from '../../types/basic_types';
 import Image from 'next/image'
 
 const Chat_msg = () => {
-  const sty1="w-full flex flex-row items-center justify-end hidden group-hover:block pl-1 mt-4"
+  const sty1="w-full flex flex-row items-center justify-end hidden group-hover:block pl-2 mt-4"
   let Room_msg=[]
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
@@ -169,15 +169,17 @@ rmsg.length>0 &&(
   {
     rmsg.map((itr:any,index:any)=>(
     itr.sender===email?(
-      <div    key={index} className='group w-full flex flex-col justify-end items-center right-0 '>
+      <div    key={index} className='group w-full flex flex-col items-center right-0 mb-4'>
+      <div    className='w-full flex flex-row justify-end items-center right-0'>
   <div
          
-            className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 mr-4 flex flex-row  items-center bg-cyan-400 mb-4 "
+            className="rounded-md md:min-w-[100px] md:max-w-[3200px] min-w-[100px] max-w-[300px] p-2 mr-4 flex flex-row  items-center bg-cyan-400  "
      
           >
             {itr.message}
           </div>
-          <span className={`${sty1} `}>
+          </div>
+          <span className={`${sty1} top-0 right-0 mr-4`}>
             <button >
             <Image
             alt="loading.."
@@ -210,6 +212,7 @@ rmsg.length>0 &&(
         
 
           </span>
+      
           </div>
 
 
