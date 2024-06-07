@@ -144,16 +144,16 @@ joinRoom();
     
     >
 
-<div className=' w-full  h-full flex flex-col '>
+<div className=' w-full   flex flex-col '>
 
-<div className='w-full flex flex-col  h-full '>
+<div className='w-full flex flex-col '>
 
 
 {
 
 
 rmsg.length>0 &&(
-<div className='w-full h-full  right-0 flex flex-col mt-2 mr-2 '>
+<div className='w-full   right-0 flex flex-col mt-2 mr-2 '>
   {
     rmsg.map((itr:any,index:any)=>(
     itr.sender===email?(
@@ -191,7 +191,7 @@ messages.length>0&&(
 
 
 
-  <div className='w-full h-full  right-0 flex flex-col mt-2 mr-2 '>
+  <div className='w-full   right-0 flex flex-col mt-2 mr-2 '>
   {
 messages.map((itr:any, index) => (
 itr.sender===email?(
@@ -229,32 +229,39 @@ itr.sender===email?(
 
 
 
-      <div className=' search  w-full flex flex-row justify-center items-center  lg:h-16 sticky mb-0 dark:bg-gray-900 bg-white '>
 
-        <input
-     className='rounded-md mr-4 dark:bg-white bg-gray-900 dark:text-red-900 text-red-400 outline-none' placeholder='Message....'
-     type="text"
-     value={message}
-     onChange={(e) => setMessage(e.target.value)}
-     />
+
+      </div>
+    </div>
+
+
+    <div className=' search  w-full flex flex-row justify-center items-center  lg:h-16 sticky mb-0 dark:bg-gray-900 bg-white'>
+
+<input
+className='rounded-md mr-4 dark:bg-white bg-gray-900 dark:text-red-900 text-red-400 outline-none' placeholder='Message....'
+type="text"
+value={message}
+onChange={(e) => setMessage(e.target.value)}
+/>
 
 <button className="size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed"
 onClick={sendMessage} disabled={!message}
 >
 
 
-  <Image
-    src="/send_icon.png"
-    width={10}
-    height={10}
-    alt="Picture of the author"
-    className="w-full h-full object-cover"
+<Image
+src="/send_icon.png"
+width={10}
+height={10}
+alt="Picture of the author"
+className="w-full h-full object-cover"
 
-  />
-       </button>
-     </div>
-      </div>
-    </div>
+/>
+</button>
+</div>
+
+
+
         </div>
   );
   // return (
