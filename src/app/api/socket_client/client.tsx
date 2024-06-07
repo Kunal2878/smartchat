@@ -27,7 +27,7 @@ setRoom?.('chat')
     const channel = pusher.subscribe(`${room}`);
     channel.bind('new-message', (data: any) => {
       console.log(data)
-      setMessages(prevMessages => [...prevMessages, data.content]);
+      setMessages(prevMessages => [...prevMessages, data.message]);
     });
 
     return () => channel.unsubscribe();
