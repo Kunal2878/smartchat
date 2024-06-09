@@ -186,6 +186,9 @@ rmsg.length>0 &&(
 <div className='w-full   right-0 flex flex-col mt-2 mr-2 '>
   {
     rmsg.map((itr:any,index:any)=>(
+
+     
+
     itr.sender===email?(
       <div    key={index} className={`${editedMessages[itr.id]==='deleted'?'hidden':''} w-full flex flex-col items-center right-0 mb-12`}>
       <div    className='w-full flex flex-row justify-end items-center right-0'>
@@ -194,13 +197,13 @@ rmsg.length>0 &&(
 
 
       <input
-      className={`rounded-md w-full p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+      className={`rounded-md w-full min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
       
       value={editedMessages[itr.id] !== undefined ? editedMessages[itr.id] : (itr.message !== undefined ? itr.message : '')}
       onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} 
    
       disabled={!isEdit} 
-      onMouseLeave={() => {  if(isEdit){neweditedMessages[itr.id]!==editedMessages[itr.id]?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }): ''}   setIsEdit(false)}}
+      onMouseLeave={() => {  if(isEdit){neweditedMessages[itr.id] !== editedMessages[itr.id]?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }): ''}   setIsEdit(false)}}
       // onBlur={handleUpdate}
 
     />
@@ -213,7 +216,7 @@ rmsg.length>0 &&(
             height={10}
             src={"/right.svg"}
             onClick={()=>updateMessage(itr.id)}
-            className={`${isEdit?'block':'hidden'} size-6`}
+            className={`${isEdit?'block':'hidden'} size-6 mr-2`}
             />
             </button>
             <button >
@@ -223,7 +226,7 @@ rmsg.length>0 &&(
             height={10}
             onClick={()=>setIsEdit(false)}
             src={"/wrong.svg"}
-            className={`${isEdit?'block':'hidden'} size-6`}
+            className={`${isEdit?'block':'hidden'} size-6 mr-2`}
             />
             </button>
             <button >
@@ -232,7 +235,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/doc.svg"}
-            className={`${isEdit?'hidden':'block'} size-6`}
+            className={`${isEdit?'hidden':'block'} size-6 mr-2`}
             />
             </button>
             <button onClick={()=>loadMessages()}>
@@ -241,7 +244,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/edit.svg"}
-            className={`${isEdit?'hidden':'block'} size-6`}
+            className={`${isEdit?'hidden':'block'} size-6 mr-2`}
             />
             </button>
             <button onClick={()=>deleteMessage(itr.id)}>
@@ -250,7 +253,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/delete.svg"}
-            className={`${isEdit?'hidden':'block'} size-6`}
+            className={`${isEdit?'hidden':'block'} size-6 mr-2`}
             />
             </button>
 
@@ -275,6 +278,7 @@ rmsg.length>0 &&(
           </div>
     )
   ))
+
 }
 </div>
 )
