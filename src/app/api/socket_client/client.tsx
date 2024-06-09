@@ -15,6 +15,7 @@ const Chat_msg = () => {
   const [prevMesg, setPrevMesg] = useState<string>('');
   const [newMesg, setNewMesg] = useState<string>('');
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [editedMessages, setEditedMessages] = useState<any>({});
   
   const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
   
@@ -161,7 +162,7 @@ function loadMessages() {
 async function updateMessage(id:any) {
 setPrevMesg(newMesg)
   const{data,error}= await supabase.from('Chat').update({
-    message:prevMesg
+    message:editedMessages[id]
   }).eq('id', id)
   if(error){window.alert("Error in updating, retry after sometime")}
   setNewMesg('')
@@ -195,11 +196,16 @@ rmsg.length>0 &&(
 
 
       <input
-      className={`rounded-md w-full p-2 mr-4 flex flex-row  items-center bg-cyan-400 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
-      value={prevMesg === '' ? itr.message : prevMesg}
-      onChange={(e) => setNewMesg(e.target.value)}
+      className={`rounded-md w-full p-2 mr-4 flex flex-row text-white items-center bg-cyan-400 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+      // value={prevMesg === '' ? itr.message : prevMesg}
+      // onChange={(e) => setNewMesg(e.target.value)}
+      value={editedMessages[itr.id] || itr.message} // Use edited message or original
+      onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} // Update editedMessages on change
+      // disabled={!editedMessages[itr.id]}
       // onBlur={handleUpdate} // Update on blur as well (optional)
       disabled={!isEdit} // Disable input when not editing
+      // onMouseEnter={() => setIsEdit(itr.id)} 
+      onMouseLeave={() => setIsEdit(false)}
     />
   {/* <div
          
