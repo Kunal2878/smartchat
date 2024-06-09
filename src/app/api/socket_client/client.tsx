@@ -162,11 +162,11 @@ function loadMessages() {
 }
 async function updateMessage(id:any) {
 // setPrevMesg(newMesg)
-console.log("updated message",neweditedMessages[id])
-setEditedMessages({ ...editedMessages, [id]: neweditedMessages[id] })
+console.log("updated message",editedMessages[id])
+setNewEditedMessages({ ...neweditedMessages, [id]: editedMessages[id] })
 
   const{data,error}= await supabase.from('Chat').update({
-    message:neweditedMessages[id]
+    message:editedMessages[id]
   }).eq('id', id)
   if(error){window.alert("Error in updating, retry after sometime")}
 
@@ -209,7 +209,7 @@ rmsg.length>0 &&(
       onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} // Update editedMessages on change
       // onChange={(e) => setNewEditedMessages({ ...neweditedMessages, [itr.id]: e.target.value })} 
 
-      onMouseLeave={() => setIsEdit(false)}
+      onMouseLeave={() => {  if(isEdit){neweditedMessages[itr.id]!==editedMessages[itr.id]?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }): ''}   setIsEdit(false)}}
       // onBlur={handleUpdate} // Update on blur as well (optional)
       // disabled={!isEdit} // Disable input when not editing
 
