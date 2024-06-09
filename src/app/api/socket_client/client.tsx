@@ -201,7 +201,7 @@ rmsg.length>0 &&(
 
 
       <input
-      className={`rounded-md w-full p-2 mr-4 flex flex-row text-white items-center bg-cyan-400 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+      className={`rounded-md w-full p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"ring-2 ring-red-500":'outline-none'} `}
       // value={prevMesg === '' ? itr.message : prevMesg}
       // onChange={(e) => setNewMesg(e.target.value)}
       value={editedMessages[itr.id] || itr.message} // Use edited message or original
