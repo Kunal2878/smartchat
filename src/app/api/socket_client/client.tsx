@@ -11,9 +11,6 @@ const Chat_msg = () => {
   let Room_msg=[]
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
-  const [messageInput, setMessageInput] = useState<string>('');
-  const [prevMesg, setPrevMesg] = useState<string>('');
-  const [newMesg, setNewMesg] = useState<string>('');
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editedMessages, setEditedMessages] = useState<any>({});
   const [neweditedMessages, setNewEditedMessages] = useState<any>({});
@@ -25,7 +22,7 @@ const Chat_msg = () => {
   const { email,room,rmsg,setRmsg,setRoom,setEmail } = context || {};
   setRoom?.("chat")
   setEmail?.('kp')
-  const sty1="w-[200px] absolute top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
+  const sty1="w-[200px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
 //   const sty2 = {
 //     [`${isEdit ? "hidden" : "block"}`]: "", // Dynamic property assignment
 //   };
