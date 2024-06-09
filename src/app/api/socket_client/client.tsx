@@ -203,11 +203,12 @@ rmsg.length>0 &&(
       <input
       className={`rounded-md w-full p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
       type="text"
-
+      
       value={editedMessages[itr.id] || itr.message} // Use edited message or original
 
-      // onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} // Update editedMessages on change
+      onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} // Update editedMessages on change
       // onChange={(e) => setNewEditedMessages({ ...neweditedMessages, [itr.id]: e.target.value })} 
+
       onMouseLeave={() => setIsEdit(false)}
       // onBlur={handleUpdate} // Update on blur as well (optional)
       // disabled={!isEdit} // Disable input when not editing
