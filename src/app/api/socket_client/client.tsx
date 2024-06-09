@@ -23,13 +23,7 @@ const Chat_msg = () => {
   setRoom?.("chat")
   setEmail?.('kp')
   const sty1="w-[200px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
-//   const sty2 = {
-//     [`${isEdit ? "hidden" : "block"}`]: "", // Dynamic property assignment
-//   };
-// }
-  // const sty3 = {
-  //   [`${isEdit ? "hidden" : "block"}`]: "",
-  // };
+
 const supabase = createClientComponentClient<Database>(
   {
     supabaseKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -148,6 +142,7 @@ joinRoom();
   }
 // function to delete, update and copy a message a message 
 async function deleteMessage(id:any) {
+setEditedMessages({ ...editedMessages, [id]:'deleted' })
 const{data,error}= await supabase.from('Chat').delete().eq('id', id)
 if(error){window.alert("Error in deleting, retry after sometime")}
 }
@@ -192,7 +187,7 @@ rmsg.length>0 &&(
   {
     rmsg.map((itr:any,index:any)=>(
     itr.sender===email?(
-      <div    key={index} className=' w-full flex flex-col items-center right-0 mb-8'>
+      <div    key={index} className={`${editedMessages[itr.id]==='deleted'?'hidden':''} w-full flex flex-col items-center right-0 mb-12`}>
       <div    className='w-full flex flex-row justify-end items-center right-0'>
 
       <div   className='group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '>
