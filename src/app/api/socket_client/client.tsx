@@ -22,7 +22,7 @@ const Chat_msg = () => {
   const context = UseAppContext();
   const { email,room,rmsg,setRmsg,setRoom,setEmail } = context || {};
   setRoom?.("chat")
-  setEmai?.('kp')
+  setEmail?.('kp')
   const sty1="w-[200px]  flex-row items-center justify-end hidden group-hover:flex pl-2"
 //   const sty2 = {
 //     [`${isEdit ? "hidden" : "block"}`]: "", // Dynamic property assignment
