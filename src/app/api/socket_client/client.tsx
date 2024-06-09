@@ -21,15 +21,15 @@ const Chat_msg = () => {
   
   const context = UseAppContext();
   const { email,room,rmsg,setRmsg,setRoom,setEmail } = context || {};
-  setRoom?.('chat')
-  setEmail?.('kp')
+  
   const sty1="w-[200px]  flex-row items-center justify-end hidden group-hover:flex pl-2"
-  const sty2: { [key: string]: string } = {
-    [`${isEdit ? "hidden" : "block"}`]: "",
-  };
-  const sty3: { [key: string]: string } = {
-    [`${isEdit ? "block" : "hidden"}`]: "",
-  };
+//   const sty2 = {
+//     [`${isEdit ? "hidden" : "block"}`]: "", // Dynamic property assignment
+//   };
+// }
+  // const sty3 = {
+  //   [`${isEdit ? "hidden" : "block"}`]: "",
+  // };
 const supabase = createClientComponentClient<Database>(
   {
     supabaseKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -163,6 +163,7 @@ setPrevMesg(newMesg)
     message:prevMesg
   }).eq('id', id)
   if(error){window.alert("Error in updating, retry after sometime")}
+  setNewMesg('')
   };
 
 
@@ -197,7 +198,7 @@ rmsg.length>0 &&(
       value={prevMesg === '' ? itr.message : prevMesg}
       onChange={(e) => setNewMesg(e.target.value)}
       // onBlur={handleUpdate} // Update on blur as well (optional)
-      disabled={isEdit} // Disable input when not editing
+      disabled={!isEdit} // Disable input when not editing
     />
   {/* <div
          
@@ -214,7 +215,7 @@ rmsg.length>0 &&(
             height={10}
             src={"/right.svg"}
             onClick={()=>updateMessage(itr.id)}
-            className={`${sty3} size-6`}
+            className={`${isEdit?'block':'hidden'} size-6`}
             />
             </button>
             <button >
@@ -224,7 +225,7 @@ rmsg.length>0 &&(
             height={10}
             onClick={()=>setIsEdit(false)}
             src={"/wrong.svg"}
-            className={`${sty3} size-6`}
+            className={`${isEdit?'block':'hidden'} size-6`}
             />
             </button>
             <button >
@@ -233,7 +234,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/doc.svg"}
-            className={`${sty2} size-6`}
+            className={`${isEdit?'hidden':'block'} size-6`}
             />
             </button>
             <button onClick={()=>loadMessages()}>
@@ -242,7 +243,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/edit.svg"}
-            className={`${sty2} size-6`}
+            className={`${isEdit?'hidden':'block'} size-6`}
             />
             </button>
             <button onClick={()=>deleteMessage(itr.id)}>
@@ -251,7 +252,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/delete.svg"}
-            className={`${sty2} size-6`}
+            className={`${isEdit?'hidden':'block'} size-6`}
             />
             </button>
 
