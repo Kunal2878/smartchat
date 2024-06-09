@@ -8,17 +8,28 @@ import {Message,Message2 } from '../../types/basic_types';
 import Image from 'next/image'
 
 const Chat_msg = () => {
-  const sty1="w-[200px]  flex-row items-center justify-end hidden group-hover:flex pl-2"
   let Room_msg=[]
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
   const [messageInput, setMessageInput] = useState<string>('');
+  const [prevMesg, setPrevMesg] = useState<string>('');
+  const [newMesg, setNewMesg] = useState<string>('');
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  
   const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
+  
   
   const context = UseAppContext();
   const { email,room,rmsg,setRmsg,setRoom,setEmail } = context || {};
-setRoom?.('chat')
-setEmail?.('kp')
+  setRoom?.('chat')
+  setEmail?.('kp')
+  const sty1="w-[200px]  flex-row items-center justify-end hidden group-hover:flex pl-2"
+  const sty2: { [key: string]: string } = {
+    [`${isEdit ? "hidden" : "block"}`]: "",
+  };
+  const sty3: { [key: string]: string } = {
+    [`${isEdit ? "block" : "hidden"}`]: "",
+  };
 const supabase = createClientComponentClient<Database>(
   {
     supabaseKey:process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -115,7 +126,7 @@ joinRoom();
 
       const data = await response.json();
       console.log('Message sent:', data.message);
-      setMessage(''); // Clear message input after sending
+      setMessage('');
     } catch (error) {
       console.error(error);
     }
@@ -137,13 +148,19 @@ joinRoom();
   }
 // function to delete, update and copy a message a message 
 async function deleteMessage(id:any) {
-  const{data,error}= await supabase.from('Chat').delete().eq('id', id)
+const{data,error}= await supabase.from('Chat').delete().eq('id', id)
 if(error){window.alert("Error in deleting, retry after sometime")}
 }
-  
+
+function loadMessages() {
+  setIsEdit(true);
+
+
+}
 async function updateMessage(id:any) {
+setPrevMesg(newMesg)
   const{data,error}= await supabase.from('Chat').update({
-    message:message
+    message:prevMesg
   }).eq('id', id)
   if(error){window.alert("Error in updating, retry after sometime")}
   };
@@ -173,30 +190,59 @@ rmsg.length>0 &&(
       <div    className='w-full flex flex-row justify-end items-center right-0'>
 
       <div   className='group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '>
-  <div
+
+
+      <input
+      className={`rounded-md w-full p-2 mr-4 flex flex-row  items-center bg-cyan-400 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+      value={prevMesg === '' ? itr.message : prevMesg}
+      onChange={(e) => setNewMesg(e.target.value)}
+      // onBlur={handleUpdate} // Update on blur as well (optional)
+      disabled={isEdit} // Disable input when not editing
+    />
+  {/* <div
          
-            className=" rounded-md w-full  p-2 mr-4 flex flex-row  items-center bg-cyan-400  "
+            className= " rounded-md w-full  p-2 mr-4 flex flex-row  items-center bg-cyan-400"
      
           >
-            {itr.message}
-          </div>
+            { itr.message }
+          </div> */}
           <span className={`${sty1}  mr-2 transition-all duration-200 ease-in-out`}>
             <button >
             <Image
             alt="loading.."
             width={10}
             height={10}
-            src={"/doc.svg"}
-            className='size-6'
+            src={"/right.svg"}
+            onClick={()=>updateMessage(itr.id)}
+            className={`${sty3} size-6`}
             />
             </button>
-            <button onClick={()=>updateMessage(itr.id)}>
+            <button >
+            <Image
+            alt="loading.."
+            width={10}
+            height={10}
+            onClick={()=>setIsEdit(false)}
+            src={"/wrong.svg"}
+            className={`${sty3} size-6`}
+            />
+            </button>
+            <button >
+            <Image
+            alt="loading.."
+            width={10}
+            height={10}
+            src={"/doc.svg"}
+            className={`${sty2} size-6`}
+            />
+            </button>
+            <button onClick={()=>loadMessages()}>
             <Image
             alt="loading.."
             width={10}
             height={10}
             src={"/edit.svg"}
-            className='size-6'
+            className={`${sty2} size-6`}
             />
             </button>
             <button onClick={()=>deleteMessage(itr.id)}>
@@ -205,7 +251,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/delete.svg"}
-            className='size-6'
+            className={`${sty2} size-6`}
             />
             </button>
 
