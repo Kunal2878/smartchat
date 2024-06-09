@@ -154,14 +154,14 @@ function loadMessages() {
 }
 async function updateMessage(id:any) {
 // setPrevMesg(newMesg)
-setIsEdit(false);
 console.log("updated message",editedMessages[id])
 setNewEditedMessages({ ...neweditedMessages, [id]: editedMessages[id] })
 
-  const{data,error}= await supabase.from('Chat').update({
-    message:editedMessages[id]
+const{data,error}= await supabase.from('Chat').update({
+  message:editedMessages[id]
   }).eq('id', id)
   if(error){window.alert("Error in updating, retry after sometime")}
+  setIsEdit(false);
 
 }
 
