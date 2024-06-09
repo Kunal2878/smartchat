@@ -25,7 +25,7 @@ const Chat_msg = () => {
   const { email,room,rmsg,setRmsg,setRoom,setEmail } = context || {};
   setRoom?.("chat")
   setEmail?.('kp')
-  const sty1="w-[200px]  flex-row items-center justify-end hidden group-hover:flex pl-2"
+  const sty1="w-[200px] absolute top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
 //   const sty2 = {
 //     [`${isEdit ? "hidden" : "block"}`]: "", // Dynamic property assignment
 //   };
@@ -213,7 +213,7 @@ rmsg.length>0 &&(
 
     />
 
-          <span className={`${sty1}  mr-2 transition-all duration-200 ease-in-out`}>
+          <span className={`${sty1} transition-all duration-200 ease-in-out`}>
             <button >
             <Image
             alt="loading.."
