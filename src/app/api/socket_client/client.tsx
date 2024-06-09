@@ -209,7 +209,7 @@ rmsg.length>0 &&(
       // onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} // Update editedMessages on change
       onChange={(e) => setNewEditedMessages({ ...neweditedMessages, [itr.id]: e.target.value })} // Update editedMessages on change
       // onBlur={handleUpdate} // Update on blur as well (optional)
-      disabled={!isEdit} // Disable input when not editing
+      // disabled={!isEdit} // Disable input when not editing
       // onMouseEnter={() => setIsEdit(itr.id)} 
       onMouseLeave={() => setIsEdit(false)}
     />
