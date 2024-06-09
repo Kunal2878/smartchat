@@ -16,6 +16,7 @@ const Chat_msg = () => {
   const [newMesg, setNewMesg] = useState<string>('');
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editedMessages, setEditedMessages] = useState<any>({});
+  const [neweditedMessages, setNewEditedMessages] = useState<any>({});
   
   const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
   
@@ -160,16 +161,20 @@ function loadMessages() {
 
 }
 async function updateMessage(id:any) {
-setPrevMesg(newMesg)
+// setPrevMesg(newMesg)
+console.log("updated message",neweditedMessages[id])
+setEditedMessages({ ...editedMessages, [id]: neweditedMessages[id] })
+
   const{data,error}= await supabase.from('Chat').update({
-    message:editedMessages[id]
+    message:neweditedMessages[id]
   }).eq('id', id)
   if(error){window.alert("Error in updating, retry after sometime")}
-  setNewMesg('')
-  };
+
+}
 
 
   return (
+
     <div className='w-full  h-screen '
     
     style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
@@ -200,20 +205,15 @@ rmsg.length>0 &&(
       // value={prevMesg === '' ? itr.message : prevMesg}
       // onChange={(e) => setNewMesg(e.target.value)}
       value={editedMessages[itr.id] || itr.message} // Use edited message or original
-      onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} // Update editedMessages on change
       // disabled={!editedMessages[itr.id]}
+      // onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} // Update editedMessages on change
+      onChange={(e) => setNewEditedMessages({ ...neweditedMessages, [itr.id]: e.target.value })} // Update editedMessages on change
       // onBlur={handleUpdate} // Update on blur as well (optional)
       disabled={!isEdit} // Disable input when not editing
       // onMouseEnter={() => setIsEdit(itr.id)} 
       onMouseLeave={() => setIsEdit(false)}
     />
-  {/* <div
-         
-            className= " rounded-md w-full  p-2 mr-4 flex flex-row  items-center bg-cyan-400"
-     
-          >
-            { itr.message }
-          </div> */}
+
           <span className={`${sty1}  mr-2 transition-all duration-200 ease-in-out`}>
             <button >
             <Image
@@ -369,33 +369,8 @@ className="w-full h-full object-cover"
 
         </div>
   );
-  // return (
-  //   <div className="chat-container">
-  //     <h2>Chat Messages</h2>
-  //     <ul>
-  //       {messages.map((message, index) => (
-  //         <li key={index}>{message}</li>
-  //       ))}
-  //     </ul>
-
-
-    
-
-
-
-  //     <input
-  //       type="text"
-  //       value={message}
-  //       onChange={e => setMessage(e.target.value)}
-  //       placeholder="Enter your message..."
-  //     />
-  //     <button onClick={sendMessage} disabled={!message}>
-  //       Send Message
-  //     </button>
-  //   </div>
-  // );
-};
-
+  
+}
 export default Chat_msg;
 
 
