@@ -216,7 +216,7 @@ rmsg.length>0 &&(
       onMouseLeave={() => { 
         // console.log(msg);
         //  msg!== editedMessages[itr.id]?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
-        updateAndLogMessage(itr.id,itr.message);
+        // updateAndLogMessage(itr.id,itr.message);
         }}
       // onBlur={handleUpdate}
 
