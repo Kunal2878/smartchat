@@ -163,6 +163,8 @@ const{data,error}= await supabase.from('Chat').update({
   if(error){window.alert("Error in updating, retry after sometime")}
   setIsEdit(false);
 
+
+console.log(msg)
 }
 
 
@@ -203,7 +205,8 @@ rmsg.length>0 &&(
       onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} 
    
       disabled={!isEdit} 
-      onMouseLeave={() => { msg!== editedMessages[itr.id]?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)}}
+      onMouseLeave={() => { console.log(msg);
+         msg!== editedMessages[itr.id]?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)}}
       // onBlur={handleUpdate}
 
     />
