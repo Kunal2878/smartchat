@@ -152,6 +152,14 @@ function loadMessages() {
 
 
 }
+
+
+const updateAndLogMessage = (id:any,mes:any) => {
+  if (msg !== editedMessages[id]) {
+    setEditedMessages({ ...editedMessages, [id]: mes });
+  }
+  console.log(msg); // Log the updated message
+};
 async function updateMessage(id:any) {
 // setPrevMesg(newMesg)
 setMsg(editedMessages[id] )
@@ -205,8 +213,11 @@ rmsg.length>0 &&(
       onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} 
    
       disabled={!isEdit} 
-      onMouseLeave={() => { console.log(msg);
-         msg!== editedMessages[itr.id]?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)}}
+      onMouseLeave={() => { 
+        // console.log(msg);
+        //  msg!== editedMessages[itr.id]?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
+        updateAndLogMessage(itr.id,itr.message);
+        }}
       // onBlur={handleUpdate}
 
     />
