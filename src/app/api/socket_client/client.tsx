@@ -161,7 +161,7 @@ console.log(Mesg)
     setEditedMessages({ ...editedMessages, [id]: mes });
   }
   setTimeout(() => {
-    console.log(msg); // Log the updated message
+    console.log(msg); 
   }, 1000)
   
   
@@ -176,10 +176,10 @@ const{data,error}= await supabase.from('Chat').update({
   message:editedMessages[id]
   }).eq('id', id)
   if(error){window.alert("Error in updating, retry after sometime")}
+
   setIsEdit(false);
 
 
-console.log(msg)
 }
 
 
@@ -221,8 +221,10 @@ rmsg.length>0 &&(
    
       disabled={!isEdit} 
       onMouseLeave={() => { 
-        // console.log(msg);
-        //  msg!== editedMessages[itr.id]?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
+     if(isEdit){
+       console.log("isEdit",isEdit)
+       editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
+     }
         updateAndLogMessage(itr.id,itr.message);
         }}
       // onBlur={handleUpdate}
