@@ -9,6 +9,7 @@ import Image from 'next/image'
 
 const Chat_msg = () => {
   let Room_msg=[]
+  let Mesg:any
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -155,14 +156,20 @@ function loadMessages() {
 
 
 const updateAndLogMessage = (id:any,mes:any) => {
-  if (msg !== editedMessages[id]) {
+console.log(Mesg)
+  if (Mesg !== editedMessages[id]) {
     setEditedMessages({ ...editedMessages, [id]: mes });
   }
-  console.log(msg); // Log the updated message
+  setTimeout(() => {
+    console.log(msg); // Log the updated message
+  }, 1000)
+  
+  
 };
 async function updateMessage(id:any) {
 // setPrevMesg(newMesg)
-setMsg(editedMessages[id] )
+Mesg=editedMessages[id]
+// setMsg(editedMessages[id] )
 // setNewEditedMessages({ ...neweditedMessages, [id]: editedMessages[id] })
 
 const{data,error}= await supabase.from('Chat').update({
@@ -216,7 +223,7 @@ rmsg.length>0 &&(
       onMouseLeave={() => { 
         // console.log(msg);
         //  msg!== editedMessages[itr.id]?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
-        // updateAndLogMessage(itr.id,itr.message);
+        updateAndLogMessage(itr.id,itr.message);
         }}
       // onBlur={handleUpdate}
 
