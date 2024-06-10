@@ -203,7 +203,7 @@ rmsg.length>0 &&(
       onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} 
    
       disabled={!isEdit} 
-      onMouseLeave={() => { msg!== editedMessages[itr.id]&&setEditedMessages({ ...editedMessages, [itr.id]:itr.message });  setIsEdit(false)}}
+      onMouseLeave={() => { msg!== editedMessages[itr.id]?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)}}
       // onBlur={handleUpdate}
 
     />
