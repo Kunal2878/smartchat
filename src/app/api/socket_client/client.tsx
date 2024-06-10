@@ -14,7 +14,7 @@ const Chat_msg = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editedMessages, setEditedMessages] = useState<any>({});
   const [neweditedMessages, setNewEditedMessages] = useState<any>({});
-  
+  const [msg,setMsg]=useState<any>('')
   const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
   
   
@@ -154,8 +154,8 @@ function loadMessages() {
 }
 async function updateMessage(id:any) {
 // setPrevMesg(newMesg)
-console.log("updated message",editedMessages[id])
-setNewEditedMessages({ ...neweditedMessages, [id]: editedMessages[id] })
+setMsg(editedMessages[id] )
+// setNewEditedMessages({ ...neweditedMessages, [id]: editedMessages[id] })
 
 const{data,error}= await supabase.from('Chat').update({
   message:editedMessages[id]
@@ -203,7 +203,7 @@ rmsg.length>0 &&(
       onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} 
    
       disabled={!isEdit} 
-      onMouseLeave={() => {  neweditedMessages[itr.id] !== editedMessages[itr.id]&&setEditedMessages({ ...editedMessages, [itr.id]:itr.message });  setIsEdit(false)}}
+      onMouseLeave={() => { msg!== editedMessages[itr.id]&&setEditedMessages({ ...editedMessages, [itr.id]:itr.message });  setIsEdit(false)}}
       // onBlur={handleUpdate}
 
     />
@@ -247,7 +247,7 @@ rmsg.length>0 &&(
             className={`${isEdit?'hidden':'block'} size-6 mr-2`}
             />
             </button>
-            <button onClick={()=>deleteMessage(itr.id)}>
+            <button onClick={()=>updateMessage(itr.id)}>
             <Image
             alt="loading.."
             width={10}
