@@ -172,13 +172,13 @@ async function updateMessage(id:any,time:any) {
 
   return (
 
-    <div className='w-full  md:h-screen h-[80vh] fixed '
+    <div className='w-full  md:h-screen h-[80vh] '
     
     style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     
     >
 
-<div className=' w-full mb-10 md:mb-0 H-con overflow-hidden hover:overflow-y-auto flex flex-col 'style={{height:'calc(100vh - 60px)' }} >
+<div className=' w-full mb-10 md:mb-0 pb-20 H-con overflow-hidden hover:overflow-y-auto flex flex-col 'style={{height:'calc(100vh - 60px)' }} >
 
 <div className='w-full flex flex-col '>
 
@@ -447,16 +447,16 @@ onMouseLeave={() => {
 
       </div>
     </div>
-<div className=' search  w-full flex flex-row justify-center items-center   fixed bottom-0  mb-10 md:mb-0 dark:bg-gray-900 bg-white'>
+<div className=' search  w-full backdrop-blur-sm bg-black/40 flex flex-row justify-center items-center   fixed bottom-0  dark:bg-gray-900 bg-white'>
 
 <input
-className='rounded-md mr-4 dark:bg-white bg-gray-900 dark:text-red-900 text-red-400 outline-none' placeholder='Message....'
+className='rounded-full mr-4 shadow-sm shadow-white bg-white text-gray-900 outline-none' placeholder='Type your Message....'
 type="text"
 value={message}
 onChange={(e) => setMessage(e.target.value)}
 />
 
-<button className="size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed"
+<button className="size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed disabled:opacity-20"
 onClick={sendMessage} disabled={!message}
 >
 
