@@ -1,5 +1,9 @@
 import React from 'react'
+import type { Metadata } from 'next'
+export const metadata: Metadata = {
+    title: 'About Us',
 
+}
 function About() {
 const sty1="w-full flex flex-row justify-start items-center"
 const sty2="w-full flex flex-col"

@@ -1,10 +1,9 @@
 'use client'
 import * as React from 'react'
 import Image from 'next/image'
-import { Database,Friend_list , Room_names} from '../../types/database.types'
+
 import  {UseAppContext}  from '../../index'
-// type F_type=Friend_list['frnd']
-// type r_type=Room_names['Rooms']
+
 function Chat_profile_mob({profiles,roomNames}:any)
 { 
 
@@ -20,7 +19,7 @@ function Chat_profile_mob({profiles,roomNames}:any)
     
     }
   return (
-    <div className='w-full h-40  -z-2  flex flex-col dark:bg-gray-900 dark:text-white text-gray-900 bg-white mb-2'>
+    <div className='w-full h-36  -z-2  flex flex-col dark:bg-gray-900 dark:text-white text-gray-900 bg-white mb-2'>
 
 
   
@@ -32,9 +31,8 @@ function Chat_profile_mob({profiles,roomNames}:any)
 
  
       <div className='w-full flex flex-row justify-between p-2 mb-4 dark:bg-gradient-to-tr dark:from-indigo-700 dark:via-indigo-800 dark:to-gray-900 bg-gradient-to-tr from-purple-400 via-purple-300 to-gray-400'>
-<div className='w-1/4'>Smartchat</div>
+<div className=' text-white w-1/4'>Smartchat</div>
 <div className="w-3/4 flex flex-row justify-end mr-2">
-      <div className='size-8 flex justify-start rounded-full dark:bg-search-dark bg-search-light mr-2'></div>
       <div className='size-8 flex justify-start rounded-full dark:bg-dots-dark bg-dots-light mr-2 ' onClick={()=>{isThemeMenu? setIsThemeMenu?.(false):setIsThemeMenu?.(true)}}></div>
       <div className=" size-8">
                 <Image

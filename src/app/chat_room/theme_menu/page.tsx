@@ -37,9 +37,9 @@ function Theme_menu() {
 // ]
   return (
     <div className='w-[300px] h-80 flex flex-col items-center overflow-y-scroll'>
-    <div className='p-2 w-full flex flex-row items-center text-white dark:bg-gradient-to-tr dark:from-indigo-700 dark:via-indigo-800 dark:to-gray-900 bg-gradient-to-tr from-purple-400 via-purple-300 to-gray-400'>
-      <span className='w-[100px] left-0 ml-2'>Themes</span>
-      <span className='w-[60px] right-0 mr-2 cursor-pointer'>
+    <div className='p-2 w-full sticky top-0 flex flex-row justify-between items-center text-white dark:bg-gradient-to-tr dark:from-indigo-700 dark:via-indigo-800 dark:to-gray-900 bg-gradient-to-tr from-purple-400 via-purple-300 to-gray-400'>
+      <span className='w-[100px] '>Chat Themes</span>
+      <span className='w-[60px] cursor-pointer'>
 
         <Image
         width={10}
@@ -52,8 +52,7 @@ function Theme_menu() {
       </span>
       </div>
     <div className='w-full flex flex-col items-center dark:bg-gray-900 bg-white text-gray-900 dark:text-white'>
-      <span className='w-full text-white dark:bg-gradient-to-tr dark:from-indigo-700 dark:via-indigo-800 dark:to-gray-900 bg-gradient-to-tr from-purple-400 via-purple-300 to-gray-400'>Chat Themes</span>
-      {
+         {
         chat_themes.map((itr,index)=>(
 <div key={index} className='hover:bg-purple-400 w-full h-8 flex flex-row items-center p-2 mb-4'
 onClick={()=> setChatTheme?.(itr.img)}

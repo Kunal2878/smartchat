@@ -8,10 +8,17 @@ import { Session,createServerComponentClient} from '@supabase/auth-helpers-nextj
 import { cookies } from 'next/headers'
 import Chat_server from '../../server_runner/page'
 import Chat_msg from '../../api/socket_client/client'
-
+import { Metadata } from 'next'
 type F_type=Friend_list['frnd']
 type r_type=Room_names['Rooms']
 type C_type=Database['public']['Tables']["Chat_room"]['Row']
+
+export const metadata: Metadata = {
+  title: 'Chatroom',
+
+
+
+}
 async function RoomTemp() {
 var email:string|undefined
 var c_data:F_type[]=[]

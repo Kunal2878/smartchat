@@ -1,5 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+export const metadata: Metadata = {
+    title: 'Privacy Policy',
+
+}
+
 function Privacy() {
 const sty1="w-full flex flex-row justify-start items-center"
 const sty2="w-full flex flex-col"

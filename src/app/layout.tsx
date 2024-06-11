@@ -1,10 +1,10 @@
-import type { Metadata } from 'next'
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { AppWrapper } from './index'
 const inter = Inter({ subsets: ['latin'] })
 import { PagesProgressBar as ProgressBar } from 'next-nprogress-bar';
+import type { Metadata } from 'next'
 export const metadata: Metadata = {
     title: 'SmartChat-Home',
 
