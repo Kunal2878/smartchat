@@ -17,7 +17,7 @@ const Chat_msg = () => {
   
   
   const context = UseAppContext();
-  const { email,room,rmsg,setRmsg,setRoom,setEmail,isThemeMenu,setIsThemeMenu} = context || {};
+  const { email,room,rmsg,setRmsg,setRoom,setEmail,isThemeMenu,chatTheme} = context || {};
   setRoom?.("chat")
   setEmail?.('kp')
   const sty1="w-[200px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
@@ -174,7 +174,7 @@ async function updateMessage(id:any,time:any) {
 
     <div className='w-full  md:h-screen h-[80vh] overflow-hidden hover:overflow-y-auto'
     
-    style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
+    style={{ backgroundImage: `url(${chatTheme})`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     
     >
 {
@@ -333,7 +333,7 @@ messages.length>0&&(
 
 
 
-  <div className='w-full   right-0 flex flex-col mt-2 mr-2 '>
+  <div className='w-full   right-0 flex flex-col  mr-2 '>
   {
 messages.map((itr:any, index) => (
   itr.sender===email?(
