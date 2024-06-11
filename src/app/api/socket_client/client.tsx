@@ -209,7 +209,7 @@ rmsg.length>0 &&(
        }}
 >
       <input
-      className={`rounded-md hover:-translate-x-1 transition ease-in-out delay-100 duration-800 w-10/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+      className={`rounded-l-lg hover:-translate-x-1 transition ease-in-out delay-100 duration-800 w-10/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
       
       value={editedMessages[itr.id] !== undefined ? editedMessages[itr.id] : (itr.message !== undefined ? itr.message : '')}
       onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value,[itr.time]:true })} 
@@ -293,10 +293,10 @@ rmsg.length>0 &&(
 
 
     ):(
-      <div    key={index} className='w-full flex flex-row justify-start items-center left-0 '>
+      <div    key={index} className='w-full flex flex-row justify-start items-center left-0 mb-4'>
       <div
-            key={index}
-            className="rounded-md md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 ml-4  bg-orange-600 mb-4 flex flex-row  items-center "
+           
+            className="rounded-r-lg md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 ml-4  bg-orange-600  flex flex-row  items-center "
           >
             {itr.message}
           </div>
@@ -334,7 +334,7 @@ onMouseLeave={() => {
      }}
 >
     <input
-    className={`rounded-md hover:-translate-x-1 transition ease-in-out delay-100 duration-800 w-10/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+    className={`rounded-l-lg hover:-translate-x-1 transition ease-in-out delay-100 duration-800 w-10/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
     
     value={editedMessages[itr.id] !== undefined ? editedMessages[itr.id] : (itr.message !== undefined ? itr.message : '')}
     onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value,[itr.time]:true })} 
@@ -418,10 +418,10 @@ onMouseLeave={() => {
 
 
   ):(
-<div key={index} className='w-full flex flex-row justify-start items-center left-0 '>
+<div key={index} className='w-full flex flex-row justify-start items-center left-0 mb-12'>
       <div
       key={index}
-            className="rounded-md md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 ml-4 bg-orange-600 mb-4"
+            className="rounded-r-lg md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 ml-4 bg-orange-600 "
           >
            {itr.message}
           </div>
@@ -447,7 +447,7 @@ onMouseLeave={() => {
 
       </div>
     </div>
-<div className=' search  w-full backdrop-blur-sm bg-black/40 flex flex-row justify-center items-center   fixed bottom-0  dark:bg-gray-900 bg-white'>
+<div className=' search  w-full backdrop-blur-sm bg-black/40 flex flex-row justify-center items-center   fixed bottom-0 '>
 
 <input
 className='rounded-full mr-4 shadow-sm shadow-white bg-white text-gray-900 outline-none' placeholder='Type your Message....'
@@ -456,7 +456,7 @@ value={message}
 onChange={(e) => setMessage(e.target.value)}
 />
 
-<button className="size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed disabled:opacity-20"
+<button className="size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed disabled:opacity-40"
 onClick={sendMessage} disabled={!message}
 >
 
