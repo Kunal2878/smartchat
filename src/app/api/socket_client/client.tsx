@@ -175,7 +175,7 @@ async function updateMessage(id:any,time:any) {
 
   return (
 
-    <div className='w-full  h-screen '
+    <div className='w-full  md:h-screen h-[80vh] '
     
     style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     
