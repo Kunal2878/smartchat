@@ -7,6 +7,7 @@ import { Database,Friend_list , Room_names} from '../../types/database.types'
 import { Session,createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import Chat_server from '../../server_runner/page'
+import Chat_msg from '../../api/socket_client/client'
 
 type F_type=Friend_list['frnd']
 type r_type=Room_names['Rooms']
@@ -78,11 +79,11 @@ if(session)
             </div>
        
           </div>
-            <div className="w-full md:hidden h-[80vh]"><Chat_server/></div>
+            <div className="w-full md:hidden h-[80vh]"><Chat_msg/></div>
           </div>
       {/* //for md devices */}
           <div className="hidden md:block m-0 w-3/5 h-full">
-          <Chat_server />
+          <Chat_msg />
           </div>
         </div>
 
