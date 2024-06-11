@@ -7,9 +7,9 @@ import  {UseAppContext}  from '../../index'
 // type r_type=Room_names['Rooms']
 function Chat_profile_mob({profiles,roomNames}:any)
 { 
-    const [isThemeMenu, setisThemeMenu]=React.useState<boolean>(false)
+
     const context = UseAppContext();
-    const { email,room,setRoom,avatar } = context || {};
+    const { email,room,setRoom,avatar,isThemeMenu,setIsThemeMenu } = context || {};
     
     const findRoom = (f_mail:string) => {
       roomNames.map((itr:any) => {
@@ -35,7 +35,7 @@ function Chat_profile_mob({profiles,roomNames}:any)
 <div className='w-1/4'>Smartchat</div>
 <div className="w-3/4 flex flex-row justify-end mr-2">
       <div className='size-8 flex justify-start rounded-full dark:bg-search-dark bg-search-light mr-2'></div>
-      <div className='size-8 flex justify-start rounded-full dark:bg-dots-dark bg-dots-light mr-2 ' onClick={()=>{isThemeMenu? setisThemeMenu(false):setisThemeMenu(true)}}></div>
+      <div className='size-8 flex justify-start rounded-full dark:bg-dots-dark bg-dots-light mr-2 ' onClick={()=>{isThemeMenu? setIsThemeMenu?.(false):setIsThemeMenu?.(true)}}></div>
       <div className=" size-8">
                 <Image
                   src={avatar||''}
@@ -79,7 +79,7 @@ function Chat_profile_mob({profiles,roomNames}:any)
 <div className='w-1/12 mr-3'>
 <div className=" size-10 flex justify-start rounded-full bg-slate-400">
                 <Image
-                  src="plus_icon.svg"
+                  src="/plus_icon.svg"
                   width={42}
                   height={42}
                   alt="Picture of the author"
@@ -89,7 +89,7 @@ function Chat_profile_mob({profiles,roomNames}:any)
 </div>
       </div>
       </div>
-      <div className={`
+      {/* <div className={`
      top-0 mt-6  w-1/2 h-80 bg-white overflow-hidden z-10
     transition duration-300 right-0
       ${isThemeMenu ? 'animate-slide_right_left' : '-translate-x-full'}
@@ -97,7 +97,7 @@ function Chat_profile_mob({profiles,roomNames}:any)
     `}>
 
 
-  </div>
+  </div> */}
     </div>
   )
 }

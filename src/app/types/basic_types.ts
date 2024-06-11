@@ -32,6 +32,7 @@ export interface Message2 {
     f_chat:string;
     room:string;
     rmsg:any;
+    isThemeMenu:boolean;
     setUserName: (userName: string|undefined) => void;
     setEmail: (email: string|undefined) => void;
     setId: (id: any|undefined) => void;
@@ -44,6 +45,7 @@ export interface Message2 {
     setF_chat: (f_chat: string) => void;
     setRoom: (room: string) => void;
     setRmsg: (rmsg: any) => void;
+    setIsThemeMenu: (rmsg: boolean) => void;
     
   }
   // test.res246@gmail.com

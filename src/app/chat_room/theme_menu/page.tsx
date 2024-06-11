@@ -1,6 +1,11 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
+import  {UseAppContext}  from '../../index'
 function Theme_menu() {
+    
+  const context = UseAppContext();
+  const { email,room,rmsg,setRmsg,setRoom,setEmail,isThemeMenu,setIsThemeMenu} = context || {};
     const chat_themes=[
         {img:"/chatbg.jpg", text:"Theme 1 (default)"},
         {img:"/chatbg_2.jpg", text:"Theme 2"},
@@ -31,6 +36,21 @@ const chat_bar_themes=[
   
 ]
   return (
+    <div className='flex flex-col items-center justify-center w-full h-80 p-2 overflow-hidden hover:overflow-auto'>
+    <div className='p-2 w-full flex flex-row items-center text-white dark:bg-gradient-to-tr dark:from-indigo-700 dark:via-indigo-800 dark:to-gray-900 bg-gradient-to-tr from-purple-400 via-purple-300 to-gray-400'>
+      <span className='left-0 ml-4'>Themes</span>
+      <span className='right-0 mr-4'>
+
+        <Image
+        width={10}
+        height={10}
+        src={'/wrong.svg'}
+        alt='loading...'
+        className='size-6 rounded-full'
+        onClick={()=> setIsThemeMenu?.(false)}
+        />
+      </span>
+      </div>
     <div className='w-full h-auto flex flex-col items-center dark:bg-gray-900 bg-white text-gray-900 dark:text-white'>
       {
         chat_themes.map((itr)=>(
@@ -60,7 +80,7 @@ className={`size-6 rounded-full ${itr.bg}`}
       }
 
 
-
+</div>
     </div>
   )
 }

@@ -5,7 +5,7 @@ import  {UseAppContext}  from '../../index'
 import { Database } from '../../types/database.types'
 import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
-
+import Theme_menu from '../../chat_room/theme_menu/page'
 const Chat_msg = () => {
   let Room_msg=[]
   const [message, setMessage] = useState('');
@@ -17,7 +17,7 @@ const Chat_msg = () => {
   
   
   const context = UseAppContext();
-  const { email,room,rmsg,setRmsg,setRoom,setEmail } = context || {};
+  const { email,room,rmsg,setRmsg,setRoom,setEmail,isThemeMenu,setIsThemeMenu} = context || {};
   setRoom?.("chat")
   setEmail?.('kp')
   const sty1="w-[200px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
@@ -177,6 +177,21 @@ async function updateMessage(id:any,time:any) {
     style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     
     >
+{
+
+
+
+isThemeMenu&&(
+<div className={` top-0 mt-8 transition duration-300 z-40 flex flex-row items-center right-0
+   ${isThemeMenu ? 'animate-slide_right_left' : '-translate-x-full'}
+  
+  `}>
+<Theme_menu/>
+</div>
+)
+
+}
+
 
 <div className=' w-full mb-10 md:mb-0 pb-20 H-con overflow-hidden hover:overflow-y-auto flex flex-col 'style={{height:'calc(100vh - 60px)' }} >
 
@@ -209,7 +224,7 @@ rmsg.length>0 &&(
        }}
 >
       <input
-      className={`rounded-l-xl hover:-translate-x-1 transition ease-in-out delay-100 duration-800 w-10/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+      className={`rounded-l-xl hover:-translate-x-1 transition ease-in-out delay-100 duration-800 w-10/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-gradient-to-r from-green-300 via-cyan-400 to-purple-500 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
       
       value={editedMessages[itr.id] !== undefined ? editedMessages[itr.id] : (itr.message !== undefined ? itr.message : '')}
       onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value,[itr.time]:true })} 
@@ -296,7 +311,7 @@ rmsg.length>0 &&(
       <div    key={index} className='w-full flex flex-row justify-start items-center left-0 mb-12'>
       <div
            
-            className="rounded-r-xl md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 ml-4  bg-orange-600  flex flex-row  items-center "
+            className="rounded-r-xl md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 ml-4  bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400  flex flex-row  items-center "
           >
             {itr.message}
           </div>
@@ -334,7 +349,7 @@ onMouseLeave={() => {
      }}
 >
     <input
-    className={`rounded-l-xl hover:-translate-x-1 transition ease-in-out delay-100 duration-800 w-10/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+    className={`rounded-l-xl hover:-translate-x-1 transition ease-in-out delay-100 duration-800 w-10/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-gradient-to-r from-green-300 via-cyan-400 to-purple-500 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
     
     value={editedMessages[itr.id] !== undefined ? editedMessages[itr.id] : (itr.message !== undefined ? itr.message : '')}
     onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value,[itr.time]:true })} 
@@ -421,7 +436,7 @@ onMouseLeave={() => {
 <div key={index} className='w-full flex flex-row justify-start items-center left-0 mb-12'>
       <div
       key={index}
-            className="rounded-r-xl md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 ml-4 bg-orange-600 "
+            className="rounded-r-xl md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 ml-4 bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 "
           >
            {itr.message}
           </div>
