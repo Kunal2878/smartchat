@@ -172,13 +172,13 @@ async function updateMessage(id:any,time:any) {
 
   return (
 
-    <div className='w-full  md:h-screen h-[80vh] '
+    <div className='w-full  md:h-screen h-[80vh] fixed '
     
     style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     
     >
 
-<div className=' w-full H-con overflow-hidden hover:overflow-y-auto flex flex-col 'style={{height:'calc(100vh - 60px)' }} >
+<div className=' w-full mb-10 md:mb-0 H-con overflow-hidden hover:overflow-y-auto flex flex-col 'style={{height:'calc(100vh - 60px)' }} >
 
 <div className='w-full flex flex-col '>
 
@@ -447,7 +447,7 @@ onMouseLeave={() => {
 
       </div>
     </div>
-<div className=' search  w-full flex flex-row justify-center items-center  h-16 fixed bottom-0  mb-20 md:mb-0 dark:bg-gray-900 bg-white'>
+<div className=' search  w-full flex flex-row justify-center items-center   fixed bottom-0  mb-10 md:mb-0 dark:bg-gray-900 bg-white'>
 
 <input
 className='rounded-md mr-4 dark:bg-white bg-gray-900 dark:text-red-900 text-red-400 outline-none' placeholder='Message....'
