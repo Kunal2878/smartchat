@@ -219,14 +219,15 @@ rmsg.length>0 &&(
       disabled={!isEdit} 
       onMouseLeave={() => { 
     
-       editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
+       editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  
+       setIsEdit(false)
      
    
         }}
       // onBlur={handleUpdate}
 
     />
-<span className={`${sty1} icon transition-all duration-200 ease-in-out`}>
+<span className={`${sty1} icon  `}>
 
 <button >
             <Image
@@ -244,9 +245,9 @@ rmsg.length>0 &&(
             alt="loading.."
             width={10}
             height={10}
-            onClick={()=>setIsEdit(false)}
+            onClick={()=>{   setEditedMessages({ ...editedMessages, [itr.time]: false }); setIsEdit(false)}}
             src={"/wrong.svg"}
-            className={`${isEdit?'block':'hidden'} size-6 mr-2`}
+            className={`${isEdit||editedMessages[itr.time]?'block':'hidden'} size-6 mr-2`}
             />
             </button>
             <button >
@@ -255,7 +256,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/doc.svg"}
-            className={`${isEdit?'hidden':'block'} size-6 mr-2`}
+            className={`${isEdit||editedMessages[itr.time]?'hidden':'block'} size-6 mr-2`}
             />
             </button>
             <button onClick={()=>loadMessages()}>
@@ -264,7 +265,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/edit.svg"}
-            className={`${isEdit?'hidden':'block'} size-6 mr-2`}
+            className={`${isEdit||editedMessages[itr.time]?'hidden':'block'} size-6 mr-2`}
             />
             </button>
             <button onClick={()=>deleteMessage(itr.id)}>
@@ -273,7 +274,7 @@ rmsg.length>0 &&(
             width={10}
             height={10}
             src={"/delete.svg"}
-            className={`${isEdit?'hidden':'block'} size-6 mr-2`}
+            className={`${isEdit||editedMessages[itr.time]?'hidden':'block'} size-6 mr-2`}
             />
             </button>
 
