@@ -202,6 +202,7 @@ rmsg.length>0 &&(
 
       <div   className=' message group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '>
 
+
 <div className='w-full h-auto flex flex-row justify-center items-center'
   onMouseLeave={() => { 
 
@@ -219,8 +220,8 @@ rmsg.length>0 &&(
       disabled={!isEdit} 
       onMouseLeave={() => { 
     
-       editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  
-       setIsEdit(false)
+      editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  
+      setIsEdit(false)
      
    
         }}
@@ -321,16 +322,105 @@ messages.length>0&&(
   <div className='w-full   right-0 flex flex-col mt-2 mr-2 '>
   {
 messages.map((itr:any, index) => (
-itr.sender===email?(
-<div   key={index} className='w-full flex flex-row justify-end items-center right-0 '>
-  <div
+  itr.sender===email?(
+    <div    key={index} className={`${editedMessages[itr.id]==='deleted'?'hidden':''} w-full flex flex-col items-center right-0 mb-12`}>
+    <div    className='w-full flex flex-row justify-end items-center right-0'>
+
+    <div   className=' message group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '>
+
+<div className='w-full h-auto flex flex-row justify-center items-center'
+onMouseLeave={() => { 
+
+    editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
+
+
+     }}
+>
+    <input
+    className={`rounded-md hover:-translate-x-1 transition ease-in-out delay-100 duration-800 w-10/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+    
+    value={editedMessages[itr.id] !== undefined ? editedMessages[itr.id] : (itr.message !== undefined ? itr.message : '')}
+    onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value,[itr.time]:true })} 
+ 
+    disabled={!isEdit} 
+    onMouseLeave={() => { 
+  
+    editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  
+    setIsEdit(false)
+   
+ 
+      }}
+    // onBlur={handleUpdate}
+
+  />
+<span className={`${sty1} icon transition ease-linear duration-600 `}>
+
+<button >
+          <Image
+          alt="loading.."
+          width={10}
+          height={10}
+          src={"/right.svg"}
+          onClick={()=>updateMessage(itr.id,itr.time)}
+          className={`${isEdit || editedMessages[itr.time]?'block':'hidden'} size-6 mr-2`}
+          />
+          </button>
+
+          <button >
+          <Image
+          alt="loading.."
+          width={10}
+          height={10}
+          onClick={()=>{   setEditedMessages({ ...editedMessages,[itr.id]:itr.message, [itr.time]: false }); setIsEdit(false)}}
+          src={"/wrong.svg"}
+          className={`${isEdit||editedMessages[itr.time]?'block':'hidden'} size-6 mr-2`}
+          />
+          </button>
+          <button >
+          <Image
+          alt="loading.."
+          width={10}
+          height={10}
+          src={"/doc.svg"}
+          className={`${isEdit||editedMessages[itr.time]?'hidden':'block'} size-6 mr-2`}
+          />
+          </button>
+          <button onClick={()=>loadMessages()}>
+          <Image
+          alt="loading.."
+          width={10}
+          height={10}
+          src={"/edit.svg"}
+          className={`${isEdit||editedMessages[itr.time]?'hidden':'block'} size-6 mr-2`}
+          />
+          </button>
+          <button onClick={()=>deleteMessage(itr.id)}>
+          <Image
+          alt="loading.."
+          width={10}
+          height={10}
+          src={"/delete.svg"}
+          className={`${isEdit||editedMessages[itr.time]?'hidden':'block'} size-6 mr-2`}
+          />
+          </button>
+
+
+        </span>
+
+</div>
+      
           
-            className="rounded-md md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] p-2 mr-4 bg-cyan-400 mb-4"
-          >
-            {itr.message}
-          </div>
-          </div>
-    ):(
+
+         
+      
+
+        </div>
+        </div>
+    
+        </div>
+
+
+  ):(
 <div key={index} className='w-full flex flex-row justify-start items-center left-0 '>
       <div
       key={index}
