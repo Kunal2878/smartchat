@@ -3,13 +3,6 @@ import React from 'react'
 import Image from 'next/image'
 import { Database,Friend_list , Room_names} from '../../types/database.types'
 import  {UseAppContext}  from '../../index'
-
-// type F_type=Friend_list['frnd'][]
-// type r_type=Room_names['Rooms'][]
-// interface ChatProfilesProps {
-//   profiles: Friend_list['frnd'][]; 
-//   roomNames: Room_names['Rooms'][]; 
-// }
 function Chat_profiles({ profiles, roomNames }: any) {  
 const context = UseAppContext();
 const { email,room,setRoom } = context || {};

@@ -22,33 +22,9 @@ function TopBar() {
           </div>
           <div className="w-1/2 mr-0 flex flex-row justify-end">
             <div className="pl-2 w-1/2 flex justify-end pr-4">
-              {/* <Image
-                src="sun.svg"
-                width={20}
-                height={20}
-                alt="Picture of the author"
-              />
+           
               <Image
-                src="sun.svg"
-                width={20}
-                height={20}
-                alt="Picture of the author"
-              />
-              <Image
-                src="sun.svg"
-                width={20}
-                height={20}
-                alt="Picture of the author"
-              />
-
-              <Image
-                src="search.svg"
-                width={20}
-                height={20}
-                alt="Picture of the author"
-              /> */}
-              <Image
-                src="/dots_vertical.svg"
+                src="/star.svg"
                 width={20}
                 height={20}
                 alt="Picture of the author"

@@ -47,11 +47,11 @@ body {
     background-image:url("../../public/search.svg")
 }
 .dark .dark\:bg-dots-dark{
-  background-image:url("../../public/vertical_dots_light.svg")
+  background-image:url("../../public/star.svg")
 }
 .bg-dots-light{
 
-    background-image:url("../../public/dots_vertical.svg")
+    background-image:url("../../public/star.svg")
 }
 .bg-back-all{
   background-image:url("../../public/ban_1.png");
