@@ -4,18 +4,15 @@ import Pusher from 'pusher-js';
 import  {UseAppContext}  from '../../index'
 import { Database } from '../../types/database.types'
 import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
-import {Message,Message2 } from '../../types/basic_types';
 import Image from 'next/image'
 
 const Chat_msg = () => {
   let Room_msg=[]
-  let Mesg:any
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editedMessages, setEditedMessages] = useState<any>({});
-  const [neweditedMessages, setNewEditedMessages] = useState<any>({});
-  const [msg,setMsg]=useState<any>('')
+
   const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
   
   
@@ -450,9 +447,7 @@ onMouseLeave={() => {
 
       </div>
     </div>
-
-
-    <div className=' search  w-full flex flex-row justify-center items-center  h-16 fixed mb-0 dark:bg-gray-900 bg-white'>
+<div className=' search  w-full flex flex-row justify-center items-center  h-16 fixed bottom-0  mb-20 md:mb-0 dark:bg-gray-900 bg-white'>
 
 <input
 className='rounded-md mr-4 dark:bg-white bg-gray-900 dark:text-red-900 text-red-400 outline-none' placeholder='Message....'
