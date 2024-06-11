@@ -6,7 +6,7 @@ import { AppWrapper } from './index'
 const inter = Inter({ subsets: ['latin'] })
 import { PagesProgressBar as ProgressBar } from 'next-nprogress-bar';
 export const metadata: Metadata = {
-    title: 'SmartChat',
+    title: 'SmartChat-Home',
 
     description: 'SmartChat',
 

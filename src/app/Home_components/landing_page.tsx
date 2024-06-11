@@ -1,4 +1,4 @@
-
+import type { Metadata } from 'next'
 import All_components from './all_components'
 import * as React from "react";
 import { Session,createServerComponentClient} from '@supabase/auth-helpers-nextjs'
@@ -8,7 +8,10 @@ import Body_com from './body_com';
 import Footer from './footer'
 type F_type=Friend_list['frnd']
 type r_type=Room_names['Rooms']
-import RoomTmp from '../chat_room/chat_tmp/page'
+
+export const metadata: Metadata = {
+  title: 'SmartChat-Home',
+}
 export default async function LandingPage() {
 var c_data:F_type[]=[]
 var roomNames:r_type[]=[]

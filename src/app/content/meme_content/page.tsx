@@ -1,5 +1,9 @@
 import {Meme} from '../contents_types'
 import Meme_show from './meme';
+import type { Metadata } from 'next'
+export const metadata: Metadata = {
+  title: 'Memes 😛',
+}
 async function FetchMeme(): Promise<Meme[]> {
     const response = await fetch('https://api.imgflip.com/get_memes');
     const data = await response.json();

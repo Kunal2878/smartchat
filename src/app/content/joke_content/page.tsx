@@ -1,9 +1,14 @@
-
+import type { Metadata } from 'next'
 import {Joke,JokeCategory} from '../contents_types'
+
 import Joke_show from './joke';
+export const metadata: Metadata = {
+  title: 'Jokes😍',
+
+
+}
 async function F_Joke(): Promise<Joke[]> {
   const allJokes: Joke[] = [];
-
 
   const baseUrl = "https://official-joke-api.appspot.com/jokes/";
   for (let i = 1; i <= 100; i++) {
