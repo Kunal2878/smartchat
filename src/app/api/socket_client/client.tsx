@@ -456,7 +456,7 @@ value={message}
 onChange={(e) => setMessage(e.target.value)}
 />
 
-<button className="size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed disabled:opacity-40"
+<button className="size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed disabled:opacity-60"
 onClick={sendMessage} disabled={!message}
 >
 

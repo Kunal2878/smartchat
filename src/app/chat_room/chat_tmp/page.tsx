@@ -79,10 +79,10 @@ if(session)
             </div>
        
           </div>
-            <div className="w-full md:hidden h-[80vh]"><Chat_msg/></div>
+            <div className="w-full md:hidden h-[80vh] rounded-t-xl"><Chat_msg/></div>
           </div>
       {/* //for md devices */}
-          <div className="hidden md:block m-0 w-3/5 h-full">
+          <div className="hidden md:block  w-3/5 h-full">
           <Chat_msg />
           </div>
         </div>
