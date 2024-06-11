@@ -36,7 +36,7 @@ const chat_bar_themes=[
   
 ]
   return (
-    <div className='flex flex-col items-center justify-center w-full h-80 p-2 overflow-hidden hover:overflow-auto'>
+    <div className='flex flex-col items-center justify-center w-full h-80 p-2 overflow-auto'>
     <div className='p-2 w-full flex flex-row items-center text-white dark:bg-gradient-to-tr dark:from-indigo-700 dark:via-indigo-800 dark:to-gray-900 bg-gradient-to-tr from-purple-400 via-purple-300 to-gray-400'>
       <span className='w-[100px] left-0 ml-4'>Themes</span>
       <span className='w-[60px] right-0 mr-4'>
@@ -63,7 +63,7 @@ height={10}
 alt='loading...'
 className='size-6 rounded-full'
 />
-<span className="flex flex-row justify-center items-center w-[120px] h-full "   >{itr.text}</span>
+<span className="flex flex-row justify-center items-center w-[120px]   "   >{itr.text}</span>
 </div>
         ))
       }
@@ -74,7 +74,7 @@ className='size-6 rounded-full'
 
 className={`size-6 rounded-full ${itr.bg}`}
 />
-<span className={` flex flex-row justify-center items-center h-full bg-slate-600 w-[120px]`}   >{itr.text}</span>
+<span className={` flex flex-row justify-center items-center   bg-slate-600 w-[120px]`}   >{itr.text}</span>
 </div>
         ))
       }

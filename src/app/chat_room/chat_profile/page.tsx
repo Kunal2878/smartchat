@@ -5,7 +5,7 @@ import { Database,Friend_list , Room_names} from '../../types/database.types'
 import  {UseAppContext}  from '../../index'
 function Chat_profiles({ profiles, roomNames }: any) {  
 const context = UseAppContext();
-const { email,room,setRoom } = context || {};
+const { email,room,setRoom,setIsThemeMenu,isThemeMenu } = context || {};
 const findRoom = (f_mail:string) => {
   roomNames.map((itr:any) => {
     if(itr.room_name===`${email}${f_mail}`||itr.room_name===`${f_mail}${email}`){

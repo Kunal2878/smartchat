@@ -181,9 +181,9 @@ async function updateMessage(id:any,time:any) {
 
 
 
+  // ${isThemeMenu ? 'animate-slide_right_left' : '-translate-x-full'}
 isThemeMenu&&(
 <div className={` transition duration-300 z-40 flex flex-row items-center right-0
-   ${isThemeMenu ? 'animate-slide_right_left' : '-translate-x-full'}
   
   `}>
 <Theme_menu/>
