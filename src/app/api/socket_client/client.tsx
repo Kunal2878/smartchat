@@ -178,14 +178,16 @@ async function updateMessage(id:any,time:any) {
     
     >
 {
-
+ 
 
 
   // ${isThemeMenu ? 'animate-slide_right_left' : '-translate-x-full'}
 isThemeMenu&&(
-<div className={` transition duration-300 z-40 flex flex-row items-center right-0
+<div className={` w-full h-80 overflow-auto transition duration-300 z-40 flex flex-row items-center
   
-  `}>
+  `}
+  style={{zIndex:100}}
+  >
 <Theme_menu/>
 </div>
 )
@@ -193,7 +195,7 @@ isThemeMenu&&(
 }
 
 
-<div className=' z-20 w-full mb-10 md:mb-0 pb-20 H-con overflow-hidden hover:overflow-y-auto flex flex-col 'style={{height:'calc(100vh - 60px)' }} >
+<div className='  w-full mb-10 md:mb-0 pb-20 H-con overflow-hidden hover:overflow-y-auto flex flex-col '   style={{zIndex:-10}}>
 
 <div className='w-full flex flex-col '>
 

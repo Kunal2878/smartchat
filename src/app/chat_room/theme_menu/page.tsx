@@ -36,7 +36,7 @@ const chat_bar_themes=[
   
 ]
   return (
-    <div className='flex flex-col items-center justify-center w-full h-80 p-2 overflow-auto'>
+    <div className='w-[300px] flex flex-col items-center justify-center  h-80 p-2 overflow-y-scroll'>
     <div className='p-2 w-full flex flex-row items-center text-white dark:bg-gradient-to-tr dark:from-indigo-700 dark:via-indigo-800 dark:to-gray-900 bg-gradient-to-tr from-purple-400 via-purple-300 to-gray-400'>
       <span className='w-[100px] left-0 ml-4'>Themes</span>
       <span className='w-[60px] right-0 mr-4'>
