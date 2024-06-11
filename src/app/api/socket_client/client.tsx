@@ -227,7 +227,7 @@ rmsg.length>0 &&(
       // onBlur={handleUpdate}
 
     />
-<span className={`${sty1} icon  `}>
+<span className={`${sty1} icon transition ease-linear duration-600 `}>
 
 <button >
             <Image
@@ -245,7 +245,7 @@ rmsg.length>0 &&(
             alt="loading.."
             width={10}
             height={10}
-            onClick={()=>{   setEditedMessages({ ...editedMessages, [itr.time]: false }); setIsEdit(false)}}
+            onClick={()=>{   setEditedMessages({ ...editedMessages,[itr.id]:itr.message, [itr.time]: false }); setIsEdit(false)}}
             src={"/wrong.svg"}
             className={`${isEdit||editedMessages[itr.time]?'block':'hidden'} size-6 mr-2`}
             />
