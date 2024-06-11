@@ -155,27 +155,18 @@ function loadMessages() {
 }
 
 
-const updateAndLogMessage = (id:any,mes:any) => {
-console.log(Mesg)
-  if (Mesg !== editedMessages[id]) {
-    setEditedMessages({ ...editedMessages, [id]: mes });
-  }
-  setTimeout(() => {
-    console.log(msg); 
-  }, 1000)
-  
-  
-};
-async function updateMessage(id:any) {
-// setPrevMesg(newMesg)
-Mesg=editedMessages[id]
-// setMsg(editedMessages[id] )
-// setNewEditedMessages({ ...neweditedMessages, [id]: editedMessages[id] })
 
-const{data,error}= await supabase.from('Chat').update({
-  message:editedMessages[id]
-  }).eq('id', id)
-  if(error){window.alert("Error in updating, retry after sometime")}
+async function updateMessage(id:any,time:any) {
+
+  
+  const{data,error}= await supabase.from('Chat').update({
+    message:editedMessages[id]
+    }).eq('id', id)
+    if(error){window.alert("Error in updating, retry after sometime")}
+    
+  // setEditedMessages({ ...editedMessages, [id]: editedMessages[id], })
+  editedMessages[id]=''
+  editedMessages[time]=false
 
   setIsEdit(false);
 
@@ -210,38 +201,46 @@ rmsg.length>0 &&(
       <div    key={index} className={`${editedMessages[itr.id]==='deleted'?'hidden':''} w-full flex flex-col items-center right-0 mb-12`}>
       <div    className='w-full flex flex-row justify-end items-center right-0'>
 
-      <div   className='group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '>
+      <div   className=' message group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '>
 
+<div className='w-full h-auto flex flex-row justify-center items-center'
+  onMouseLeave={() => { 
 
+      editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
+
+  
+       }}
+>
       <input
-      className={`rounded-md w-full min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+      className={`rounded-md w-11/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
       
       value={editedMessages[itr.id] !== undefined ? editedMessages[itr.id] : (itr.message !== undefined ? itr.message : '')}
-      onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value })} 
+      onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value,[itr.time]:true })} 
    
       disabled={!isEdit} 
       onMouseLeave={() => { 
-     if(isEdit){
-       console.log("isEdit",isEdit)
+    
        editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
-     }
-        updateAndLogMessage(itr.id,itr.message);
+     
+   
         }}
       // onBlur={handleUpdate}
 
     />
 
-          <span className={`${sty1} transition-all duration-200 ease-in-out`}>
-            <button >
+<button >
             <Image
             alt="loading.."
             width={10}
             height={10}
             src={"/right.svg"}
-            onClick={()=>updateMessage(itr.id)}
-            className={`${isEdit?'block':'hidden'} size-6 mr-2`}
+            onClick={()=>updateMessage(itr.id,itr.time)}
+            className={`${isEdit || editedMessages[itr.time]?'block':'hidden'} size-6 mr-2`}
             />
             </button>
+</div>
+          <span className={`${sty1} icon transition-all duration-200 ease-in-out`}>
+        
             <button >
             <Image
             alt="loading.."
@@ -270,7 +269,7 @@ rmsg.length>0 &&(
             className={`${isEdit?'hidden':'block'} size-6 mr-2`}
             />
             </button>
-            <button onClick={()=>updateMessage(itr.id)}>
+            <button onClick={()=>updateMessage(itr.id,itr.time)}>
             <Image
             alt="loading.."
             width={10}
