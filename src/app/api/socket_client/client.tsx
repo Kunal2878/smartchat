@@ -211,7 +211,7 @@ rmsg.length>0 &&(
        }}
 >
       <input
-      className={`rounded-md w-11/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+      className={`rounded-md w-10/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-indigo-600 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
       
       value={editedMessages[itr.id] !== undefined ? editedMessages[itr.id] : (itr.message !== undefined ? itr.message : '')}
       onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value,[itr.time]:true })} 
@@ -226,6 +226,7 @@ rmsg.length>0 &&(
       // onBlur={handleUpdate}
 
     />
+<span className={`${sty1} icon transition-all duration-200 ease-in-out`}>
 
 <button >
             <Image
@@ -237,9 +238,7 @@ rmsg.length>0 &&(
             className={`${isEdit || editedMessages[itr.time]?'block':'hidden'} size-6 mr-2`}
             />
             </button>
-</div>
-          <span className={`${sty1} icon transition-all duration-200 ease-in-out`}>
-        
+
             <button >
             <Image
             alt="loading.."
@@ -268,7 +267,7 @@ rmsg.length>0 &&(
             className={`${isEdit?'hidden':'block'} size-6 mr-2`}
             />
             </button>
-            <button onClick={()=>updateMessage(itr.id,itr.time)}>
+            <button onClick={()=>deleteMessage(itr.id)}>
             <Image
             alt="loading.."
             width={10}
@@ -278,10 +277,16 @@ rmsg.length>0 &&(
             />
             </button>
 
+
+          </span>
+
+</div>
+        
+            
+
            
         
 
-          </span>
           </div>
           </div>
       
