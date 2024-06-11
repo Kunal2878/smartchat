@@ -450,13 +450,13 @@ onMouseLeave={() => {
 <div className=' search p-4 md:p-2 w-full backdrop-blur-sm bg-black/40 flex flex-row justify-center items-center   fixed bottom-0 '>
 
 <input
-className='rounded-full p-1 mr-4 shadow-sm shadow-white bg-white text-gray-900 outline-none' placeholder='Type your Message....'
+className='rounded-full p-1 mr-4 md:mr-10 shadow-sm shadow-white bg-white text-gray-900 outline-none' placeholder='Type your Message....'
 type="text"
 value={message}
 onChange={(e) => setMessage(e.target.value)}
 />
 
-<button className="size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed disabled:opacity-60"
+<button className="md:mr-10 size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed disabled:opacity-60"
 onClick={sendMessage} disabled={!message}
 >
 

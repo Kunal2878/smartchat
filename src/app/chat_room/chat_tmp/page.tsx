@@ -1,6 +1,6 @@
 
 import * as React from 'react'
-// import TopBar from '../../top_bar'
+import TopBar from '../top_bar'
 import Chat_profiles from '../chat_profile/page'
 import Chat_profiles_mob from '../chat_profile_mob/page'
 import { Database,Friend_list , Room_names} from '../../types/database.types'
@@ -67,7 +67,7 @@ if(session)
         <div className="w-screen h-full flex flex-row ">
           <div className="w-full md:w-2/5 h-full flex flex-col">
             
-            {/* <div className="w-full hidden md:block"> <TopBar /></div> */}
+            <div className="w-full hidden md:block"> <TopBar /></div>
             
             <div className='w-full flex flex-col md:flex-row overflow-hidden'>
 
