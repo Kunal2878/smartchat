@@ -172,7 +172,7 @@ async function updateMessage(id:any,time:any) {
 
   return (
 
-    <div className='w-full  md:h-screen h-[80vh] '
+    <div className='w-full  md:h-screen h-[80vh] overflow-hidden hover:overflow-y-auto'
     
     style={{ backgroundImage: `url(/chatbg.jpg)`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     
@@ -195,7 +195,7 @@ isThemeMenu&&(
 }
 
 
-<div className='  w-full mb-10 md:mb-0 pb-20 H-con overflow-hidden hover:overflow-y-auto flex flex-col '   style={{zIndex:-10}}>
+<div className='  w-full mb-10 md:mb-0 pb-20 H-con  flex flex-col '   style={{zIndex:-10}}>
 
 <div className='w-full flex flex-col '>
 
