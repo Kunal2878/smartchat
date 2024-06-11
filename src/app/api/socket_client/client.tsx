@@ -164,9 +164,8 @@ async function updateMessage(id:any,time:any) {
     }).eq('id', id)
     if(error){window.alert("Error in updating, retry after sometime")}
     
-  // setEditedMessages({ ...editedMessages, [id]: editedMessages[id], })
-  editedMessages[id]=''
-  editedMessages[time]=false
+  setEditedMessages({ ...editedMessages, [time]: false })
+
 
   setIsEdit(false);
 
