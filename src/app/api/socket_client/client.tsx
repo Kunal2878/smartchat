@@ -172,7 +172,7 @@ async function updateMessage(id:any,time:any) {
 
   return (
 
-    <div className='w-full  md:h-screen h-[80vh] overflow-y-auto'
+    <div className='static w-full  md:h-screen h-[80vh] overflow-y-auto'
     
     style={{ backgroundImage: `url(${chatTheme})`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     
@@ -183,7 +183,7 @@ async function updateMessage(id:any,time:any) {
 
   // ${isThemeMenu ? 'animate-slide_right_left' : '-translate-x-full'}
 isThemeMenu&&(
-<div className={` w-full h-80 flex flex-row items-center
+<div className={` absolute top-0 right-0 mt-4 mr-4 w-full h-80 flex flex-row items-center
   
   `}
   style={{zIndex:1000}}
