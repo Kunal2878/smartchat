@@ -175,7 +175,7 @@ className=" group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
 <div 
 onClick={()=>handleLogout(itr.path)} 
 
-className=" group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
+className=" cursor-pointer group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
 
 <Image
               width={20}
