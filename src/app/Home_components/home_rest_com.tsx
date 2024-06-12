@@ -151,6 +151,8 @@ return (
   {theme2.map((itr) => (  
 <div key={itr.icon} className='w-1/4 flex flex-row justify-end items-center mr-4'>
 
+{
+itr.path!=='notifications'?(
 <Link href={itr.path}
 // onClick={()=>handleLogout(itr.path)} 
 
@@ -167,11 +169,42 @@ className=" group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
   >{itr.text}</span>
 
 </Link>
+):
+
+(
+<div 
+onClick={()=>handleLogout(itr.path)} 
+
+className=" group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
+
+<Image
+              width={20}
+              height={20}
+              src={itr.icon}
+              alt='Loading....'
+              className=''
+              />
+<span className=" text-xs  text-white dark:text-gray-900 dark:group-hover:text-white group-hover:text-slate-900 "
+  >{itr.text}</span>
+
+</div>
+
+
+)
+
+}
+
+
+
 </div>
 ))}
 
 
 </div>
+
+
+
+
         <button
         className="group w-20 md:w-28 flex justify-end md:ml-4 "
         onClick={toggleMenu}

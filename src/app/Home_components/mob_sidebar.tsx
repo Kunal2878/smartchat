@@ -94,19 +94,13 @@ setIsNotify?.(true)
           ) : (
           
               <Link
-                className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
-                // type="submit" 
-                // onClick={()=>handlePath('/auth/signup')}
+                className="w-20 h-8 flex flex-row justify-center items-center text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
+         
                 href="/auth/signup"
               >
                 Login/Signup
               </Link>
-              // <button
-              //   className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
-              //   onClick={()=>{setIsLogin?.(true)}}
-              // >
-              //   Login/Signup
-              // </button>
+     
            
           )}
         </div>
