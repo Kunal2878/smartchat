@@ -19,6 +19,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [room, setRoom] = useState<string>('');
   const [rmsg, setRmsg] = useState<any>([]);
   const [isThemeMenu, setIsThemeMenu] = useState<boolean>(false);
+  const [isInvite, setIsInvite] = useState<boolean>(false);
   const [chatTheme, setChatTheme] = useState<string>('/chatbg.jpg');
   // const supaUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   // const supaKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
@@ -39,6 +40,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
           f_chat,
           room,
           rmsg,
+          isInvite,
           isThemeMenu,
           chatTheme,
           setId,
@@ -54,7 +56,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
           setRoom,
           setRmsg,
           setIsThemeMenu,
-          setChatTheme
+          setChatTheme,
+          setIsInvite
 
         }}
       >

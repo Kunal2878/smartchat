@@ -6,18 +6,21 @@ import { Database } from '../../types/database.types'
 import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 import Theme_menu from '../../chat_room/theme_menu/page'
+import Invite from '../../chat_room/invite/page'
+
 const Chat_msg = () => {
   let Room_msg=[]
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editedMessages, setEditedMessages] = useState<any>({});
+  // const [isInvite, setIsInvite] = useState<boolean>(false);
 
   const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
   
   
   const context = UseAppContext();
-  const { email,room,rmsg,setRmsg,setRoom,setEmail,isThemeMenu,chatTheme} = context || {};
+  const { email,room,rmsg,setRmsg,setRoom,setEmail,isThemeMenu,chatTheme,isInvite,setIsInvite} = context || {};
   setRoom?.("chat")
   setEmail?.('kp')
   const sty1="w-[200px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
@@ -195,7 +198,17 @@ isThemeMenu&&(
 }
 
 
-<div className='  w-full mb-16 md:mb-0 pb-20 H-con  flex flex-col '   style={{zIndex:-10}}>
+{
+isInvite&&(
+  <div className='absolute top-1/2 left-1/2 transition-opacity duration-1000 opacity-100  flex flex-col items-center justify-center w-[400px] bg-black bg-opacity-50'   style={{zIndex:1000}}>
+    <Invite/>
+  </div>
+)
+
+
+}
+
+<div className='  w-full mb-20 md:mb-0 pb-20 H-con  flex flex-col '   style={{zIndex:-10}}>
 
 <div className='w-full flex flex-col '>
 

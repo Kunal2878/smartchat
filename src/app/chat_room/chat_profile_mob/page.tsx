@@ -8,7 +8,7 @@ function Chat_profile_mob({profiles,roomNames}:any)
 { 
 
     const context = UseAppContext();
-    const { email,room,setRoom,avatar,isThemeMenu,setIsThemeMenu } = context || {};
+    const { email,room,setRoom,avatar,isThemeMenu,setIsThemeMenu,isInvite,setIsInvite } = context || {};
     
     const findRoom = (f_mail:string) => {
       roomNames.map((itr:any) => {
@@ -81,7 +81,8 @@ function Chat_profile_mob({profiles,roomNames}:any)
                   width={42}
                   height={42}
                   alt="Picture of the author"
-                  className='size-full rounded-full object-cover'
+                  className='size-full rounded-full object-cover cursor-pointer'
+                  onClick={()=> setIsInvite?.(true)}
                 />
               </div>
 </div>

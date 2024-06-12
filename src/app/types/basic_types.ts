@@ -5,8 +5,9 @@ export interface Message {
     content: string
     room_name:string
     time:string
-    // Add other properties as needed (e.g., sender, timestamp)
-  }
+
+}
+
 export interface Message2 {
  info: {
     mail:string
@@ -14,7 +15,7 @@ export interface Message2 {
     room_name:string
 
   }
-    // Add other properties as needed (e.g., sender, timestamp)
+
   }
   export interface Namespace{
     chat_message:string
@@ -33,6 +34,7 @@ export interface Message2 {
     room:string;
     rmsg:any;
     isThemeMenu:boolean;
+    isInvite:boolean;
     chatTheme:string;
     setUserName: (userName: string|undefined) => void;
     setEmail: (email: string|undefined) => void;
@@ -47,7 +49,9 @@ export interface Message2 {
     setRoom: (room: string) => void;
     setRmsg: (rmsg: any) => void;
     setIsThemeMenu: (isThemeMenu: boolean) => void;
+    setIsInvite: (isInvite: boolean) => void;
     setChatTheme: (chatTheme: string) => void;
+
     
   }
   // test.res246@gmail.com
