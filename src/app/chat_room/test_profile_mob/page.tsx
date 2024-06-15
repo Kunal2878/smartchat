@@ -20,14 +20,16 @@ function Chat_profile_mob() {
         channel.bind('new-message', (data: any) => {
             console.log("data from chat_mob",data)
             data.map((itr: any) => {
-                if (itr.room === `${testRoom}` || itr.sender !== `${testName}`) {
-                    if (!existingNames.has(itr.testName)) {
-                        setProfiles((prev: any) => [...prev, { testName: itr.testName, avatar: itr.avatar }]);
+                if (itr.room === `${testRoom}` && itr.sender !== `${testName}`) {
+                    console.log("enter",itr.sender)
+                    if (!existingNames.has(itr.sender)) {
+                        setProfiles((prev: any) => [...prev, { testName: itr.sender, avatar: itr.avatar }]);
                         existingNames.add(itr.testName);
                           
                           
                     }
-         
+         console.log("profiles",profiles)
+         console.log("existingNames",existingNames)
                 }
             });
         })
