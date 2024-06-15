@@ -36,6 +36,9 @@ export interface Message2 {
     isThemeMenu:boolean;
     isInvite:boolean;
     chatTheme:string;
+    testAvatar:string;
+    testName:string;
+    testRoom:string;
     setUserName: (userName: string|undefined) => void;
     setEmail: (email: string|undefined) => void;
     setId: (id: any|undefined) => void;
@@ -51,6 +54,9 @@ export interface Message2 {
     setIsThemeMenu: (isThemeMenu: boolean) => void;
     setIsInvite: (isInvite: boolean) => void;
     setChatTheme: (chatTheme: string) => void;
+    setTestAvatar: (testAvatar: string) => void;
+    setTestName: (testName: string) => void;
+    setTestRoom: (testRoom: string) => void;
 
     
   }

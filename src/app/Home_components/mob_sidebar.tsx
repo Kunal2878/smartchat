@@ -96,7 +96,7 @@ setIsNotify?.(true)
               <Link
                 className="w-20 h-8 flex flex-row justify-center items-center text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
          
-                href="/auth/signup"
+                href="/middleware"
               >
                 Login/Signup
               </Link>

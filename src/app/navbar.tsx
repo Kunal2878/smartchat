@@ -67,7 +67,7 @@ function Navbar() {
 </Link>
             ):(
 
-            <Link href="/auth/signup">
+            <Link href="/middleware">
             {/* <Link href="/chat_room/chat_tmp"> */}
               <Image
                 src="/send_icon.png"

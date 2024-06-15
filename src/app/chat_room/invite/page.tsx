@@ -111,7 +111,7 @@ var recUsername:string=''
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            to: recEmail,
+            to: 'kunalpaul673@gmail.com',
             sender: userName,
             subject: "Invite to join SmartChat",
             info: "Hello,\n ${} Log in to the Smartchat app Join me in my chat room!",
@@ -154,7 +154,7 @@ var recUsername:string=''
           <div className="w-full md:w-2/5 h-40 flex  flex-col md:flex-row justify-center items-center rounded-md dark:bg-gradient-to-r dark:from-gray-700 dark:via-gray-900 dark:to-black bg-gradient-to-r from-white via-gray-600 to-black dark:text-gray-900 bg-gray-900 text-white">
       <div className='absolute top-0 right-0 mt-2 mr-2 mb-2'>
         <Image
-        src={'/wrong.png'}
+        src={'/wrong.svg'}
         width={10}
         height={10}
         className='size-8 cursor-pointer'
@@ -166,7 +166,7 @@ var recUsername:string=''
           <input
             name="Email"
             type="email"
-            className=" w-4/5 outline-none rounded-[24px] p-2 dark:text-gray-900 dark:bg-white"
+            className=" w-4/5 outline-none rounded-[24px] p-2 dark:text-gray-900 dark:bg-white text-white"
             placeholder="Enter a valid email"
             value={recEmail}
             onChange={(event) => setRecEmail(event.target.value)}

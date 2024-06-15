@@ -237,7 +237,7 @@ className=" cursor-pointer group w-1/4 flex flex-row  md:mr-3  active:border-b-p
           </button>
         </form>
         ) : (
-        <Link href="/auth/signup">
+        <Link href="/middleware">
         <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500">
         Login/Signup
         </button>
