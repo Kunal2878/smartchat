@@ -20,7 +20,7 @@ const Chat_msg = () => {
   
   
   const context = UseAppContext();
-  const { email,room,rmsg,setRmsg,setRoom,setEmail,isThemeMenu,chatTheme,isInvite,setIsInvite,setTestAvatar,setTestName,setTestRoom,testRoom,testAvatar,testName} = context || {};
+  const { setRoom,setEmail,isThemeMenu,chatTheme,testRoom,testAvatar,testName} = context || {};
   setRoom?.("chat")
   setEmail?.('kp')
   const sty1="w-[200px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
@@ -49,14 +49,14 @@ return key;
   }
 
   useEffect(() => {
-    const channel = pusher.subscribe(`${room}`);
+    const channel = pusher.subscribe(`${testRoom}`);
     channel.bind('new-message', (data: any) => {
       console.log(data)
       setMessages(prevMessages => [...prevMessages, data]);
     });
 
     return () => channel.unsubscribe();
-  }, [room]);
+  }, [testRoom]);
 
 
 
