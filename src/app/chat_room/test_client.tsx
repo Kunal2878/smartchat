@@ -21,8 +21,7 @@ const Chat_msg = () => {
   
   const context = UseAppContext();
   const { setRoom,setEmail,isThemeMenu,chatTheme,testRoom,testAvatar,testName} = context || {};
-  setRoom?.("chat")
-  setEmail?.('kp')
+ 
   const sty1="w-[200px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
 
 
