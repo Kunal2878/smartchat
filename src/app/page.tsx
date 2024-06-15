@@ -15,8 +15,8 @@ export default function Home() {
     <main className="m-0 flex min-h-screen flex-col items-center justify-between ">
       {/* <Show_chat /> */}
       {/* <Chat_msg /> */}
-      {/* <Landing_page /> */}
-      <Middleware />
+      <Landing_page />
+      {/* <Middleware /> */}
     </main>
   );
 }
