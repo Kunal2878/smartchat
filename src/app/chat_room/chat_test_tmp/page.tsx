@@ -2,7 +2,7 @@
 import * as React from 'react'
 import TopBar from '../top_bar'
 import Chat_profiles from '../chat_profile/page'
-import Chat_profiles_mob from '../chat_profile_mob/page'
+import Chat_profiles_mob from '../test_profile_mob/page'
 import { Database,Friend_list , Room_names} from '/types/database.types'
 import { Session,createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
@@ -37,8 +37,8 @@ async function RoomTemp() {
             <div className='w-full flex flex-col md:flex-row overflow-hidden'>
 
             <div className='profile w-full flex flex-col'>
-
-            {/* <div className="w-full md:hidden"> <Chat_profiles_mob profiles={c_data} roomNames={roomNames}/></div>
+            <div className="w-full md:hidden"> <Chat_profiles_mob /></div>
+            {/* 
             <div className="w-full hidden md:block"><Chat_profiles profiles={c_data} roomNames={roomNames}/></div> */}
 
             </div>
