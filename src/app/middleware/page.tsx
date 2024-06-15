@@ -19,7 +19,7 @@ const avatar=[{img:'/c_avt1.png'},{img:'/c_avt2.png'},{img:'/c_avt3.png'},{img:'
 
 function generateAlphabeticKey() {
 
-  const alphabet = "abc&def@ghi345678jk$lmnop*qrst#uvwxyz1290";
+  const alphabet = "abc79068&$def@ghi345&678jk7321$lmnop*qrs4357t#uvwxyz1290";
   let key = "";
 
   for (let i = 0; i < 6; i++) {

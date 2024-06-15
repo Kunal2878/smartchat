@@ -88,15 +88,7 @@ function Chat_profile_mob({profiles,roomNames}:any)
 </div>
       </div>
       </div>
-      {/* <div className={`
-     top-0 mt-6  w-1/2 h-80 bg-white overflow-hidden z-10
-    transition duration-300 right-0
-      ${isThemeMenu ? 'animate-slide_right_left' : '-translate-x-full'}
-  
-    `}>
-
-
-  </div> */}
+      
     </div>
   )
 }
