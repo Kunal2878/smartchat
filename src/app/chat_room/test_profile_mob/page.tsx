@@ -30,6 +30,7 @@ function Chat_profile_mob() {
     }, []);
 function setProfile(sender:any,avatar:any)
 {
+    console.log("inside function")
     if (!existingNames.has(sender)) {
         console.log("enetred in the set")
         setProfiles((prev: any) => [...prev, { testName: sender, avatar: avatar }]);
@@ -38,6 +39,8 @@ function setProfile(sender:any,avatar:any)
           
     }
 
+console.log(profiles)
+console.log(existingNames)
 
 
 }
@@ -96,7 +99,7 @@ function setProfile(sender:any,avatar:any)
                                 </div>
                                 <div
                                     className="w-full flex flex-row justify-center text-[10px] mt-2 truncate"
-                                >{profile.sender}</div>
+                                >{profile.testName}</div>
                             </div>
                         ))}
                     </div>

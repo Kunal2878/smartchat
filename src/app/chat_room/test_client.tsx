@@ -199,7 +199,7 @@ onMouseLeave={() => {
      }}
 >
     <input
-    className={`rounded-l-xl hover:-translate-x-1 transition ease-in-out delay-100 duration-800 w-10/12 min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-gradient-to-r from-cyan-500 via-blue-400 to-purple-500 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+    className={`rounded-l-xl hover:-translate-x-1 transition ease-in-out delay-100 duration-800 md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px]  min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-gradient-to-r from-cyan-500 via-blue-400 to-purple-500 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
     
     value={editedMessages[itr.id] !== undefined ? editedMessages[itr.id] : (itr.message !== undefined ? itr.message : '')}
     onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value,[itr.time]:true })} 
