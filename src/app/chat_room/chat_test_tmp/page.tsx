@@ -1,6 +1,6 @@
 
 import * as React from 'react'
-import TopBar from '../top_bar'
+import TopBar from '../test_top_bar/page'
 import Chat_profiles from '../chat_profile/page'
 import Chat_profiles_mob from '../test_profile_mob/page'
 import { Database,Friend_list , Room_names} from '/types/database.types'
@@ -30,9 +30,9 @@ async function RoomTemp() {
     <div className=" w-full h-screen  dark:bg-gray-900 dark:text-white bg-gray-white text-gray-900">
     
         <div className="w-screen h-full flex flex-row ">
-          <div className="w-full h-full flex flex-col">
+          <div className="w-full h-full flex flex-row">
             
-            <div className="w-full hidden md:block"> <TopBar /></div>
+            <div className="w-1/6 hidden md:block"> <TopBar /></div>
             <div className="hidden md:flex  w-full h-full">
           <Chat_msg />
           </div>

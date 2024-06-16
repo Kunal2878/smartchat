@@ -44,32 +44,32 @@ setTestRoom?.(key)
 
     <div className={` ${showDiv?'flex':'hidden'} w-full flex flex-col items-center  mb-8 md:mb-4`}>
 
-      <div className='w-full md:w-1/2 flex flex-row justify-center items-center mb-6 text-[16px] md:text-[20px] font-800'>
+      <div className='w-full md:w-1/2  bg-clip-text text-transparent  bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 flex flex-row justify-center items-center mb-6 text-[16px] md:text-[20px] font-black'>
         Get your chat saved and secure, unleash the prime features, Signup or Login to be a part of smartchat
       </div>
 <Link href='/auth/signup'>
-<button className='w-[100px] h-[40px] text-[11px] flex flex-row justify-center items-center text-white hover:bg-purple-400 bg-purple-700   rounded-lg mb-6'
+<button className='w-[150px] h-[40px] text-[11px] flex flex-row justify-center items-center text-white hover:bg-purple-400 bg-purple-700   rounded-lg mb-6'
 > Signup/Login</button>
 </Link>
         </div>
         <div className={` ${showDiv? 'flex' : 'hidden'} w-full flex flex-col items-center mb-8 md:mb-4`}>
 
-      <h2 className='w-full md:w-1/2  flex flex-row justify-center items-center mb-6 text-[16px] md:text-[20px] font-800'>
+      <h2 className='w-full md:w-1/2  bg-clip-text text-transparent  bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 flex flex-row justify-center items-center mb-6 text-[16px] md:text-[20px] font-black'>
         Do not want to Signup!!. It's easy to chat, generate a key below and share it with your friend...
         Remember!!! your chat will not be saved.
       </h2> 
-      <button className='w-[100px] h-[40px] text-[11px] flex flex-row justify-center items-center rounded-lg  hover:bg-purple-400 bg-purple-700 text-white'
+      <button className='w-[150px] h-[40px] bg-clip-text text-transparent  bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 text-[11px] flex flex-row justify-center items-center rounded-lg  hover:bg-purple-400 bg-purple-700 text-white'
       onClick={()=> {setShowDiv(false); generateAlphabeticKey();setShowDiv2(true);setShowInput(true)}}
       > Generate a chat id </button>
     </div>
 
     <div className={` ${showDiv? 'flex' : 'hidden'} w-full flex flex-col items-center mb-8 md:mb-4`}>
-    <h2 className='w-full flex flex-row justify-center items-center mb-6 text-[16px] md:text-[20px]'>
-        Already have a key!! Click the button below to enter the id
+    <h2 className='w-full  text-red-400   flex flex-row justify-center items-center mb-6 text-[16px] md:text-[20px]'>
+        Already have a chat id !! Click the button below to enter the id
       </h2>
       <button className='w-[100px] h-[40px] text-[11px]  flex flex-row justify-center items-center  bg-purple-700  hover:bg-purple-400 text-white rounded-lg mb-6'
       onClick={()=> {setShowDiv(false); setShowDiv2(true); setShowInput(false)}}
-      > Enter your ID</button>
+      > Enter the chat id</button>
     </div>
 
 <div className={` ${showDiv2?'flex':'hidden'} w-full flex flex-col items-center mb-16 mt-6`}>
@@ -81,7 +81,7 @@ setTestRoom?.(key)
 <div className='w-full  flex flex-col items-center mb-6'>
 
 <div className=' w-full text-[16px] flex flex-row justify-start items-center mb-4'>
-Chat ID:
+Chat id:
 </div>
 <input type="text" value={testRoom} disabled={true} className={`${showInput?'block':'hidden'}  rounded-md w-full  outline-none mb-4 p-2 `} />
 <input type="text"  className={` ${showInput?'hidden':'block'} w-full   outline-none focus:ring-2 focus:ring-indigo-600 rounded-md  shadow-black dark:shadow-white shadow-md p-2` } onChange={(e)=> setTestRoom?.(e.target.value)}     placeholder='Enter the key....' />
@@ -92,12 +92,12 @@ Chat ID:
 
 </div>
 
-<h6 className='w-full flex flex-row justify-start items-center mb-4 '>Enter your name</h6>
+<h6 className='w-full flex flex-row justify-start items-center mb-4 '>Enter your name:</h6>
 
 <input type="text" onChange={(e)=>setTestName?.(e.target.value)} placeholder='Enter your name...' className='w-full p-2  outline-none focus:ring-2 focus:ring-indigo-600 rounded-md shadow-black dark:shadow-white shadow-md mb-6' />
 
 
-<h6 className='w-full flex flex-row justify-start items-center  text-[16px] mb-4'>Choose your avatar...</h6>  
+<h6 className='w-full flex flex-row justify-start items-center  text-[16px] mb-4'>Choose your avatar:</h6>  
 <div className='w-full flex flex-row justify-start items-center overflow-hidden hover:overflow-auto p-4 mb-6'>
 {
 avatar.map((itr,index)=>(
@@ -108,7 +108,7 @@ width={8}
 height={8}
 alt='loading'
 onClick={()=>setTestAvatar?.(itr.img)}
-className='size-16 mr-2 ml-2 rounded-full border-2 shadow-black dark:shadow-white shadow-md border-red-400 dark:border-cyan-400 cursor-pointer'
+className='size-16 mr-2 ml-2 rounded-full border-2 shadow-black dark:shadow-white shadow-md border-red-400 dark:border-cyan-400 cursor-pointer dark:active:border-red-600 active:border-cyan-400'
 />
 ))
 }

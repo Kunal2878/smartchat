@@ -16,11 +16,7 @@ const Chat_msg =   () => {
   const [messages, setMessages] = useState<string[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editedMessages, setEditedMessages] = useState<any>({});
-  // const [isInvite, setIsInvite] = useState<boolean>(false);
 
-
-  
-  
   const context = UseAppContext();
   const { isThemeMenu,chatTheme,testRoom,testAvatar,testName} = context || {};
  
@@ -160,7 +156,7 @@ isThemeMenu&&(
 
 
 
-<div className='  w-full mb-20 md:mb-0 pb-20 H-con  flex flex-col '   style={{zIndex:-10}}>
+<div className='  w-full mb-20 md:mb-0 pb-26 H-con  flex flex-col '   style={{zIndex:-10}}>
 
 <div className='w-full flex flex-col '>
 
