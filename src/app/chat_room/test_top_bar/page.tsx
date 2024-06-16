@@ -35,7 +35,7 @@ function TopBar() {
               />
        
           </div>
-            <div className=" absolute bottom-0  size-10  cursor-pointer mb-6">
+            <div className=" absolute bottom-0 bg-slate-400 size-10  cursor-pointer mb-6">
            
               <Image
                 unoptimized={true}
