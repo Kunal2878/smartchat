@@ -29,15 +29,17 @@ function Chat_profile_mob() {
 function setProfile(data:any)
 {
     console.log("inside function")
-console.log(data)
-console.log("profiles 2",profiles2)
-    profiles2.map((itr: any) => {
+console.log("Data",data)
 
+    data.map((itr: any) => {
+console.log("inside if ",itr.room,itr.sender)
         if (itr.room === testRoom && itr.sender !== testName && !existingNames.has(itr.sender)) {
             console.log("entered")
             setProfiles((prev: any) => [...prev, { testName: itr.sender, avatar: itr.avatar }]);
             existingNames.add(itr.sender);
         }
+        setProfiles((prev: any) => [...prev, { testName: itr.sender, avatar: itr.avatar }]);
+        existingNames.add(itr.sender);
    
 
 console.log(profiles)
