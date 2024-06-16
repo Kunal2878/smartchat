@@ -70,7 +70,7 @@ animation-direction:alternate;
   height: calc(100vh - 80px);
 }
 .C-con{
-  height: calc(100vw - 60px);
+  width: calc(100vw - 60px);
 }
 
 /* 
