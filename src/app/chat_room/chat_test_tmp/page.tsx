@@ -30,9 +30,12 @@ async function RoomTemp() {
     <div className=" w-full h-screen  dark:bg-gray-900 dark:text-white bg-gray-white text-gray-900">
     
         <div className="w-screen h-full flex flex-row ">
-          <div className="w-full md:w-2/5 h-full flex flex-col">
+          <div className="w-full h-full flex flex-col">
             
             <div className="w-full hidden md:block"> <TopBar /></div>
+            <div className="hidden md:flex  w-full h-full">
+          <Chat_msg />
+          </div>
             
             <div className='w-full flex flex-col md:flex-row overflow-hidden'>
 
@@ -47,9 +50,9 @@ async function RoomTemp() {
             <div className="w-full md:hidden h-[80vh] rounded-t-xl"><Chat_msg/></div>
           </div>
       {/* //for md devices */}
-          <div className="hidden md:flex  w-full h-full">
+          {/* <div className="hidden md:flex  w-full h-full">
           <Chat_msg />
-          </div>
+          </div> */}
         </div>
 
     </div>
