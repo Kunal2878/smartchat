@@ -19,33 +19,39 @@ function Chat_profile_mob() {
         const channel = pusher.subscribe(`${testRoom}`);
         channel.bind('new-message', (data: any) => {        
             console.log("data from profile", data) 
+            setProfile(data)
             data.map((itr: any) => {
-                if (itr.room === `${testRoom}` && itr.sender !== `${testName}`) {
+                console.log("inside map")
+                console.log("Room",itr.room,testRoom)
+                console.log("Name",itr.sender,testName)
+                if (itr.room === testRoom && itr.sender !== testName) {
                     console.log("entered")
-                    setProfile(itr.sender,itr.avatar)
+                    // setProfile(itr.sender,itr.avatar)
                 }
             });
         })
             // return () => channel.unsubscribe();
             
     }, []);
-function setProfile(sender:any,avatar:any)
+function setProfile(data:any)
 {
     console.log("inside function")
-    if (!existingNames.has(sender)) {
-        console.log("enetred in the set")
-        setProfiles((prev: any) => [...prev, { testName: sender, avatar: avatar }]);
-        existingNames.add(sender);
-          
-          
-    }
+
+    data.map((itr: any) => {
+
+        if (itr.room === testRoom && itr.sender !== testName && !existingNames.has(itr.sender)) {
+            console.log("entered")
+            setProfiles((prev: any) => [...prev, { testName: itr.sender, avatar: itr.avatar }]);
+            existingNames.add(itr.sender);
+        }
+   
 
 console.log(profiles)
 console.log(existingNames)
 
 
+})
 }
-    
 
     return (
         <div className='w-full h-36  -z-2  flex flex-col dark:bg-gray-900 dark:text-white text-gray-900 bg-white mb-2'>

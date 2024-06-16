@@ -180,14 +180,7 @@ messages.map((itr:any, index) => (
   itr.sender===testName?(
     <div    key={index} className={`${editedMessages[itr.id]==='deleted'?'hidden':''} w-full flex flex-col items-center right-0 mb-12`}>
     <div    className='w-full flex flex-row justify-end items-center right-0'>
-<Image
-src={itr.avatar}
-alt="avatar"
-width={10}
-height={10}
-className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-md border-red-400 dark:border-cyan-400 mr-2'
 
-/>
     {/* <div   className=' message group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '> */}
     <div   className=' message group w-full flex flex-col mr-4 '>
 
@@ -199,8 +192,16 @@ onMouseLeave={() => {
 
      }}
 >
+<Image
+src={itr.avatar}
+alt="avatar"
+width={10}
+height={10}
+className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-md border-red-400 dark:border-cyan-400 mr-2'
+
+/>
     <input
-    className={`rounded-l-xl hover:-translate-x-1 transition ease-in-out delay-100 duration-800 md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-gradient-to-r from-cyan-500 via-blue-400 to-purple-500 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+    className={`rounded-l-xl hover:-translate-x-1 transition ease-in-out delay-100 duration-800 md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px]   p-2 mr-4 flex flex-row text-white items-center bg-gradient-to-r from-cyan-500 via-blue-400 to-purple-500 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
     
     value={editedMessages[itr.id] !== undefined ? editedMessages[itr.id] : (itr.message !== undefined ? itr.message : '')}
     onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value,[itr.time]:true })} 
