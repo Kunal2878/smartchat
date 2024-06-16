@@ -3,6 +3,7 @@ import * as React from 'react'
 import Link from 'next/link'
 import  {UseAppContext}  from '../index'
 import Image from 'next/image'
+import Pusher from 'pusher-js';
 function Middleware() {
 
 
@@ -16,6 +17,25 @@ setTestAvatar, setTestName,setTestRoom, testAvatar,testName,testRoom
 } = context || {};
 
 const avatar=[{img:'/c_avt1.png'},{img:'/c_avt2.png'},{img:'/c_avt3.png'},{img:'/c_avt4.png'},{img:'/c_avt5.png'},{img:'/c_avt6.png'},{img:'/c_avt7.png'},{img:'/c_avt8.png'},]
+
+
+
+const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY!, {
+  cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER!,
+});
+
+
+// join in a room or channel
+React.useEffect(() => {
+if(testRoom !==''){
+ pusher.subscribe(`${testRoom}`);
+
+
+}
+
+
+
+}, [testRoom]);
 
 function generateAlphabeticKey() {
 

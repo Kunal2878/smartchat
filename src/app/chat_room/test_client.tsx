@@ -8,7 +8,7 @@ import Image from 'next/image'
 import Theme_menu from '../chat_room/theme_menu/page'
 import Invite from '/chat_room/invite/page'
 
-const Chat_msg = () => {
+const Chat_msg =  async () => {
 
   const [message, setMessage] = useState('');
   const [messageInput, setMessageInput] = useState('');
@@ -23,7 +23,7 @@ const Chat_msg = () => {
   const context = UseAppContext();
   const { isThemeMenu,chatTheme,testRoom,testAvatar,testName} = context || {};
  
-  const sty1="w-[200px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
+  const sty1="w-[100px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
 
 
 
@@ -34,6 +34,14 @@ const Chat_msg = () => {
 
 
 // join in a room or channel
+useEffect(() => {
+  const channel = pusher.subscribe(`${testRoom}`);
+  channel.bind('new-message', (data: any) => {
+    setMessages(prevMessages => [...prevMessages, data]);
+  });
+
+
+}, [testRoom]);
 
 function generateAlphabeticKey() {
 
@@ -48,14 +56,6 @@ function generateAlphabeticKey() {
 return key;
   }
 
-  useEffect(() => {
-    const channel = pusher.subscribe(`${testRoom}`);
-    channel.bind('new-message', (data: any) => {
-      setMessages(prevMessages => [...prevMessages, data]);
-    });
-
-    return () => channel.unsubscribe();
-  }, [testRoom]);
 
 
 
@@ -94,6 +94,7 @@ return key;
       });
 
       if (!response.ok) {
+        window.alert("Server failed to respond generate another id and rejoin")
         throw new Error('Failed to send message');
       }
 
