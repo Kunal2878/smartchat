@@ -40,7 +40,7 @@ useEffect(() => {
     setMessages(prevMessages => [...prevMessages, data]);
   });
 
-  return () => channel.unsubscribe();
+
 }, [testRoom]);
 
 function generateAlphabeticKey() {

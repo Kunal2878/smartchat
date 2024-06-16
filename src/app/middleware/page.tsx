@@ -20,22 +20,22 @@ const avatar=[{img:'/c_avt1.png'},{img:'/c_avt2.png'},{img:'/c_avt3.png'},{img:'
 
 
 
-// const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY!, {
-//   cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER!,
-// });
+const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY!, {
+  cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER!,
+});
 
 
-// // join in a room or channel
-// React.useEffect(() => {
-// if(testRoom !==''){
-//  pusher.subscribe(`${testRoom}`);
+// join in a room or channel
+React.useEffect(() => {
+if(testRoom !==''){
+ pusher.subscribe(`${testRoom}`);
 
 
-// }
+}
 
 
 
-// }, [testRoom]);
+}, [testRoom]);
 
 function generateAlphabeticKey() {
 
