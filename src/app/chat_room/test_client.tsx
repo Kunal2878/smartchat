@@ -7,6 +7,7 @@ import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 import Theme_menu from '../chat_room/theme_menu/page'
 import Invite from '/chat_room/invite/page'
+import { unsubscribe } from 'node:diagnostics_channel';
 
 const Chat_msg =   () => {
 
@@ -40,8 +41,8 @@ useEffect(() => {
     setMessages(prevMessages => [...prevMessages, data]);
   });
 
-
-}, []);
+  return () => channel.unsubscribe();
+}, [testRoom]);
 
 function generateAlphabeticKey() {
 
