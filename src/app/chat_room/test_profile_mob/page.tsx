@@ -21,22 +21,26 @@ function Chat_profile_mob() {
             console.log("data from chat_mob",data)
             data.map((itr: any) => {
                 if (itr.room === `${testRoom}` && itr.sender !== `${testName}`) {
-                    console.log("enter",itr.sender)
-                    if (!existingNames.has(itr.sender)) {
-                        setProfiles((prev: any) => [...prev, { testName: itr.sender, avatar: itr.avatar }]);
-                        existingNames.add(itr.testName);
-                          
-                          
-                    }
-         console.log("profiles",profiles)
-         console.log("existingNames",existingNames)
+                    setProfile(itr.sender,itr.avatar)
                 }
             });
         })
             // return () => channel.unsubscribe();
             
-    }, [testRoom, testName]);
+    }, []);
+function setProfile(sender:any,avatar:any)
+{
+    if (!existingNames.has(sender)) {
+        console.log("enetred in the set")
+        setProfiles((prev: any) => [...prev, { testName: sender, avatar: avatar }]);
+        existingNames.add(sender);
+          
+          
+    }
 
+
+
+}
     
 
     return (
