@@ -8,7 +8,7 @@ import Image from 'next/image'
 import Theme_menu from '../chat_room/theme_menu/page'
 import Invite from '/chat_room/invite/page'
 
-const Chat_msg =  async () => {
+const Chat_msg =   () => {
 
   const [message, setMessage] = useState('');
   const [messageInput, setMessageInput] = useState('');
