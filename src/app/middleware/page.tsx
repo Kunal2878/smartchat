@@ -58,7 +58,7 @@ setTestRoom?.(key)
         Do not want to Signup!!. It's easy to chat, generate a key below and share it with your friend...
         Remember!!! your chat will not be saved.
       </h2> 
-      <button className='w-[150px] h-[40px] bg-clip-text text-transparent   text-[11px] flex flex-row justify-center items-center rounded-lg  hover:bg-purple-400 bg-purple-700 text-white'
+      <button className='w-[150px] h-[40px] text-[11px] flex flex-row justify-center items-center rounded-lg  hover:bg-purple-400 bg-purple-700 text-white'
       onClick={()=> {setShowDiv(false); generateAlphabeticKey();setShowDiv2(true);setShowInput(true)}}
       > Generate a chat id </button>
     </div>
