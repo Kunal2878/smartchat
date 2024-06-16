@@ -7,6 +7,7 @@ import test from 'node:test';
 
 function Chat_profile_mob() {
     const [profiles, setProfiles] = React.useState<any[]>([])
+    const [profiles2, setProfiles2] = React.useState<any[]>([])
     const existingNames = new Set();
     const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY!, {
         cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER!,
@@ -17,18 +18,10 @@ function Chat_profile_mob() {
     React.useEffect(() => {
         console.log('testroom', testRoom)
         const channel = pusher.subscribe(`${testRoom}`);
-        channel.bind('new-message', (data: any) => {        
-            console.log("data from profile", data) 
+        channel.bind('new-message', (data: any) => {  
+            setProfiles2(prevProfiles2 => [...prevProfiles2, data]);      
             setProfile(data)
-            data.map((itr: any) => {
-                console.log("inside map")
-                console.log("Room",itr.room,testRoom)
-                console.log("Name",itr.sender,testName)
-                if (itr.room === testRoom && itr.sender !== testName) {
-                    console.log("entered")
-                    // setProfile(itr.sender,itr.avatar)
-                }
-            });
+       
         })
             // return () => channel.unsubscribe();
             
@@ -36,8 +29,9 @@ function Chat_profile_mob() {
 function setProfile(data:any)
 {
     console.log("inside function")
-
-    data.map((itr: any) => {
+console.log(data)
+console.log("profiles 2",profiles2)
+    profiles2.map((itr: any) => {
 
         if (itr.room === testRoom && itr.sender !== testName && !existingNames.has(itr.sender)) {
             console.log("entered")

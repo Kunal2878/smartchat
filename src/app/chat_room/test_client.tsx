@@ -51,11 +51,10 @@ return key;
   useEffect(() => {
     const channel = pusher.subscribe(`${testRoom}`);
     channel.bind('new-message', (data: any) => {
-      console.log(data)
       setMessages(prevMessages => [...prevMessages, data]);
     });
 
-    // return () => channel.unsubscribe();
+    return () => channel.unsubscribe();
   }, [testRoom]);
 
 
@@ -184,7 +183,7 @@ messages.map((itr:any, index) => (
     {/* <div   className=' message group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '> */}
     {/* <div   className=' message group w-full flex flex-col mr-2 '> */}
 
-<div className='w-full h-auto flex flex-row justify-end items-center'
+<div className=' group w-full h-auto flex flex-row justify-end items-center'
 onMouseLeave={() => { 
 
     editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
