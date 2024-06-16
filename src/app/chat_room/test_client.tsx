@@ -11,6 +11,7 @@ import Invite from '/chat_room/invite/page'
 const Chat_msg = () => {
 
   const [message, setMessage] = useState('');
+  const [messageInput, setMessageInput] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editedMessages, setEditedMessages] = useState<any>({});
@@ -76,9 +77,10 @@ return key;
   
 
   const sendMessage = async () => {
+    setMessage('')
     let time=getFormattedDateTimeIso()
     let mesg = {
-      message: message,
+      message: messageInput,
       sender: testName || '',
       room:testRoom || '' ,
       avatar:testAvatar || '',
@@ -98,7 +100,7 @@ return key;
 
       const data = await response.json();
       console.log('Message sent:', data.message);
-      setMessage('');
+      setMessageInput('');
     } catch (error) {
       console.error(error);
     }
@@ -321,7 +323,7 @@ onMouseLeave={() => {
 className='rounded-full p-1 mr-4 right-5 shadow-sm shadow-white bg-white text-gray-900 outline-none' placeholder='Type your Message....'
 type="text"
 value={message}
-onChange={(e) => setMessage(e.target.value)}
+onChange={(e) => {setMessage(e.target.value); setMessageInput(e.target.value)}}
 />
 
 <button className="md:mr-10 size-12 md:size-8 flex  cursor-pointer justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black disabled:cursor-not-allowed disabled:opacity-60"

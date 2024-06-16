@@ -33,7 +33,7 @@ function Chat_profile_mob() {
                 }
             });
         })
-            return () => channel.unsubscribe();
+            // return () => channel.unsubscribe();
             
     }, [testRoom, testName]);
 

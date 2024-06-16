@@ -39,7 +39,7 @@ setTestRoom?.(key)
         Get your chat saved and secure, unleash the prime features, Signup or Login to be a part of smartchat
       </div>
 <Link href='/auth/signup'>
-<button className='w-[100px] h-[40px] text-[11px] flex flex-row justify-center items-center text-white bg-purple-700 rounded-lg mb-6'
+<button className='w-[100px] h-[40px] text-[11px] flex flex-row justify-center items-center text-white hover:bg-purple-400 bg-purple-700   rounded-lg mb-6'
 > Signup/Login</button>
 </Link>
         </div>
@@ -49,18 +49,18 @@ setTestRoom?.(key)
         Do not want to Signup!!. It's easy to chat, generate a key below and share it with your friend...
         Remember!!! your chat will not be saved.
       </h2> 
-      <button className='w-[100px] h-[40px] text-[11px] flex flex-row justify-center items-center rounded-lg bg-purple-700 text-white'
+      <button className='w-[100px] h-[40px] text-[11px] flex flex-row justify-center items-center rounded-lg  hover:bg-purple-400 bg-purple-700 text-white'
       onClick={()=> {setShowDiv(false); generateAlphabeticKey();setShowDiv2(true);setShowInput(true)}}
-      > Generate a key </button>
+      > Generate a chat id </button>
     </div>
 
     <div className={` ${showDiv? 'flex' : 'hidden'} w-full flex flex-col items-center mb-8 md:mb-4`}>
     <h2 className='w-full flex flex-row justify-center items-center mb-6 text-[16px] md:text-[20px]'>
         Already have a key!! Click the button below to enter the key
       </h2>
-      <button className='w-[100px] h-[40px] text-[11px]  flex flex-row justify-center items-center  bg-purple-700 text-white rounded-lg mb-6'
+      <button className='w-[100px] h-[40px] text-[11px]  flex flex-row justify-center items-center  bg-purple-700  hover:bg-purple-400 text-white rounded-lg mb-6'
       onClick={()=> {setShowDiv(false); setShowDiv2(true); setShowInput(false)}}
-      > Enter your key</button>
+      > Enter your ID</button>
     </div>
 
 <div className={` ${showDiv2?'flex':'hidden'} w-full flex flex-col items-center mb-16 mt-6`}>
@@ -72,7 +72,7 @@ setTestRoom?.(key)
 <div className='w-full  flex flex-col items-center mb-6'>
 
 <div className=' w-full text-[16px] flex flex-row justify-start items-center mb-4'>
-Key
+Chat ID:
 </div>
 <input type="text" value={testRoom} disabled={true} className={`${showInput?'block':'hidden'}  rounded-md w-full  outline-none mb-4 p-2 `} />
 <input type="text"  className={` ${showInput?'hidden':'block'} w-full   outline-none focus:ring-2 focus:ring-indigo-600 rounded-md  shadow-black dark:shadow-white shadow-md p-2` } onChange={(e)=> setTestRoom?.(e.target.value)}     placeholder='Enter the key....' />
@@ -107,11 +107,11 @@ className='size-16 mr-2 ml-2 rounded-full border-2 shadow-black dark:shadow-whit
 </div>
 <div className='w-full flex flex-row justify-center items-center'>
   
-  <button   className={'w-[100px] h-[40px] text-[11px]  flex flex-row justify-center items-center  bg-purple-700 text-white rounded-lg mb-6 mr-4'} onClick={()=>{setShowDiv(true);setShowDiv2(false)}}
+  <button   className={'w-[100px] h-[40px] text-[11px]  flex flex-row justify-center items-center  bg-purple-700  hover:bg-purple-400 text-white rounded-lg mb-6 mr-4'} onClick={()=>{setShowDiv(true);setShowDiv2(false)}}
         >Back</button>
 
-<Link  href='/chat_room/chat_test_tmp' className={'w-[100px] h-[40px] text-[11px]  flex flex-row justify-center items-center  bg-purple-700 text-white rounded-lg mb-6 '}
-      >Join and chat</Link>
+<Link  href='/chat_room/chat_test_tmp' className={'w-[100px] h-[40px] text-[11px]  flex flex-row justify-center items-center  bg-purple-700  hover:bg-purple-400 text-white rounded-lg mb-6 '}
+>Join and chat</Link>
 </div>
 
 </div>
