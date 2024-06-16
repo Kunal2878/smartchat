@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import  {UseAppContext}  from '../../index'
+import Link from 'next/link';
 function TopBar() {
   const context = UseAppContext();
   const { setIsThemeMenu,testAvatar} = context || {};
@@ -20,7 +21,7 @@ function TopBar() {
                 className='size-full'
               />
             </div>
-            <div className="size-10  rounded-full bg-slate-400 mb-6">
+            <Link href="/" className="size-8  rounded-full mb-6">
               <Image
                 unoptimized={true}
                 src="/home.svg"
@@ -29,10 +30,10 @@ function TopBar() {
                 alt="Picture of the author"
                 className='size-full'
               />
-            </div>
+            </Link>
         
  
-            <div className="size-10  cursor-pointer mb-6">
+            <div className="size-8  bg-purple-600 cursor-pointer mb-6">
            
               <Image
                 unoptimized={true}
@@ -45,7 +46,7 @@ function TopBar() {
               />
        
           </div>
-            <div className=" absolute bottom-0 bg-slate-400 size-10 rounded-full cursor-pointer mb-6">
+            <div className=" absolute bottom-0 bg-slate-400 size-8 rounded-full cursor-pointer mb-6">
            
               <Image
                 unoptimized={true}
