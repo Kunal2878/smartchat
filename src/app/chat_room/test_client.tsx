@@ -178,13 +178,13 @@ messages.length>0&&(
   {
 messages.map((itr:any, index) => (
   itr.sender===testName?(
-    <div    key={index} className={`${editedMessages[itr.id]==='deleted'?'hidden':''} w-full flex flex-col items-center right-0 mb-12`}>
-    <div    className='w-full flex flex-row justify-end items-center right-0'>
+    <div    key={index} className={`${editedMessages[itr.id]==='deleted'?'hidden':''} w-full flex flex-col items-center  mb-12`}>
+    <div    className='w-full flex flex-row justify-end items-center'>
 
     {/* <div   className=' message group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '> */}
-    <div   className=' message group w-full flex flex-col mr-4 '>
+    {/* <div   className=' message group w-full flex flex-col mr-2 '> */}
 
-<div className='w-full h-auto flex flex-row justify-center items-center'
+<div className='w-full h-auto flex flex-row justify-end items-center'
 onMouseLeave={() => { 
 
     editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
@@ -278,7 +278,7 @@ className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-m
          
       
 
-        </div>
+        {/* </div> */}
         </div>
     
         </div>
