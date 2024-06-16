@@ -56,7 +56,7 @@ setTestRoom?.(key)
 
     <div className={` ${showDiv? 'flex' : 'hidden'} w-full flex flex-col items-center mb-8 md:mb-4`}>
     <h2 className='w-full flex flex-row justify-center items-center mb-6 text-[16px] md:text-[20px]'>
-        Already have a key!! Click the button below to enter the key
+        Already have a key!! Click the button below to enter the id
       </h2>
       <button className='w-[100px] h-[40px] text-[11px]  flex flex-row justify-center items-center  bg-purple-700  hover:bg-purple-400 text-white rounded-lg mb-6'
       onClick={()=> {setShowDiv(false); setShowDiv2(true); setShowInput(false)}}

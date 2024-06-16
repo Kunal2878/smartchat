@@ -17,10 +17,11 @@ function Chat_profile_mob() {
     React.useEffect(() => {
         console.log('testroom', testRoom)
         const channel = pusher.subscribe(`${testRoom}`);
-        channel.bind('new-message', (data: any) => {
-            console.log("data from chat_mob",data)
+        channel.bind('new-message', (data: any) => {        
+            console.log("data from profile", data) 
             data.map((itr: any) => {
                 if (itr.room === `${testRoom}` && itr.sender !== `${testName}`) {
+                    console.log("entered")
                     setProfile(itr.sender,itr.avatar)
                 }
             });

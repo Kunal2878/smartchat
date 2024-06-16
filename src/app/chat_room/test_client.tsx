@@ -55,7 +55,7 @@ return key;
       setMessages(prevMessages => [...prevMessages, data]);
     });
 
-    return () => channel.unsubscribe();
+    // return () => channel.unsubscribe();
   }, [testRoom]);
 
 
@@ -185,10 +185,11 @@ src={itr.avatar}
 alt="avatar"
 width={10}
 height={10}
-className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-md border-red-400 dark:border-cyan-400'
+className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-md border-red-400 dark:border-cyan-400 mr-2'
 
 />
-    <div   className=' message group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '>
+    {/* <div   className=' message group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '> */}
+    <div   className=' message group w-full flex flex-col mr-4 '>
 
 <div className='w-full h-auto flex flex-row justify-center items-center'
 onMouseLeave={() => { 
@@ -199,7 +200,7 @@ onMouseLeave={() => {
      }}
 >
     <input
-    className={`rounded-l-xl hover:-translate-x-1 transition ease-in-out delay-100 duration-800 w-full  min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-gradient-to-r from-cyan-500 via-blue-400 to-purple-500 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
+    className={`rounded-l-xl hover:-translate-x-1 transition ease-in-out delay-100 duration-800 md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] min-h-[30px] max-h-auto p-2 mr-4 flex flex-row text-white items-center bg-gradient-to-r from-cyan-500 via-blue-400 to-purple-500 focus:outline-none ${isEdit?"focus:ring-2 focus:ring-red-500":'outline-none'} `}
     
     value={editedMessages[itr.id] !== undefined ? editedMessages[itr.id] : (itr.message !== undefined ? itr.message : '')}
     onChange={(e) => setEditedMessages({ ...editedMessages, [itr.id]: e.target.value,[itr.time]:true })} 
@@ -219,7 +220,7 @@ onMouseLeave={() => {
 
 <button >
           <Image
-          alt="loading.."
+          alt="loading..."
           width={10}
           height={10}
           src={"/right.svg"}
@@ -230,7 +231,7 @@ onMouseLeave={() => {
 
           <button >
           <Image
-          alt="loading.."
+          alt="loading..."
           width={10}
           height={10}
           onClick={()=>{   setEditedMessages({ ...editedMessages,[itr.id]:itr.message, [itr.time]: false }); setIsEdit(false)}}
@@ -240,7 +241,7 @@ onMouseLeave={() => {
           </button>
           <button >
           <Image
-          alt="loading.."
+          alt="loading..."
           width={10}
           height={10}
           src={"/doc.svg"}
