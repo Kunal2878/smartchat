@@ -44,7 +44,7 @@ function TopBar() {
                 height={20}
                 alt="Picture of the author"
                 onClick={()=> setIsThemeMenu?.(true)}
-                className='size-full'
+                className='size-full rounded-full'
               />
        
           </div>

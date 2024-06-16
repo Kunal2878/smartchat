@@ -6,7 +6,7 @@ import Chat_profiles_mob from '../test_profile_mob/page'
 import { Database,Friend_list , Room_names} from '/types/database.types'
 import { Session,createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-
+import Contents_trend from 'app/content/trend_content/page'
 // import Chat_msg from '/api/socket_client/client'
 import Chat_msg from '../test_client'
 import { Metadata } from 'next'
@@ -34,8 +34,11 @@ async function RoomTemp() {
           <div className="w-full h-full flex md:flex-row flex-col">
             
             <div className="w-1/6 hidden md:block"> <TopBar /></div>
-            <div className="hidden  w-4/6 h-full md:flex md:flex-row">
+            <div className="hidden  w-5/6 h-full md:flex md:flex-row">
           <Chat_msg />
+          </div>
+            <div className="hidden  w-2/6 h-full md:flex md:flex-row">
+          <Contents_trend />
           </div>
             
             <div className='w-full flex flex-col md:flex-row overflow-hidden'>
