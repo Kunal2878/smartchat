@@ -45,7 +45,7 @@ useEffect(() => {
 
 function generateAlphabeticKey() {
 
-    const alphabet = "abc&def@ghi345678jk$lmnop*qrst#uvwxyz1290";
+    const alphabet = "abcdef@ghi345678jk$lmnop*qrst#uvwxyz1290";
     let key = "";
   
     for (let i = 0; i < 6; i++) {
@@ -87,7 +87,8 @@ return key;
       id:generateAlphabeticKey()
     };
     try {
-      const response = await fetch('https://pusher-chat-five.vercel.app/chat', {
+      const response = await fetch('https://pusher-chat-five.vercel.app/chat',  {
+        cache: 'force-cache',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(mesg)

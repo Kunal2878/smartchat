@@ -39,7 +39,7 @@ if(testRoom !==''){
 
 function generateAlphabeticKey() {
 
-  const alphabet = "abc79068&$def@ghi345&678jk7321$lmnop*qrs4357t#uvwxyz1290";
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
   let key = "";
 
   for (let i = 0; i < 6; i++) {
