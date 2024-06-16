@@ -179,9 +179,7 @@ messages.map((itr:any, index) => (
     <div    key={index} className={`${editedMessages[itr.id]==='deleted'?'hidden':''} w-full flex flex-col items-center  mb-12`}>
     <div    className='w-full flex flex-row justify-end items-center'>
 
-    {/* <div   className=' message group md:min-w-[100px] md:max-w-[320px] min-w-[100px] max-w-[300px] flex flex-col mr-4 '> */}
-    {/* <div   className=' message group w-full flex flex-col mr-2 '> */}
-
+  
 <div className=' group w-full h-auto flex flex-row justify-end items-center'
 onMouseLeave={() => { 
 

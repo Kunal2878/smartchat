@@ -27,14 +27,14 @@ async function RoomTemp() {
 
 
   return (
-    <div className=" w-full h-screen  dark:bg-gray-900 dark:text-white bg-gray-white text-gray-900">
+    <div className=" w-screen h-screen  dark:bg-gray-900 dark:text-white bg-gray-white text-gray-900">
     
-        <div className="w-screen h-full flex flex-row ">
+        <div className="w-full h-full flex flex-row ">
 
           <div className="w-full h-full flex md:flex-row flex-col">
             
             <div className="w-1/6 hidden md:block"> <TopBar /></div>
-            <div className="hidden md:flex  w-full h-full">
+            <div className="hidden  w-4/6 h-full md:flex">
           <Chat_msg />
           </div>
             
