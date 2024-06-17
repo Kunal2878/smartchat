@@ -17,6 +17,7 @@
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.39.1",
     "@types/dom-to-image": "^2.6.7",
+    "@types/react-copy-to-clipboard": "^5.0.7",
     "bufferutil": "^4.0.8",
     "copy-image-clipboard": "^2.1.2",
     "cors": "^2.8.5",
