@@ -280,7 +280,7 @@ setIsCopy(false);
             />
             </button>
 
-            <CopyToClipboard text={itr.message} onCopy={() => {editedMessages[itr.id]!== undefined ?editedMessages[itr.id]:itr.message,isCopy}}>
+            <CopyToClipboard text={editedMessages[itr.id]!== undefined ?editedMessages[itr.id]:itr.message} onCopy={() => {editedMessages[itr.id]!== undefined ?editedMessages[itr.id]:itr.message,isCopy}}>
           <button >
           <Image
           alt="loading..."
