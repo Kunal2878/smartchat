@@ -8,6 +8,8 @@ import Image from 'next/image'
 import Theme_menu from '../../chat_room/theme_menu/page'
 import Invite from '../../chat_room/invite/page'
 
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 const Chat_msg = () => {
   let Room_msg=[]
   const [message, setMessage] = useState('');
@@ -21,8 +23,6 @@ const Chat_msg = () => {
   
   const context = UseAppContext();
   const { email,room,rmsg,setRmsg,setRoom,setEmail,isThemeMenu,chatTheme,isInvite,setIsInvite} = context || {};
-  setRoom?.("chat")
-  setEmail?.('kp')
   const sty1="w-[200px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
 
 const supabase = createClientComponentClient<Database>(
