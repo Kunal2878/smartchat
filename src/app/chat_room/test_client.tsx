@@ -160,9 +160,9 @@ isThemeMenu&&(
 
 
 <div className='  w-full mb-20 md:mb-0 pb-26 H-con  flex flex-col'   style={{zIndex:-10}}>
-<div className=" hidden md:flex absolute top-0 mt-2 w-full  flex-row justify-center items-center h-10 p-2 rounded-md text-white text-[10px] "> <span className='w-1/5 bg-purple-600 flex flex-row justify-center items-center'>{testName} Chat id: {testRoom}</span> </div>
+<div className=" hidden md:flex absolute top-0 w-full  flex-row justify-center items-center h-10 p-2 rounded-md text-white text-[10px] "> <div className=' p-2 rounded-md w-1/5 dark:bg-gradient-to-tr dark:from-indigo-900 dark:via-gray-800 dark:to-gray-900 bg-gradient-to-tr from-purple-200 via-purple-100 to-white dark:text-white flex flex-row justify-between items-center'> <span>{testName}</span>  <span> Chat id: {testRoom}</span> </div> </div>
 
-<div className='w-full flex flex-col '>
+<div className='w-full flex flex-col mt-4'>
 
 
 

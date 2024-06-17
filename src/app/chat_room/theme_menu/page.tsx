@@ -51,7 +51,7 @@ function Theme_menu() {
         />
       </span>
       </div>
-    <div className='w-full flex flex-col items-center pt-2 dark:bg-gray-900 bg-white text-gray-900 dark:text-white'>
+    <div className=' cursor-pointer w-full flex flex-col items-center pt-2 dark:bg-gray-900 bg-white text-gray-900 dark:text-white'>
          {
         chat_themes.map((itr,index)=>(
 <div key={index} className='hover:bg-purple-400 w-full h-8 flex flex-row items-center p-2 mb-4'
