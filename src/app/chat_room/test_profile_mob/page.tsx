@@ -17,8 +17,8 @@ function Chat_profile_mob() {
         <div className='w-full h-16 -z-2  flex flex-col dark:bg-gray-900 dark:text-white text-gray-900 bg-white mb-2'>
         
                 <div className='w-full h-full flex flex-row justify-between p-2 mb-2 dark:bg-gradient-to-tr dark:from-indigo-700 dark:via-indigo-800 dark:to-gray-900 bg-gradient-to-tr from-purple-400 via-purple-300 to-gray-400'>
-                    <div className=' text-white w-1/4 ml-1'>Smartchat</div>
-                    <div className=' text-white w-1/4 text-[16px] flex flex-row justify-end '>{testRoom}</div>
+                    <div className=' text-white w-1/5 ml-1'>Smartchat</div>
+                    <div className=' text-white w-1/4 text-[12px] flex flex-row justify-start'>{testName} Chat id:{testRoom}</div>
                     <div className="w-2/4 flex flex-row justify-end mr-2">
                         <div className='size-8 flex justify-start rounded-full dark:bg-dots-dark bg-dots-light mr-2 ' onClick={() => { isThemeMenu ? setIsThemeMenu?.(false) : setIsThemeMenu?.(true) }}></div>
                         <div className=" size-8">

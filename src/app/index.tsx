@@ -21,7 +21,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [isThemeMenu, setIsThemeMenu] = useState<boolean>(false);
   const [isInvite, setIsInvite] = useState<boolean>(false);
   const [chatTheme, setChatTheme] = useState<string>('/chatbg.jpg');
-  const [testAvatar, setTestAvatar] = useState<string>('/chatbg.jpg');
+  const [testAvatar, setTestAvatar] = useState<string>('/solid_user.svg');
   const [testRoom, setTestRoom] = useState<string>('');
   const [testName, setTestName] = useState<string>('');
   // const supaUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
