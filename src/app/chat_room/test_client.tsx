@@ -52,9 +52,7 @@ function generateAlphabeticKey() {
     }
 return key;
   }
-  const onCopy: () => void = () => {
-    setIsCopy(true);
-  }
+  
 
 
 
@@ -243,7 +241,7 @@ className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-m
           />
           </button>
 
-          <CopyToClipboard text={itr.message} onCopy={() => {editedMessages[itr.id]!== undefined ?editedMessages[itr.id]:itr.message,isCopy}}>
+          <CopyToClipboard text={editedMessages[itr.id] !== undefined ?editedMessages[itr.id]:itr.message} onCopy={() => {editedMessages[itr.id] !== undefined ?editedMessages[itr.id]:itr.message,isCopy}}>
           <button >
           <Image
           alt="loading..."

@@ -15,6 +15,7 @@ const Chat_msg = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [isCopy, setIsCopy] = useState<boolean>(false);
   const [editedMessages, setEditedMessages] = useState<any>({});
   // const [isInvite, setIsInvite] = useState<boolean>(false);
 
@@ -234,7 +235,7 @@ rmsg.length>0 &&(
   onMouseLeave={() => { 
 
       editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  setIsEdit(false)
-
+setIsCopy(false);
   
        }}
 >
@@ -278,15 +279,21 @@ rmsg.length>0 &&(
             className={`${isEdit||editedMessages[itr.time]?'block':'hidden'} size-6 mr-2`}
             />
             </button>
-            <button >
-            <Image
-            alt="loading.."
-            width={10}
-            height={10}
-            src={"/doc.svg"}
-            className={`${isEdit||editedMessages[itr.time]?'hidden':'block'} size-6 mr-2`}
-            />
-            </button>
+
+            <CopyToClipboard text={itr.message} onCopy={() => {editedMessages[itr.id]!== undefined ?editedMessages[itr.id]:itr.message,isCopy}}>
+          <button >
+          <Image
+          alt="loading..."
+          width={10}
+          height={10}
+          src={isCopy?'/right.svg':"/doc.svg"}
+          className={`${isEdit||editedMessages[itr.time]?'hidden':'block'} size-6 mr-2`}
+          onClick={()=>setIsCopy(true)}
+          />
+          </button>
+       
+      </CopyToClipboard>
+
             <button onClick={()=>loadMessages()}>
             <Image
             alt="loading.."
