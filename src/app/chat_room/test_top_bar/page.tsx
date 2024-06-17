@@ -10,7 +10,7 @@ function TopBar() {
   return (
     <div className=" static pt-4 text-gray-900  dark:bg-gradient-to-tr dark:from-indigo-900 dark:via-gray-800 dark:to-gray-900 bg-gradient-to-tr from-purple-200 via-purple-100 to-white dark:text-white w-full h-full flex flex-col items-center  ">
 
-        
+           
             <div className="size-10  rounded-full bg-slate-400 mb-6">
               <Image
                 unoptimized={true}
