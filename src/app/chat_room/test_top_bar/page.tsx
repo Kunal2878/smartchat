@@ -33,7 +33,7 @@ function TopBar() {
             </Link>
         
  
-            <div className="size-8  bg-purple-600 cursor-pointer mb-6">
+            <div className="size-8  cursor-pointer mb-6">
            
               <Image
                 unoptimized={true}

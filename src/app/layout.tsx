@@ -5,8 +5,9 @@ import { AppWrapper } from './index'
 const inter = Inter({ subsets: ['latin'] })
 import { PagesProgressBar as ProgressBar } from 'next-nprogress-bar';
 import type { Metadata } from 'next'
+
 export const metadata: Metadata = {
-    title: 'SmartChat-Home',
+    title: 'SmartChat-Home🏡',
 
     description: 'SmartChat',
 
@@ -21,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true} className="dark">
     
-
+    <Head> <link rel="icon" href="/brand_fav.ico" /></Head>
       <body className={inter.className + "w-screen overflow-x-hidden "}>
         <AppWrapper>
         {children}

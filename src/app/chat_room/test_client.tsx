@@ -120,10 +120,10 @@ function loadMessages() {
 
 
 
-async function updateMessage(id:any,time:any) {
+async function updateMessage(id:any,time:any,message:any) {
 
     
-  setEditedMessages({ ...editedMessages, [time]: false })
+  setEditedMessages({ ...editedMessages,[id]:message, [time]: false })
 
 
   setIsEdit(false);
@@ -227,7 +227,7 @@ className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-m
           width={10}
           height={10}
           src={"/right.svg"}
-          onClick={()=>updateMessage(itr.id,itr.time)}
+          onClick={()=>updateMessage(itr.id,itr.time,itr.message)}
           className={`${isEdit || editedMessages[itr.time]?'block':'hidden'} size-6 mr-2`}
           />
           </button>
