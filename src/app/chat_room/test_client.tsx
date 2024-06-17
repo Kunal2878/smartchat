@@ -134,7 +134,7 @@ async function updateMessage(id:any,time:any) {
 
   return (
 
-    <div className='static w-full  md:h-screen h-[80vh] overflow-x-hidden overflow-y-auto pt-4'
+    <div className='static w-full  md:h-screen h-[80vh] overflow-x-hidden overflow-y-auto pt-4 md:aspect-video  bg-cover bg-center'
     
     style={{ backgroundImage: `url(${chatTheme})`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     
@@ -243,7 +243,7 @@ className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-m
           />
           </button>
 
-          <CopyToClipboard text={itr.message} onCopy={() => {itr.message,isCopy}}>
+          <CopyToClipboard text={itr.message} onCopy={() => {editedMessages[itr.id]!==undefined?editedMessages[itr.id]:itr.message,isCopy}}>
           <button >
           <Image
           alt="loading..."
