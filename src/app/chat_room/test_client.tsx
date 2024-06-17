@@ -7,24 +7,24 @@ import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 import Theme_menu from '../chat_room/theme_menu/page'
 import Invite from '/chat_room/invite/page'
-import { unsubscribe } from 'node:diagnostics_channel';
 
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 const Chat_msg =   () => {
 
   const [message, setMessage] = useState('');
   const [messageInput, setMessageInput] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [isCopy, setIsCopy] = useState<boolean>(false);
   const [editedMessages, setEditedMessages] = useState<any>({});
-
   const context = UseAppContext();
   const { isThemeMenu,chatTheme,testRoom,testAvatar,testName} = context || {};
- 
   const sty1="w-[100px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
 
 
 
   // Replace with your Pusher credentials (store securely)
+
   const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY!, {
     cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER!,
   });
@@ -52,7 +52,9 @@ function generateAlphabeticKey() {
     }
 return key;
   }
-
+  const onCopy: () => void = () => {
+    setIsCopy(true);
+  }
 
 
 
@@ -160,7 +162,7 @@ isThemeMenu&&(
 
 
 <div className='  w-full mb-20 md:mb-0 pb-26 H-con  flex flex-col'   style={{zIndex:-10}}>
-<div className=" hidden md:flex absolute top-0 w-full  flex-row justify-center items-center h-10 p-2 rounded-md text-white text-[10px] "> <div className=' p-2 rounded-md w-1/5 bg-gradient-to-tr from-indigo-900 dark:via-gray-800to-gray-900  text-yellow-400 flex flex-row justify-center items-center'> <span className='mr-3'>{testName}</span>  <span> Chat id: {testRoom}</span> </div> </div>
+<div className=" hidden md:flex absolute top-0 w-full  flex-row justify-center items-center h-10 p-2 rounded-md text-white text-[10px] "> <div className=' p-2 rounded-md w-1/5 bg-gradient-to-tr from-indigo-900 dark:via-gray-800 to-gray-900  text-yellow-400 flex flex-row justify-center items-center'> <span className='mr-3'>{testName}</span>  <span> Chat id: {testRoom}</span> </div> </div>
 
 <div className='w-full flex flex-col mt-8'>
 
@@ -240,6 +242,8 @@ className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-m
           className={`${isEdit||editedMessages[itr.time]?'block':'hidden'} size-6 mr-2`}
           />
           </button>
+
+          <CopyToClipboard text={itr.message} onCopy={() => {itr.message,isCopy}}>
           <button >
           <Image
           alt="loading..."
@@ -247,8 +251,11 @@ className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-m
           height={10}
           src={"/doc.svg"}
           className={`${isEdit||editedMessages[itr.time]?'hidden':'block'} size-6 mr-2`}
+          onClick={()=>setIsCopy(true)}
           />
           </button>
+       
+      </CopyToClipboard>
           <button onClick={()=>loadMessages()}>
           <Image
           alt="loading.."

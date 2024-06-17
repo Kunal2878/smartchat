@@ -37,9 +37,7 @@ async function RoomTemp() {
             <div className="hidden  C-con h-full md:flex md:flex-row">
           <Chat_msg />
           </div>
-            <div className="hidden w-[300px] h-full md:flex md:flex-row overflow-y-auto">
-          <Contents_trend />
-          </div>
+        
          
             
             <div className='w-full flex flex-col md:hidden overflow-hidden'>
