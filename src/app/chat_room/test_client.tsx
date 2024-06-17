@@ -120,10 +120,10 @@ function loadMessages() {
 
 
 
-async function updateMessage(id:any,time:any,message:any) {
+async function updateMessage(id:any,time:any) {
 
     
-  setEditedMessages({ ...editedMessages,[id]:message, [time]: false })
+  setEditedMessages({ ...editedMessages, [time]: false })
 
 
   setIsEdit(false);
@@ -212,7 +212,7 @@ className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-m
     onMouseLeave={() => { 
   
     editedMessages[itr.id]===undefined?setEditedMessages({ ...editedMessages, [itr.id]:itr.message }):'';  
-    setIsEdit(false)
+    setIsEdit(false); setIsCopy(false)
    
  
       }}
@@ -227,7 +227,7 @@ className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-m
           width={10}
           height={10}
           src={"/right.svg"}
-          onClick={()=>updateMessage(itr.id,itr.time,itr.message)}
+          onClick={()=>updateMessage(itr.id,itr.time)}
           className={`${isEdit || editedMessages[itr.time]?'block':'hidden'} size-6 mr-2`}
           />
           </button>
@@ -249,7 +249,7 @@ className='rounded-full size-10 border-2 shadow-black dark:shadow-white shadow-m
           alt="loading..."
           width={10}
           height={10}
-          src={"/doc.svg"}
+          src={isCopy?'/right.svg':"/doc.svg"}
           className={`${isEdit||editedMessages[itr.time]?'hidden':'block'} size-6 mr-2`}
           onClick={()=>setIsCopy(true)}
           />

@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true} className="dark">
     
-    <Head> <link rel="icon" href="/brand_fav.ico" /></Head>
+    <Head> <link rel="icon" href="/brand_ico.ico" /></Head>
       <body className={inter.className + "w-screen overflow-x-hidden "}>
         <AppWrapper>
         {children}
