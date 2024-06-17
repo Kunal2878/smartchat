@@ -16,6 +16,8 @@ const Chat_msg = () => {
   const [messages, setMessages] = useState<string[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isCopy, setIsCopy] = useState<boolean>(false);
+  const [isAlert, setIsAlert] = useState<boolean>(false);
+  const [isAlert2, setIsAlert2] = useState<boolean>(true);
   const [editedMessages, setEditedMessages] = useState<any>({});
   // const [isInvite, setIsInvite] = useState<boolean>(false);
 
@@ -78,6 +80,12 @@ joinRoom();
     channel.bind('new-message', (data: any) => {
       console.log(data)
       setMessages(prevMessages => [...prevMessages, data]);
+    });
+    channel.bind('alert', (data: any) => {
+setIsAlert(true)
+setTimeout(()=>{
+  setIsAlert(false)
+},2000)
     });
 
     return () => channel.unsubscribe();
@@ -169,6 +177,27 @@ async function updateMessage(id:any,time:any) {
 
 
   setIsEdit(false);
+ 
+  try {
+    const response = await fetch('https://pusher-chat-five.vercel.app/updates', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({room})
+    });
+if(response.ok){
+setIsAlert2(false)
+}
+    else if (!response.ok) {
+      throw new Error('Failed to send message');
+    }
+
+    const data = await response.json();
+    console.log('Message sent:', data.message);
+    setMessage('');
+  } catch (error) {
+    console.error(error);
+  }
+
 
 
 }
@@ -181,8 +210,13 @@ async function updateMessage(id:any,time:any) {
     style={{ backgroundImage: `url(${chatTheme})`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     
     >
+      {
+      isAlert && isAlert2 && (
+        <div className='absolute top-0 left-1/2 transition-opacity duration-1000 opacity-100  flex flex-row items-center justify-center w-[400px] bg-red-600 text-yellow-400 bg-opacity-50 text-[20px]'   style={{zIndex:1000}}>
+       Messages are updated, refresh to see the updated messages
+      </div>
+      )}
 {
- 
 
 
   // ${isThemeMenu ? 'animate-slide_right_left' : '-translate-x-full'}
@@ -410,15 +444,21 @@ onMouseLeave={() => {
           className={`${isEdit||editedMessages[itr.time]?'block':'hidden'} size-6 mr-2`}
           />
           </button>
+
+          <CopyToClipboard text={editedMessages[itr.id]!== undefined ?editedMessages[itr.id]:itr.message} onCopy={() => {editedMessages[itr.id]!== undefined ?editedMessages[itr.id]:itr.message,isCopy}}>
           <button >
           <Image
-          alt="loading.."
+          alt="loading..."
           width={10}
           height={10}
-          src={"/doc.svg"}
+          src={isCopy?'/right.svg':"/doc.svg"}
           className={`${isEdit||editedMessages[itr.time]?'hidden':'block'} size-6 mr-2`}
+          onClick={()=>setIsCopy(true)}
           />
           </button>
+       
+      </CopyToClipboard>
+
           <button onClick={()=>loadMessages()}>
           <Image
           alt="loading.."
