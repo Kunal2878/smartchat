@@ -134,7 +134,7 @@ async function updateMessage(id:any,time:any) {
 
   return (
 
-    <div className='static w-full  md:h-screen h-[80vh] overflow-y-auto pt-4'
+    <div className='static w-full  md:h-screen h-[80vh] overflow-x-hidden overflow-y-auto pt-4'
     
     style={{ backgroundImage: `url(${chatTheme})`,backgroundPosition:"center", backgroundRepeat:"no-repeat" , backgroundSize:"cover"}}
     

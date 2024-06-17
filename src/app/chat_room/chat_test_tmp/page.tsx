@@ -27,7 +27,7 @@ async function RoomTemp() {
 
 
   return (
-    <div className=" w-screen h-screen  dark:bg-gray-900 dark:text-white bg-gray-white text-gray-900">
+    <div className=" w-screen h-screen  dark:bg-gray-900 dark:text-white bg-gray-white text-gray-900 overflow-x-hidden">
     
         <div className="w-full h-full flex flex-row ">
 
