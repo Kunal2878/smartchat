@@ -39,12 +39,13 @@ function Mob_sidebar({ IsSession }: { IsSession: boolean | undefined }) {
   return (
     <div className="w-full">
       <div className="w-2/5 p-2 absolute right-0 mr-4 flex flex-col items-center dark:bg-gray-900 dark:text-white bg-white text-gray-900 text-sm">
-        {theme3.map((itr) => (
+        {theme3.map((itr,index) => (
           itr.path !== 'notification' ? (
             <Link
+            key={index}
               href={itr.path}
               className="w-full flex flex-row hover:bg-violet-500 p-2"
-              key={itr.icon}
+          
             >
               <Image
                 width={20}
@@ -56,7 +57,11 @@ function Mob_sidebar({ IsSession }: { IsSession: boolean | undefined }) {
               <span>{itr.text}</span>
             </Link>
           ) : (
-            <div onClick={() => handlePath(itr.path)} className="w-full flex flex-row hover:bg-violet-500 p-2 cursor-pointer">
+            <div onClick={() => handlePath(itr.path)} className="w-full flex flex-row hover:bg-violet-500 p-2 cursor-pointer
+          
+            "
+            key={index}>
+              
               <Image
                 width={20}
                 height={20}
