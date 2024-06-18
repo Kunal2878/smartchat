@@ -15,30 +15,24 @@ function Mob_sidebar({ IsSession }: { IsSession: boolean | undefined }) {
   ];
   const handlePath = async (path:string) => {
     if(path==="notifications"){
-setIsNotify?.(true)
+      setIsNotify?.(true);
     }
- 
     else{
-
-      setIsLoading?.(true)
-          try {
-            const response = await fetch(path, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' }, 
-            });
-      
-            if (response.ok) {
-              window.location.href = path;
-              setIsLoading?.(false);
-         
-            } else {
-              console.error("Logout error:", response.statusText);
-              // Handle logout error (optional)
-            }
-          } catch (error) {
-            console.error("Error during logout:", error);
-      
-          } 
+      setIsLoading?.(true);
+      try {
+        const response = await fetch(path, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }, 
+        });
+        if (response.ok) {
+          window.location.href = path;
+          setIsLoading?.(false);
+        } else {
+          console.error("Logout error:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error during logout:", error);
+      } 
     }
   };
 
@@ -46,62 +40,65 @@ setIsNotify?.(true)
     <div className="w-full">
       <div className="w-2/5 p-2 absolute right-0 mr-4 flex flex-col items-center dark:bg-gray-900 dark:text-white bg-white text-gray-900 text-sm">
         {theme3.map((itr) => (
-          <Link href={itr.path}
-          
-            className="w-full flex flex-row hover:bg-violet-500 p-2"
-            key={itr.icon}
-          >
-            <Image
-              width={20}
-              height={20}
-              src={itr.icon}
-              alt="Loading...."
-              className=" mr-2"
-            />
-            <span>{itr.text}</span>
-          </Link>
+          itr.path !== 'notification' ? (
+            <Link
+              href={itr.path}
+              className="w-full flex flex-row hover:bg-violet-500 p-2"
+              key={itr.icon}
+            >
+              <Image
+                width={20}
+                height={20}
+                src={itr.icon}
+                alt="Loading...."
+                className=" mr-2"
+              />
+              <span>{itr.text}</span>
+            </Link>
+          ) : (
+            <div onClick={() => handlePath(itr.path)} className="w-full flex flex-row hover:bg-violet-500 p-2 cursor-pointer">
+              <Image
+                width={20}
+                height={20}
+                src={itr.icon}
+                alt="Loading...."
+                className=" mr-2"
+              />
+              <span>{itr.text}</span>
+            </div>
+          )
         ))}
 
         <div className="w-full flex flex-row justify-center items-center">
           {IsSession ? (
-            //   <Link href="/auth/signout"  >
-            //   <button className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500" >
-            //     Log out
-            //   </button>
-            // </Link>
             <Link href="/auth/signout">
-  <button 
-    type="button" // Remove type="submit"
-    className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
+              <button
+                type="button"
+                className="w-20 h-8 text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
                 onClick={async (e) => {
-                  e.preventDefault(); // Prevent default form submission
+                  e.preventDefault();
 
                   const response = await fetch("/auth/signout", {
                     method: "POST",
                   });
 
                   if (response.ok) {
-                    window.location.href = process.env.NEXT_PUBLIC_URL || "/"; // Redirect to home or fallback to '/'
+                    window.location.href = process.env.NEXT_PUBLIC_URL || "/";
                   } else {
                     // Handle any errors from the signout request
                   }
                 }}
-  >
-    Log out
-  </button>
-</Link>
-           
-          ) : (
-          
-              <Link
-                className="w-20 h-8 flex flex-row justify-center items-center text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
-         
-                href="/middleware"
               >
-                Login/Signup
-              </Link>
-     
-           
+                Log out
+              </button>
+            </Link>
+          ) : (
+            <Link
+              className="w-20 h-8 flex flex-row justify-center items-center text-white rounded-lg bg-violet-800 text-[10px] hover:bg-violet-500"
+              href="/middleware"
+            >
+              Login/Signup
+            </Link>
           )}
         </div>
       </div>
