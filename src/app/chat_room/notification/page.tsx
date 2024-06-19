@@ -1,6 +1,7 @@
 "use client"
 import Image from 'next/image'
 import * as React from 'react'
+import Link from 'next/link'
 import  {UseAppContext}  from '../../index'
 import { Database,Friend_list } from '../../types/database.types'
 import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
@@ -45,10 +46,12 @@ export default function Notification()
         .order("created_at", { ascending: false });
 
       if (!error) {
+        console.log(data)
         setInvites(data as Invite[]);
       } 
       if(Data)
       {
+console.log("data is here from notification",Data)
 setFlist(Data);
       }
       else {
@@ -61,11 +64,11 @@ setFlist(Data);
     } finally {
       // setIsLoading(false);
     }
-    console.log(invites);
+
   };
-    fetchInvites();
   React.useEffect(() => {
-    setInvites(invites);
+    fetchInvites();
+ 
   }, [invites]);
 
   const ConfirmInvite = async (sender_email: string, receiver_email: string) => {
@@ -101,14 +104,14 @@ setFlist(Data);
       <div className="dark:bg-gray-900 dark:text-white text-gray-900 bg-white  w-full h-[80vh] md:w-2/5 flex flex-col   rounded-md border-2 border-cyan-600 p-2 overflow-y-auto">
 
         <div className="w-full flex flex-row justify-center items-center p-2">
-        <div className= ' w-16 rounded-lg bg-gradient-to-r from-black to-red-500 cursor-pointer flex flex-row justify-center items-center' onClick={()=>{setIsNotify?.(false)}} >
+        <Link href='/' className= ' w-16 rounded-lg bg-gradient-to-r from-black to-red-500 cursor-pointer flex flex-row justify-center items-center' onClick={()=>{setIsNotify?.(false)}} >
           <Image
           src={"/cross.png"}
           width={20}
           height={20}
           alt="loading..."
  />
-        </div>
+        </Link>
         </div>
 {!isSession&&(
   <div className='w-full h-full flex flex-row justify-center items-center'>
@@ -118,7 +121,9 @@ setFlist(Data);
 
 
 
-        {(invites?.length >= 0 || f_list?.length >= 0) ? (
+        {
+        
+        isSession && (invites?.length >= 0 || f_list?.length >= 0) ? (
           <>
             {invites.map((itr:any) => (
               <div
@@ -147,10 +152,10 @@ setFlist(Data);
                 </div>
               </div>
             ))}
-            {f_list.map((itr:any) => (
+            {f_list.map((itr:any,index:any) => (
                <div
                className="w-full flex flex-row  rounded-sm justify-start dark:bg-indigo-900 bg-indigo-200 backdrop-blur-sm p-3 mb-3"
-               key={itr.f_name}
+               key={index}
              >
                <div className="w-1/5">
                  <Image

@@ -235,7 +235,7 @@ isThemeMenu&&(
 
 {
 isInvite&&(
-  <div className='absolute top-1/2 left-1/2 transition-opacity duration-1000 opacity-100  flex flex-col items-center justify-center w-[400px] bg-black bg-opacity-50'   style={{zIndex:1000}}>
+  <div className='absolute top-1/2  transition-opacity duration-1000 opacity-100  flex flex-col items-center justify-center w-[400px] bg-black bg-opacity-50'   style={{zIndex:1000}}>
     <Invite/>
   </div>
 )
