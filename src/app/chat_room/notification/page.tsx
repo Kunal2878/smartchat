@@ -15,6 +15,8 @@ export default function Notification()
   const [invites, setInvites] = React.useState<Invite[]>([]);
   const [f_list, setFlist] = React.useState<any>([]);
   const [accept, setAccept] = React.useState<string>("Add friend");
+  const [toast, setToast] = React.useState<string>("processing");
+  const [toastbol, setToastbol] = React.useState<boolean>(true);
   const context = UseAppContext();
   const { setIsNotify, isSession,setIsLogin,email } = context || {};
 
@@ -47,12 +49,17 @@ export default function Notification()
 
       if (!error) {
         console.log(data)
+        setToastbol(false);
         setInvites(data as Invite[]);
       } 
       if(Data)
       {
+    setToastbol(false);
 console.log("data is here from notification",Data)
 setFlist(Data);
+      }
+      if(!data && !Data){
+        setToast("You don't have any pending invites and you have not sent any invites yet");
       }
       else {
         console.error("Error fetching invites:", error);
@@ -119,7 +126,14 @@ setFlist(Data);
   </div>
 )}
 
+{isSession&& toastbol &&(
+  <div className='w-full h-full flex flex-row justify-center items-center'>
+  <div className=' flex flex-row justify-center items-center text-[18px] text-gray-600  font-800'>{toast}</div>
+</div>
+)
 
+
+}
 
         {
         
@@ -173,10 +187,10 @@ setFlist(Data);
              </div>
             ))}
           </>
-        ) : (
-          <div className="w-full h-full flex flex-row justify-center items-center dark:text-gray-400 text-base md:text-lg">
-            You have no notifications
-          </div>
+        ) : (<span></span>
+          // <div className="w-full h-full flex flex-row justify-center items-center dark:text-gray-400 text-base md:text-lg">
+          //   You have no notifications
+          // </div>
         )}
       </div>
     </div>
