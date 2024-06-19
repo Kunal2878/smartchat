@@ -196,6 +196,8 @@ const fetchRecConfirmInvites = async () => {
         }));
       
         setFrlist([...flist])
+
+
         const { } = await supabase
         .from("Friends")
         .insert(flist.map(item => ({
@@ -205,12 +207,17 @@ const fetchRecConfirmInvites = async () => {
             user:Email // Assuming f_mail maps to column2
             // ... other columns and their corresponding values
           })))
-        const { } = await supabase
-      .from("Invite")
-      .update({isnew:false})
-      .eq("receiver", email)
+      //   const { } = await supabase
+      // .from("Invite")
+      // .update({isnew:false})
+      // .eq("receiver", email)
     
-      
+      for (const email of flist) {
+        await supabase
+          .from("Invite")
+          .update({ isnew: false })
+          .eq("receiver", email.f_mail); // Use f_mail for receiver comparison
+      }
 
       } else {
         console.error("Error fetching invites:", error);
