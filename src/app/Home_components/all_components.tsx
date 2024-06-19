@@ -12,7 +12,7 @@ import  {UseAppContext}  from '../index'
 import { cookies } from 'next/headers'
 import { Database,Friend_list } from '../types/database.types'
 
-import { Session, createClientComponentClient,createServerComponentClient} from '@supabase/auth-helpers-nextjs'
+import { Session,  createClientComponentClient,createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 type Invite = Database['public']['Tables']['Invite']['Row']
 type F_type=Friend_list['frnd']
 export default   function All_components({ Email,pic,username,sessionCheck,Id,session } : { Email: string|undefined,pic:string|undefined,username:string|undefined,sessionCheck:boolean ,Id:any|undefined,session:Session| null}) 
@@ -31,7 +31,7 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
     }
   )
   const context = UseAppContext();
-  const { isLogin,setIsNotify, isLoading, setIsLoading, email, setEmail,avatar,setAvatar,isSession, setIsSession,setId,userName,setUserName,isNotify } = context || {};
+  const { chatTheme, setChatTheme,isLogin,setIsNotify, isLoading, setIsLoading, email, setEmail,avatar,setAvatar,isSession, setIsSession,setId,userName,setUserName,isNotify } = context || {};
 
 
 
@@ -44,6 +44,7 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
       setIsLoading?.(false);
       setId?.(Id);
       setUserName?.(username)
+      setChatTheme?.('/Design.png');
     
       if(pic===undefined)
       {
