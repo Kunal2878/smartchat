@@ -5,10 +5,11 @@ import { Database,Friend_list , Room_names} from '../../types/database.types'
 import  {UseAppContext}  from '../../index'
 function Chat_profiles({ profiles, roomNames }: any) {  
 const context = UseAppContext();
-const { email,room,setRoom,setIsThemeMenu,isThemeMenu } = context || {};
+const { email,room,setRoom,setIsThemeMenu,isThemeMenu,userName } = context || {};
 const findRoom = (f_mail:string) => {
+  const mail= f_mail.split('@')[0]
   roomNames.map((itr:any) => {
-    if(itr.room_name===`${email}${f_mail}`||itr.room_name===`${f_mail}${email}`){
+    if(itr.room_name===`${userName}${mail}`||itr.room_name===`${mail}${userName}`){
       setRoom?.(itr.room_name)
     }
   })

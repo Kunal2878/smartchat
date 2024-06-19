@@ -31,7 +31,7 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
     }
   )
   const context = UseAppContext();
-  const { chatTheme, setChatTheme,isLogin,setIsNotify, isLoading, setIsLoading, email, setEmail,avatar,setAvatar,isSession, setIsSession,setId,userName,setUserName,isNotify } = context || {};
+  const { chatTheme,  setChatTheme,isLogin,setIsNotify, isLoading, setIsLoading, email, setEmail,avatar,setAvatar,isSession, setIsSession,setId,userName,setUserName,isNotify } = context || {};
 
 
 
@@ -135,7 +135,8 @@ const fetchSendConfirmInvites = async () => {
       .select(" receiver, rec_avatar,rec_username")
       .eq("sender", email)
       .eq("isDone",true)
-      .eq("isnew",true) 
+      .eq("isSender",false)
+      // .eq("isnew",true) 
       .order("created_at", { ascending: false });
       if (data) {
      
@@ -150,7 +151,7 @@ const fetchSendConfirmInvites = async () => {
       for (const mail of flist) {
         await supabase
           .from("Invite")
-          .update({ isnew: false })
+          .update({ isSender: true })
           .eq("sender",email) 
           .eq("receiver", mail.f_mail);
       }
@@ -163,11 +164,7 @@ const fetchSendConfirmInvites = async () => {
           user:Email // Assuming f_mail maps to column2
           // ... other columns and their corresponding values
         })))
-      // const { } = await supabase
-      // .from("Invite")
-      // .update({isnew:false})
-      // .eq("sender", email)
-      
+ 
     } else {
       console.error("Error fetching invites:", error);
 
@@ -191,7 +188,7 @@ const fetchRecConfirmInvites = async () => {
       .select("sender, sender_name, avatar_url")
       .eq("receiver", email)
       .eq("isDone",true)
-      .eq("isnew",true) 
+      .eq("isReceiver",false) 
       .order("created_at", { ascending: false });
       
       if (!error) {
@@ -208,7 +205,7 @@ console.log("flist from confirm invites",flist)
 for (const mail of flist) {
   await supabase
     .from("Invite")
-    .update({ isnew: false })
+    .update({ "isReceiver": true })
     .eq("receiver", email)
     .eq("sender",mail.f_mail); // Use f_mail for receiver comparison
 }
@@ -221,10 +218,6 @@ for (const mail of flist) {
             user:Email // Assuming f_mail maps to column2
             // ... other columns and their corresponding values
           })))
-      //   const { } = await supabase
-      // .from("Invite")
-      // .update({isnew:false})
-      // .eq("receiver", email)
     
 
       } else {
@@ -240,36 +233,6 @@ for (const mail of flist) {
   };
   
 
-
-
-
-
-  
-  // const uniqueFlist = React.useMemo(() => {
-//   const seen = new Set();
-  
-//   const uniqueArrays = f_list.filter((arr) => {
-//     const allUnique = !seen.has(arr);
-//     seen.add(arr);
-//     return allUnique;
-//   });
-  
-//   return uniqueArrays;
-// }, [f_list]);
-
-// React.useEffect(()=>{
-  // setFlist(uniqueFlist)
-// },[f_list])
-
-
-
-
-
-// React.useEffect(() => {
-//   fetchSendConfirmInvites();
-//   fetchRecConfirmInvites();
-//   makeChatRoom();
-// },[email])
   React.useEffect(() => {
     const runFunctionsSequentially = async () => {
       try {
@@ -297,13 +260,14 @@ for (const mail of flist) {
         .eq("user", email || "")
         .eq("isChat",false)
 
+       
+
       if (!error) {
         const { data: roomData, error: roomError } = await supabase
           .from("Chat_room")
           .insert(
             data.map((item) => ({
-              room_name: `${email || ""}${item.f_mail}`,
-  
+              room_name: `${username || ""}${item.f_mail.slice('@')[0]}`,
             }))
           )
           
@@ -312,6 +276,12 @@ for (const mail of flist) {
         } else {
           console.error("Error inserting chat rooms:", roomError);
         }
+
+        const { } = await supabase
+        .from("Friends")
+        .update({isChat:true})
+        .eq("user", email || "")
+        
       } else {
         console.error("Error fetching invites:", error);
       }

@@ -8,13 +8,14 @@ function Chat_profile_mob({profiles,roomNames}:any)
 { 
 
     const context = UseAppContext();
-    const { email,room,setRoom,avatar,isThemeMenu,setIsThemeMenu,isInvite,setIsInvite } = context || {};
+    const { email,room,setRoom,avatar,isThemeMenu,setIsThemeMenu,isInvite,setIsInvite,userName } = context || {};
     
     const findRoom = (f_mail:string) => {
-      roomNames.map((itr:any) => {
-        if(itr.room_name===`${email}${f_mail}`||itr.room_name===`${f_mail}${email}`){
-          setRoom?.(itr.room_name)
-        }
+      const mail= f_mail.split('@')[0]
+  roomNames.map((itr:any) => {
+    if(itr.room_name===`${userName}${mail}`||itr.room_name===`${mail}${userName}`){
+      setRoom?.(itr.room_name)
+    }
       })
     
     }

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import  {UseAppContext}  from '../index'
 function TopBar() {
   const context = UseAppContext();
-  const { setIsThemeMenu} = context || {};
+  const { setIsThemeMenu,room, isThemeMenu} = context || {};
   return (
     <div className="w-full  flex justify-between dark:bg-gray-900 dark:text-white text-gray-900 bg-white ">
       <div className="w-full flex flex-col">
@@ -21,17 +21,8 @@ function TopBar() {
               />
             </div>
           </div>
-          <div className="w-1/2 mr-0 flex flex-row justify-end">
-            <div className="pl-2 w-1/2 flex justify-end pr-4 cursor-pointer">
-           
-              <Image
-                src="/star.svg"
-                width={20}
-                height={20}
-                alt="Picture of the author"
-                onClick={()=> setIsThemeMenu?.(true)}
-              />
-            </div>
+          <div className={`${room===''?'hidden':''} w-1/2 mr-0 flex flex-row justify-end`}>
+          <div className='size-8 flex justify-start rounded-full dark:bg-dots-dark bg-dots-light mr-2 ' onClick={()=>{isThemeMenu ? setIsThemeMenu?.(false):setIsThemeMenu?.(true)}}></div>
           </div>
         </div>
       
