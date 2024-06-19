@@ -7,10 +7,15 @@ import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 type Invite = Database['public']['Tables']['Invite']['Row']
 type F_type=Friend_list['frnd']
 
-export default function Notification({ invites,f_list }: any) {
+// export default function Notification({ invites,f_list }: any) 
+export default function Notification() 
+
+{
+  const [invites, setInvites] = React.useState<Invite[]>([]);
+  const [f_list, setFlist] = React.useState<any>([]);
   const [accept, setAccept] = React.useState<string>("Add friend");
   const context = UseAppContext();
-  const { setIsNotify, isSession,setIsLogin } = context || {};
+  const { setIsNotify, isSession,setIsLogin,email } = context || {};
 
   const supabase = createClientComponentClient<Database>({
 
@@ -19,35 +24,49 @@ export default function Notification({ invites,f_list }: any) {
 
   });
 
-  // const fetchInvites = async () => {
-  //   // Function to fetch invites
 
-  //   try {
-  //     const { data, error } = await supabase
-  //       .from("Invite")
-  //       .select("sender, receiver, sender_name, isDone, created_at, avatar_url")
-  //       .eq("receiver", email)
-  //       .order("created_at", { ascending: false });
 
-  //     console.log(data);
-  //     if (!error) {
-  //       setInvites(data as Invite[]);
-  //     } else {
-  //       console.error("Error fetching invites:", error);
-  //       // Handle error gracefully (e.g., display an error message)
-  //     }
-  //   } catch (error) {
-  //     console.error("Unexpected error:", error);
 
-  //   } finally {
-  //     // setIsLoading(false);
-  //   }
-  //   console.log(invites);
-  // };
-  //   fetchInvites();
-  // React.useEffect(() => {
-  //   setInvites(invites);
-  // }, [invites]);
+  const fetchInvites = async () => {
+    // Function to fetch invites
+
+    try {
+      const { data, error } = await supabase
+        .from("Invite")
+        .select("sender, receiver, sender_name, isDone, created_at, avatar_url")
+        .eq("receiver", email)
+        .eq("isDone", false)
+        .order("created_at", { ascending: false });
+      const { data:Data, error:Error } = await supabase
+        .from("Invite")
+        .select("rec_avatar, rec_username")
+        .eq("sender", email)
+        .eq("isDone", true)
+        .order("created_at", { ascending: false });
+
+      if (!error) {
+        setInvites(data as Invite[]);
+      } 
+      if(Data)
+      {
+setFlist(Data);
+      }
+      else {
+        console.error("Error fetching invites:", error);
+        // Handle error gracefully (e.g., display an error message)
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+
+    } finally {
+      // setIsLoading(false);
+    }
+    console.log(invites);
+  };
+    fetchInvites();
+  React.useEffect(() => {
+    setInvites(invites);
+  }, [invites]);
 
   const ConfirmInvite = async (sender_email: string, receiver_email: string) => {
     setAccept("Accepting...");
@@ -137,13 +156,13 @@ export default function Notification({ invites,f_list }: any) {
                  <Image
                    width={40}
                    height={40}
-                   src={itr.f_avatar || ""}
+                   src={itr.rec_avatar || ""}
                    alt={itr.f_avatar || ""}
                    className="rounded-full"
                  />
                </div>
                <div className="w-2/5 flex flex-row items-center text-[12px]">
-                 {itr.f_name} has accepted your request
+                 {itr.rec_username} has accepted your request
                </div>
             
              </div>

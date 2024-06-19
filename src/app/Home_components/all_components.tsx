@@ -3,11 +3,11 @@ import Loader from '../loader'
 import Home_beg from './home_beg'
 import Home_rest_com from './home_rest_com'
 import Navbar from '../navbar'
-import Notification from '../Chat_room_components/notification/page'
+import Notification from '../chat_room/notification/page'
 import Invite from '../Chat_room_components/invite/page'
-import Chat_profiles from '../Chat_room_components/chat_profile/page'
+
 import * as React from "react";
-import RoomTmp from '../Chat_room_components/chat_tmp/page'
+
 import  {UseAppContext}  from '../index'
 import { cookies } from 'next/headers'
 import { Database,Friend_list } from '../types/database.types'
@@ -19,7 +19,6 @@ export default   function All_components({ Email,pic,username,sessionCheck,Id,se
 
 {
   const [invites, setInvites] = React.useState<Invite[]>([]);
-  const [coinvites, setCoInvites] = React.useState<Invite[]>([]);
   const [f_list, setFlist] = React.useState<F_type[]>([]);
   const [fr_list, setFrlist] = React.useState<F_type[]>([]);
   const [chat_f, setChat_f] = React.useState<F_type[]>([]);

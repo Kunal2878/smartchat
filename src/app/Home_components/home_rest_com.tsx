@@ -31,7 +31,7 @@ const theme2=[
   { icon: 'smile.svg', text:"Jokes",path:"/content/joke_content" },
   { icon: 'trend.svg',text:"Trending",path:"/content/trend_content"},
   { icon: 'art.svg',text:"Stickers",path:"/content/meme_content" },
-  { icon: 'bell.svg',text:"Notifications",path:"notifications" }
+  { icon: 'bell.svg',text:"Notifications",path:"/chat_room/notification" },
 ]
 
 
@@ -148,13 +148,13 @@ return (
 
 <div className="w-2/3 flex flex-row justify-end items-center text-sm">
 <div className='hidden  md:w-4/5 md:flex flex-row justify-end items-center text-sm '>
-  {theme2.map((itr) => (  
-<div key={itr.icon} className='w-1/4 flex flex-row justify-end items-center mr-4'>
+  {theme2.map((itr,index) => (  
+<div key={index} className='w-1/4 flex flex-row justify-end items-center mr-4'>
 
 {
-itr.path!=='notifications'?(
+(
 <Link href={itr.path}
-// onClick={()=>handleLogout(itr.path)} 
+
 
 className=" group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
 
@@ -169,28 +169,28 @@ className=" group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
   >{itr.text}</span>
 
 </Link>
-):
-
-(
-<div 
-onClick={()=>handleLogout(itr.path)} 
-
-className=" cursor-pointer group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
-
-<Image
-              width={20}
-              height={20}
-              src={itr.icon}
-              alt='Loading....'
-              className=''
-              />
-<span className=" text-xs  text-white dark:text-gray-900 dark:group-hover:text-white group-hover:text-slate-900 "
-  >{itr.text}</span>
-
-</div>
-
-
 )
+
+// :(
+// <div 
+// onClick={()=>handleLogout(itr.path)} 
+
+// className=" cursor-pointer group w-1/4 flex flex-row  md:mr-3  active:border-b-purple-900" >
+
+// <Image
+//               width={20}
+//               height={20}
+//               src={itr.icon}
+//               alt='Loading....'
+//               className=''
+//               />
+// <span className=" text-xs  text-white dark:text-gray-900 dark:group-hover:text-white group-hover:text-slate-900 "
+//   >{itr.text}</span>
+
+// </div>
+
+
+// )
 
 }
 

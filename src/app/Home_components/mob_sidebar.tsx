@@ -11,7 +11,7 @@ function Mob_sidebar({ IsSession }: { IsSession: boolean | undefined }) {
     { icon: 'smile.svg', text:"Jokes",path:"/content/joke_content" },
     { icon: 'trend.svg',text:"Trending",path:"/content/trend_content"},
     { icon: 'art.svg',text:"Stickers",path:"/content/meme_content" },
-    { icon: 'bell.svg',text:"Notifications",path:"notifications" }
+    { icon: 'bell.svg',text:"Notifications",path:"/chat_room/notifications" }
   ];
   const handlePath = async (path:string) => {
     if(path==="notifications"){
@@ -40,7 +40,10 @@ function Mob_sidebar({ IsSession }: { IsSession: boolean | undefined }) {
     <div className="w-full">
       <div className="w-2/5 p-2 absolute right-0 mr-4 flex flex-col items-center dark:bg-gray-900 dark:text-white bg-white text-gray-900 text-sm">
         {theme3.map((itr,index) => (
-          itr.path !== 'notification' ? (
+          
+          // itr.path !== 'notification' ? 
+          
+          (
             <Link
             key={index}
               href={itr.path}
@@ -56,22 +59,24 @@ function Mob_sidebar({ IsSession }: { IsSession: boolean | undefined }) {
               />
               <span>{itr.text}</span>
             </Link>
-          ) : (
-            <div onClick={() => handlePath(itr.path)} className="w-full flex flex-row hover:bg-violet-500 p-2 cursor-pointer
+          ) 
           
-            "
-            key={index}>
+          // : (
+          //   <div onClick={() => handlePath(itr.path)} className="w-full flex flex-row hover:bg-violet-500 p-2 cursor-pointer
+          
+          //   "
+          //   key={index}>
               
-              <Image
-                width={20}
-                height={20}
-                src={itr.icon}
-                alt="Loading...."
-                className=" mr-2"
-              />
-              <span>{itr.text}</span>
-            </div>
-          )
+          //     <Image
+          //       width={20}
+          //       height={20}
+          //       src={itr.icon}
+          //       alt="Loading...."
+          //       className=" mr-2"
+          //     />
+          //     <span>{itr.text}</span>
+          //   </div>
+          // )
         ))}
 
         <div className="w-full flex flex-row justify-center items-center">
