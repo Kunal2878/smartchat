@@ -27,7 +27,7 @@ export async function POST(req: NextRequest, res: NextResponse<ResponseData>) {
         service: "gmail", 
         auth: {
           user: "royr81860@gmail.com",
-          pass: "nfeplqsyhpgjwggo",  
+          pass: "vtcf fpcx vfid tjxf",  
         },
       });
       // const generateRandomCode = () => {
