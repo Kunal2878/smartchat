@@ -351,7 +351,7 @@ fetchFriends();
         <Home_beg />
         <Navbar />
         {/* <Invite/> */}
-       {isNotify && (
+       {/* {isNotify && (
 
        (invites.length>=0 ||f_list.length>=0) &&(
 
@@ -360,7 +360,7 @@ fetchFriends();
          
          </div>
        )
-       )}
+       )} */}
 
 
 
