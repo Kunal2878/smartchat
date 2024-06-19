@@ -46,14 +46,20 @@ var recUsername:string=''
         .eq("sender", email) // Check for sender email
         .eq("receiver", recEmail) // Or check for receiver email
         .single();
+      const { data:Data, error:Error } = await supabase
+        .from("Invite")
+        .select("id")
+        .eq("sender", recEmail) // Check for sender email
+        .eq("receiver", email) // Or check for receiver email
+        .single();
       console.log("data =  ", data);
-      if (data) {
+      if (data || Data) {
         console.log("Invite has already sent", data);
         setToastIcon("warning.svg");
         setToastMes("Invitaion has already sent");
       }
-      if (error) {
-        console.log("error occoured");
+      if (error && Error) {
+
    
         isSend = true;
       }
@@ -111,10 +117,9 @@ var recUsername:string=''
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            to: 'kunalpaul673@gmail.com',
-            sender: userName,
-            subject: "Invite to join SmartChat",
-            info: "Hello,\n ${} Log in to the Smartchat app Join me in my chat room!",
+            to: recEmail,
+            sender: userName||email,
+
           }),
         });
         const data = await response.json();

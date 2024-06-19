@@ -1,7 +1,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import { send } from 'process';
+
 type ResponseData = {
   message: string,
 status:number
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest, res: NextResponse<ResponseData>) {
         return res.json(); 
       }
 
-      const { to, sender ,subject, info} = body;
+      const { to, sender} = body;
 
 
       const transporter = nodemailer.createTransport({
@@ -30,22 +30,12 @@ export async function POST(req: NextRequest, res: NextResponse<ResponseData>) {
           pass: "vtcf fpcx vfid tjxf",  
         },
       });
-      // const generateRandomCode = () => {
-      //   let code = '';
-        
-      //   for (let i = 0; i < 6; i++) {
-      //     code += Math.floor(Math.random() * 10);
-      //   }
-      
-      //   return code;
-      // }
-      
-      // const randomCode = generateRandomCode();
+
 
       const send_mail=await transporter.sendMail({
         from: "Smart Chat Team",
         to: to,
-        subject: "Invitaion for joining in smart chat room",
+        subject: "Invitaion for joining in SmartChat",
 
       html: `
       <html>
@@ -60,11 +50,11 @@ export async function POST(req: NextRequest, res: NextResponse<ResponseData>) {
     </p>
 
     <p style="color: cyan; display:flex; justify-content:center; align-items:center; font-size: 0.7rem; font-weight: 600; padding: 1rem;">
-      Please click below to join and enter the code 
+      Please click below to join the SmartChat
       </p>
 
       <p style="width:100%; display:flex; justify-content:center; align-items:center;"> 
-      <a href="http://localhost:3000/" 
+      <a href="https://smartchat-one.vercel.app/auth/signup" 
       style=" padding-left:0.6rem; display:flex; justify-content:center; align-items:center; text-decoration: none; color: white; font-size: 1rem; font-weight: 600; width:70px; height:40px; border-radius: 10px;background-color: orange;">
       Join  
     </a>

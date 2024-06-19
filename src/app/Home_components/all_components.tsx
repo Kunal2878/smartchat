@@ -147,6 +147,13 @@ const fetchSendConfirmInvites = async () => {
       }));
    
       setFlist([...flist])
+      for (const mail of flist) {
+        await supabase
+          .from("Invite")
+          .update({ isnew: false })
+          .eq("sender",email) 
+          .eq("receiver", mail.f_mail);
+      }
       const { } = await supabase
       .from("Friends")
       .insert(flist.map(item => ({
@@ -156,10 +163,10 @@ const fetchSendConfirmInvites = async () => {
           user:Email // Assuming f_mail maps to column2
           // ... other columns and their corresponding values
         })))
-      const { } = await supabase
-      .from("Invite")
-      .update({isnew:false})
-      .eq("sender", email)
+      // const { } = await supabase
+      // .from("Invite")
+      // .update({isnew:false})
+      // .eq("sender", email)
       
     } else {
       console.error("Error fetching invites:", error);
@@ -196,8 +203,15 @@ const fetchRecConfirmInvites = async () => {
         }));
       
         setFrlist([...flist])
+console.log("flist from confirm invites",flist)
 
-
+for (const mail of flist) {
+  await supabase
+    .from("Invite")
+    .update({ isnew: false })
+    .eq("receiver", email)
+    .eq("sender",mail.f_mail); // Use f_mail for receiver comparison
+}
         const { } = await supabase
         .from("Friends")
         .insert(flist.map(item => ({
@@ -212,12 +226,6 @@ const fetchRecConfirmInvites = async () => {
       // .update({isnew:false})
       // .eq("receiver", email)
     
-      for (const email of flist) {
-        await supabase
-          .from("Invite")
-          .update({ isnew: false })
-          .eq("receiver", email.f_mail); // Use f_mail for receiver comparison
-      }
 
       } else {
         console.error("Error fetching invites:", error);
