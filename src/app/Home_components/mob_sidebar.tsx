@@ -11,7 +11,7 @@ function Mob_sidebar({ IsSession }: { IsSession: boolean | undefined }) {
     { icon: 'smile.svg', text:"Jokes",path:"/content/joke_content" },
     { icon: 'trend.svg',text:"Trending",path:"/content/trend_content"},
     { icon: 'art.svg',text:"Stickers",path:"/content/meme_content" },
-    { icon: 'bell.svg',text:"Notifications",path:"/chat_room/notifications" }
+    { icon: 'bell.svg',text:"Notifications",path:"/chat_room/notification" }
   ];
   const handlePath = async (path:string) => {
     if(path==="notifications"){
