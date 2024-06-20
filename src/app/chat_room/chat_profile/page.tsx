@@ -9,7 +9,7 @@ const { email,room,setRoom,setIsThemeMenu,isThemeMenu,userName } = context || {}
 const findRoom = (f_mail:string) => {
   const mail= f_mail.split('@')[0]
   roomNames.map((itr:any) => {
-    if(itr.room_name===`${userName}${mail}`||itr.room_name===`${mail}${userName}`){
+    if(itr.room_name===`${email?.split("@")[0]}${mail}`||itr.room_name===`${mail}${email?.split("@")[0]}`){
       setRoom?.(itr.room_name)
     }
   })

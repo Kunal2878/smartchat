@@ -260,14 +260,14 @@ for (const mail of flist) {
         .eq("user", email)
         .eq("ischat",false)
 
-       console.log("data from friends", Data)
+
 
       if (Data) {
         const { data: roomData, error: roomError } = await supabase
           .from("Chat_room")
           .insert(
             Data.map((item) => ({
-              room_name: `${item.f_name || ""}
+              room_name: `${email?.split('@')[0]}${item.f_mail.split("@")[0]}
              
               `,
             }))
@@ -279,7 +279,7 @@ for (const mail of flist) {
             
           }
         if (!roomError) {
-          window.alert(roomError)
+ 
           console.log("data from room", roomData)
           setChat_f(Data);
         } else {

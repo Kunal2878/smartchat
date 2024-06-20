@@ -51,11 +51,11 @@ if(session)
     const { data:r_data, error:r_err } = await supabase
     .from('Chat_room')
     .select('room_name')
-    .ilike("room_name", `%${email}%`)
+    .ilike("room_name", `%${email?.split("@")[0]}%`)
 
   if (r_data) {
     roomNames = r_data;
-
+console.log(r_data)
   }
   
   if(r_err){
@@ -66,12 +66,10 @@ if(session)
     try {
       const { data, error } = await supabase
         .from("Friends")
-        .select("*")
+        .select("f_name, f_avatar, f_mail")
         .eq("user", email)
         .eq("ischat",false)
-if(error){
-  console.log("error tmp", error)
-}
+
        
 
       if (!error) {
@@ -79,7 +77,7 @@ if(error){
           .from("Chat_room")
           .insert(
             data.map((item) => ({
-              room_name: `${email?.split('@')[0] || ""}${item.f_mail.split('@')[0]}`,
+              room_name: `${email?.split('@')[0]}${item.f_mail.split('@')[0]}`,
             }))
           )
           
@@ -92,7 +90,7 @@ if(error){
         const { } = await supabase
         .from("Friends")
         .update({ischat:true})
-        .eq("user", email || "")
+        .eq("user", email)
         
       } else {
         console.error("Error fetching invites:", error);
