@@ -61,6 +61,49 @@ if(session)
   if(r_err){
 // window.alert("Error in fetching chat")
   }
+
+  const fetchFriends = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("Friends")
+        .select("f_name, f_avatar, f_mail")
+        .eq("user", email || "")
+        .eq("isChat",false)
+
+       
+
+      if (!error) {
+        const { data: roomData, error: roomError } = await supabase
+          .from("Chat_room")
+          .insert(
+            data.map((item) => ({
+              room_name: `${email?.split('@')[0] || ""}${item.f_mail.split('@')[0]}`,
+            }))
+          )
+          
+        if (!roomError) {
+        
+        } else {
+          console.error("Error inserting chat rooms:", roomError);
+        }
+
+        const { } = await supabase
+        .from("Friends")
+        .update({isChat:true})
+        .eq("user", email || "")
+        
+      } else {
+        console.error("Error fetching invites:", error);
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+    } finally {
+      // setIsLoading(false);
+    }
+  };
+
+  fetchFriends();
+
   
   }
 
