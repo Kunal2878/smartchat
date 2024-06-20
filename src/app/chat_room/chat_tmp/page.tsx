@@ -66,10 +66,12 @@ if(session)
     try {
       const { data, error } = await supabase
         .from("Friends")
-        .select("f_name, f_avatar, f_mail")
+        .select("*")
         .eq("user", email || "")
         .eq("isChat",false)
-
+if(error){
+  console.log("error tmp", error)
+}
        
 
       if (!error) {

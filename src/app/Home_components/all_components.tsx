@@ -272,7 +272,12 @@ for (const mail of flist) {
               `,
             }))
           )
-          
+        if(r_err)
+          {
+
+            console.log("error occoured",r_err)
+            
+          }
         if (!roomError) {
           window.alert(roomError)
           console.log("data from room", roomData)
