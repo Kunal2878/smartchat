@@ -254,19 +254,19 @@ for (const mail of flist) {
 
   const fetchFriends = async () => {
     try {
-      const { data, error } = await supabase
+      const { data:Data, error:r_err } = await supabase
         .from("Friends")
         .select("f_name, f_avatar, f_mail")
-        .eq("user", email || "")
+        .eq("user", email)
         .eq("isChat",false)
 
-       
+       console.log("data from friends", Data)
 
-      if (!error) {
+      if (Data) {
         const { data: roomData, error: roomError } = await supabase
           .from("Chat_room")
           .insert(
-            data.map((item) => ({
+            Data.map((item) => ({
               room_name: `${item.f_name || ""}
              
               `,
@@ -274,7 +274,9 @@ for (const mail of flist) {
           )
           
         if (!roomError) {
-          setChat_f(data);
+          window.alert(roomError)
+          console.log("data from room", roomData)
+          setChat_f(Data);
         } else {
           console.error("Error inserting chat rooms:", roomError);
         }
@@ -285,7 +287,7 @@ for (const mail of flist) {
         .eq("user", email || "")
         
       } else {
-        console.error("Error fetching invites:", error);
+        console.error("Error fetching invites:", r_err);
       }
     } catch (error) {
       console.error("Unexpected error:", error);
