@@ -267,7 +267,9 @@ for (const mail of flist) {
           .from("Chat_room")
           .insert(
             data.map((item) => ({
-              room_name: `${userName || ""}${item.f_mail.split('@')[0]}`,
+              room_name: `${item.f_name || ""}
+             
+              `,
             }))
           )
           
