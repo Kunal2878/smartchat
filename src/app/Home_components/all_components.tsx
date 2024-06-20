@@ -296,7 +296,7 @@ for (const mail of flist) {
 
 React.useEffect(() => {
 fetchFriends();
-},[email])
+},[])
 
 
 
