@@ -200,7 +200,7 @@ const fetchRecConfirmInvites = async () => {
         }));
       
         setFrlist([...flist])
-console.log("flist from confirm invites",flist)
+
 
 for (const mail of flist) {
   await supabase
@@ -266,7 +266,7 @@ for (const mail of flist) {
             const { error: chatRoomError, data: chatRoomData } = await supabase
               .from("Chat_room")
               .select("room_name")
-              .eq( "room_name",`${email?.split("@")[0]}${item.f_mail.split("@")[0]} `
+              .eq( "room_name",`${email?.split("@")[0]}${item.f_mail.split("@")[0]} `||`${item.f_mail?.split("@")[0]}${email?.split("@")[0]} `
 )
               .single();
               console.log(chatRoomError, "error",chatRoomData)
