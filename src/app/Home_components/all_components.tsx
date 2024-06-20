@@ -261,23 +261,23 @@ for (const mail of flist) {
         .eq("ischat", false);
 
       if (Data) {
-        Data.map((item) =>  async () => {
+        Data.map(async (item) => {
           try {
             const { error: chatRoomError, data: chatRoomData } = await supabase
               .from("Chat_room")
               .select("room_name")
-              .eq( "room_name",`${email?.split("@")[0]}${item.f_mail.split("@")[0]} `||`${item.f_mail?.split("@")[0]}${email?.split("@")[0]} `
-)
+              .or(`room_name.eq'${email?.split("@")[0]}${item.f_mail.split("@")[0]}',room_name.eq.'${item.f_mail?.split("@")[0]}${email?.split("@")[0]}'`)
+              .gt("room_name", 0)
               .single();
-              console.log(chatRoomError, "error",chatRoomData)
+            console.log(chatRoomError, "error", chatRoomData);
             if (chatRoomError) {
-              const { data:c_data, error:c_err} = await supabase
+              const { data: c_data, error: c_err } = await supabase
                 .from("Chat_room")
                 .insert({
-                   room_name: `${email?.split('@')[0]}${item.f_mail.split("@")[0]}`,
-            })
+                  room_name: `${email?.split("@")[0]}${item.f_mail.split("@")[0]}`,
+                });
 
-            if (c_err) {
+              if (c_err) {
                 console.error("Error creating chat room:", c_err);
               }
             }
@@ -288,8 +288,6 @@ for (const mail of flist) {
           } catch (error) {
             console.error("Error fetching chat room:", error);
           }
-
-          // room_name: `${email?.split('@')[0]}${item.f_mail.split("@")[0]}`,
         });
 
         if (r_err) {
