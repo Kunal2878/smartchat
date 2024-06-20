@@ -5,25 +5,36 @@ import Image from 'next/image'
 import  {UseAppContext}  from '../index'
 function TopBar() {
   const context = UseAppContext();
-  const { setIsThemeMenu,room, isThemeMenu} = context || {};
+  const { setIsThemeMenu,room, isThemeMenu,avatar} = context || {};
   return (
     <div className="w-full  flex justify-between dark:bg-gray-900 dark:text-white text-gray-900 bg-white ">
       <div className="w-full flex flex-col">
         <div className="w-full pl-1 flex flex-row justify-start">
           <div className="w-1/2 flex flex-row justify-between align-middle">
-            <div className="w-10 h-10 mt-1 flex justify-between rounded-full bg-slate-400">
+            <div className="size-8 mt-1 flex justify-between rounded-full bg-slate-400">
               <Image
                 unoptimized={true}
                 src="/brand.svg"
                 width={40}
                 height={40}
                 alt="Picture of the author"
+                className="size-full "
               />
             </div>
           </div>
-          <div className={`${room===''?'hidden':''} w-1/2 mr-0 flex flex-row justify-end`}>
+          <div className={`${room===''?'hidden':'flex'} w-1/2 mr-0 flex flex-row justify-end`}>
           <div className='size-8 flex justify-start rounded-full dark:bg-dots-dark bg-dots-light mr-2 ' onClick={()=>{isThemeMenu ? setIsThemeMenu?.(false):setIsThemeMenu?.(true)}}></div>
           </div>
+          <div className=" size-8">
+                            <Image
+                                src={avatar || ''}
+                                width={42}
+                                height={42}
+                                alt="Picture of the author"
+                                className='size-full rounded-full object-cover'
+                            />
+                        </div>
+
         </div>
       
       </div>

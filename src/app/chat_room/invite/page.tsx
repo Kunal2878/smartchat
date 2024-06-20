@@ -159,6 +159,7 @@ var recUsername:string=''
           <div className="w-full md:w-2/5 h-40 flex  flex-col md:flex-row justify-center items-center rounded-md dark:bg-gradient-to-r dark:from-gray-700 dark:via-gray-900 dark:to-black bg-gradient-to-r from-white via-gray-600 to-black dark:text-gray-900 bg-gray-900 text-white">
       <div className='absolute top-0 right-0 mt-2 mr-2 mb-2'>
         <Image
+        unoptimized={true}
         src={'/wrong.svg'}
         width={10}
         height={10}

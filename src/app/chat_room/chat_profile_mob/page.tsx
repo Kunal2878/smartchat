@@ -32,11 +32,21 @@ function Chat_profile_mob({profiles,roomNames}:any)
 
  
       <div className='w-full flex flex-row justify-between p-2 mb-4 dark:bg-gradient-to-tr dark:from-indigo-700 dark:via-indigo-800 dark:to-gray-900 bg-gradient-to-tr from-purple-400 via-purple-300 to-gray-400'>
-<div className=' text-white w-1/4'>Smartchat</div>
+      <div className="size-8 mt-1 flex justify-between rounded-full bg-slate-400">
+              <Image
+                unoptimized={true}
+                src="/brand.svg"
+                width={40}
+                height={40}
+                alt="Picture of the author"
+                className="size-full "
+              />
+            </div>
 <div className="w-3/4 flex flex-row justify-end mr-2">
       <div className='size-8 flex justify-start rounded-full dark:bg-dots-dark bg-dots-light mr-2 ' onClick={()=>{isThemeMenu? setIsThemeMenu?.(false):setIsThemeMenu?.(true)}}></div>
       <div className=" size-8">
                 <Image
+                  unoptimized={true}
                   src={avatar||''}
                   width={42}
                   height={42}

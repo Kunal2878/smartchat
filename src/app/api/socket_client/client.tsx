@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState,useCallback } from 'react';
+import React, { useEffect, useRef,useState,useCallback } from 'react';
 import Pusher from 'pusher-js';
 import  {UseAppContext}  from '../../index'
 import { Database } from '../../types/database.types'
@@ -19,13 +19,14 @@ const Chat_msg = () => {
   const [isAlert, setIsAlert] = useState<boolean>(false);
   const [isAlert2, setIsAlert2] = useState<boolean>(true);
   const [editedMessages, setEditedMessages] = useState<any>({});
+  const themeMenuRef = useRef(null);
   // const [isInvite, setIsInvite] = useState<boolean>(false);
 
   const [prevRoom, setPrevRoom] = useState<string | null|undefined>(null);
   
   
   const context = UseAppContext();
-  const { email,room,rmsg,setRmsg,setRoom,setEmail,isThemeMenu,chatTheme,isInvite,setIsInvite} = context || {};
+  const { email,room,rmsg,setRmsg,setRoom,setEmail,setIsThemeMenu,isThemeMenu,chatTheme,isInvite,setIsInvite} = context || {};
   const sty1="w-[200px]  top-0 mr-2  flex-row items-center justify-end hidden group-hover:flex pl-2"
 
 const supabase = createClientComponentClient<Database>(
@@ -202,6 +203,19 @@ setIsAlert2(false)
 
 }
 
+const handleClickOutside = (event: any) => {
+  if (themeMenuRef.current && (themeMenuRef.current as HTMLElement).contains(event.target)) {
+    setIsThemeMenu?.(false);
+  }
+};
+
+
+useEffect(() => {
+  document.addEventListener('click', handleClickOutside);
+  return () => document.removeEventListener('click', handleClickOutside);
+}, []);
+
+
 
   return (
 
@@ -220,16 +234,18 @@ setIsAlert2(false)
 
 
   // ${isThemeMenu ? 'animate-slide_right_left' : '-translate-x-full'}
-isThemeMenu&&(
-<div className={` absolute top-0 left-0 mt-4 ml-6 w-full h-80 flex flex-row items-center
+// isThemeMenu&&(
+// <div className={` absolute top-0 left-0 mt-4 ml-6 w-full h-80 flex flex-row items-center
   
-  `}
-  style={{zIndex:1000}}
-  >
-<Theme_menu/>
+//   `}
+//   style={{zIndex:1000}}
+//   >
+// <Theme_menu/>
+// </div>
+// )
+<div ref={themeMenuRef} className={` absolute top-0 left-0 mt-4 ml-6 w-full h-80 flex flex-row items-center`} style={{ zIndex: 1000 }}>
+{isThemeMenu && <Theme_menu />}
 </div>
-)
-
 }
 
 
