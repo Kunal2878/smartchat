@@ -68,7 +68,7 @@ if(session)
         .from("Friends")
         .select("*")
         .eq("user", email)
-        .eq("isChat",false)
+        .eq("ischat",false)
 if(error){
   console.log("error tmp", error)
 }
@@ -91,7 +91,7 @@ if(error){
 
         const { } = await supabase
         .from("Friends")
-        .update({isChat:true})
+        .update({ischat:true})
         .eq("user", email || "")
         
       } else {

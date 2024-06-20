@@ -258,7 +258,7 @@ for (const mail of flist) {
         .from("Friends")
         .select("f_name, f_avatar, f_mail")
         .eq("user", email)
-        .eq("isChat",false)
+        .eq("ischat",false)
 
        console.log("data from friends", Data)
 
@@ -288,8 +288,8 @@ for (const mail of flist) {
 
         const { } = await supabase
         .from("Friends")
-        .update({isChat:true})
-        .eq("user", email || "")
+        .update({ischat:true})
+        .eq("user", email)
         
       } else {
         console.error("Error fetching invites:", r_err);
