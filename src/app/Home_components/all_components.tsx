@@ -269,12 +269,17 @@ for (const mail of flist) {
               .eq( "room_name",`${email?.split("@")[0]}${item.f_mail.split("@")[0]} `
 )
               .single();
-            if (!chatRoomData) {
-              const { } = await supabase
+              console.log(chatRoomError, "error",chatRoomData)
+            if (chatRoomError) {
+              const { data:c_data, error:c_err} = await supabase
                 .from("Chat_room")
                 .insert({
                    room_name: `${email?.split('@')[0]}${item.f_mail.split("@")[0]}`,
             })
+
+            if (c_err) {
+                console.error("Error creating chat room:", c_err);
+              }
             }
 
             if (chatRoomError) {
