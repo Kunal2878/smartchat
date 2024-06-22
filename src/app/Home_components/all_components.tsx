@@ -265,40 +265,56 @@ for (const mail of flist) {
         Data.map(async (item) => {
           var mail2=item.f_mail.split("@")[0]
           try {
-            const { error: updateError } = await supabase
+            const { data: updateData,error: updateError } = await supabase
             .from("Friends")
             .update({ ischat: true })
             .eq("user", email)
             .eq("f_mail", `${item.f_mail}`)
     
-          if (updateError) {
+          if (updateData || updateError) {
             console.error("Error updating ischat:", updateError);
+            console.error("UpdateChat:", updateData);
           }
-            const { error: chatRoomError, data: chatRoomData } = await supabase
+            const {  data: chatRoomData ,error: chatRoomError,} = await supabase
               .from("Chat_room")
               .select("room_name")
-              // .eq("room_name",`${email?.split("@")[0]}${item.f_mail.split("@")[0]}`)
               .eq("room_name",`${mail}${mail2}`)
+              // .eq("room_name",`${email?.split("@")[0]}${item.f_mail.split("@")[0]}`)
             const {  data: chatRoomData2, error: chatRoomError2, } = await supabase
               .from("Chat_room")
               .select("room_name")
-              .eq("room_name",`${mail2}${mail}`)
+              .eq("room_name",`${email?.split('@')[0]}${item.f_mail.split('@')[0]}`)
             //   .or(`room_name.eq.${email?.split("@")[0]}${item.f_mail.split("@")[0]}, room_name.eq.${item.f_mail?.split("@")[0]}${email?.split("@")[0]}`)
             // console.log( "data from all components", chatRoomData, "error from all components",chatRoomError);
+            if(chatRoomError2 && chatRoomError){
+              console.log("chatRoomError",chatRoomError,"chatRoomError2",chatRoomError2)
+              const { data: c_data, error: c_err } = await supabase
+              .from("Chat_room")
+              .insert({
+                room_name: `${email?.split("@")[0]}${item.f_mail.split("@")[0]}`
+              });
+              if (c_data || c_err ) {
+                console.log("Error creating chat room:", c_err);
+                console.log("data insreted", c_data);
+              }
+           
+            }
             if (!chatRoomData && !chatRoomData2) {
+              console.log("data inserting from data zone")
               const { data: c_data, error: c_err } = await supabase
                 .from("Chat_room")
                 .insert({
                   room_name: `${mail}${mail2}`,
                 });
 
-              if (c_err) {
-                console.error("Error creating chat room:", c_err);
-              }
+                if (c_data || c_err ) {
+                  console.log("Error creating chat room:", c_err);
+                  console.log("data insreted", c_data);
+                }
             }
 
             if (chatRoomError) {
-              console.error("Error fetching chat room:", chatRoomError);
+              console.log("Error fetching chat room:", chatRoomError);
             }
           } catch (error) {
             console.error("Error fetching chat room:", error);
