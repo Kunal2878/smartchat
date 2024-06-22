@@ -179,7 +179,7 @@ var email:string|undefined
         .select("f_name, f_avatar, f_mail")
         .eq("user", Email)
         .eq("ischat", false);
-console.log(r_err, Data)
+
       if (Data && Data.length > 0) {
        console.log(Data)
         Data.map(async (item) => {
@@ -194,9 +194,9 @@ console.log(r_err, Data)
             const {  data: chatRoomData2, error: chatRoomError2, } = await supabase
             .from("Chat_room")
             .select("room_name")
-            .eq("room_name",`${Email?.split('@')[0]}${item.f_mail.split('@')[0]}`)
+            .eq("room_name",`${item.f_mail.split('@')[0]}${Email?.split('@')[0]}`)
 console.log(chatRoomData, chatRoomError, chatRoomData2, chatRoomError2)
-            if (chatRoomError && chatRoomError2) {
+            if (chatRoomError===null && chatRoomError2===null) {
               const { data: c_data, error: c_err } = await supabase
               .from("Chat_room")
               .insert({
@@ -207,16 +207,13 @@ console.log(chatRoomData, chatRoomError, chatRoomData2, chatRoomError2)
                 console.log("data insreted", c_data);
               }
             }
-
+console.log("updating")
             const { data: updateData,error: updateError } = await supabase
             .from("Friends")
             .update({ ischat: true })
             .eq("user", Email)
             .eq("f_mail", `${item.f_mail}`);
-       if (updateData)
-        {
-          console.log("updated", updateData);
-        }
+     
 
        
        
