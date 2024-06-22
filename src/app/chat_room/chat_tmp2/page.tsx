@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 async function Chat_tmp_page() {
-  var email:string|undefined
+
 var email:string|undefined
 var pic: string | undefined
 var username: string | undefined

@@ -11,7 +11,7 @@ function TopBar() {
       <div className="w-full flex flex-col">
         <div className="w-full pl-1 flex flex-row justify-start">
           <div className="w-1/2 flex flex-row justify-between align-middle">
-            <div className="size-8 mt-1 flex justify-between rounded-full bg-slate-400">
+            <div className="size-8 mt-1 flex flex-row justify-center rounded-full bg-slate-400">
               <Image
                 unoptimized={true}
                 src="/brand.svg"

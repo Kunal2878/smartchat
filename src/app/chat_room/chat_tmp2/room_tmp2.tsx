@@ -18,10 +18,12 @@ function RoomTemp({ Email,pic,username,sessionCheck,Id,session } : { Email: stri
 const [f_list, setFlist] = React.useState<F_type[]>([]);
 const [fr_list, setFrlist] = React.useState<F_type[]>([]);
 const [count, setCount] = React.useState<number>(0);
+const [c_data, setC_data] = React.useState<F_type[]>([]);
+const [roomNames, setRoomNames] = React.useState<r_type[]>([]);
 
 var email:string|undefined
-var c_data:F_type[]=[]
-var roomNames:r_type[]=[]
+
+
 
   const supabase = createClientComponentClient<Database>(
 
@@ -154,7 +156,7 @@ var roomNames:r_type[]=[]
         .select("f_name, f_avatar, f_mail")
         .eq("user", Email);
       if (f_data) {
-          c_data=f_data
+          setC_data(f_data)
     
           
         }
@@ -164,8 +166,8 @@ var roomNames:r_type[]=[]
         .ilike("room_name", `%${Email?.split("@")[0]}%`)
     
       if (r_data) {
-        roomNames = r_data;
-        console.log(r_data)
+        setRoomNames( r_data);
+    
       }
       
       
