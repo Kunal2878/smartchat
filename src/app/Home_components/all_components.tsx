@@ -268,7 +268,7 @@ for (const mail of flist) {
               .select("room_name")
               .or(`room_name.eq.${email?.split("@")[0]}${item.f_mail.split("@")[0]}, room_name.eq.${item.f_mail?.split("@")[0]}${email?.split("@")[0]}`)
             console.log( "data from all components", chatRoomData, "error from all components",chatRoomError);
-            if (chatRoomError) {
+            if (!chatRoomData) {
               const { data: c_data, error: c_err } = await supabase
                 .from("Chat_room")
                 .insert({
