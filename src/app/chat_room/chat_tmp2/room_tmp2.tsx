@@ -162,7 +162,7 @@ var email:string|undefined
         }
         const { data:r_data, error:r_err } = await supabase
         .from('Chat_room')
-        .select('room_name')
+        .select('*')
         .ilike("room_name", `%${Email?.split("@")[0]}%`)
     
       if (r_data) {

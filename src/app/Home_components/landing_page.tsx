@@ -40,29 +40,8 @@ const supabase = createServerComponentClient<Database>(
     if (username === undefined) {
       username = email?.split("@")[0];
     }
-    const { data:f_data, error:f_err } = await supabase
-      .from("Friends")
-      .select("f_name, f_avatar, f_mail")
-      .eq("user", email);
-    if (f_data) {
-        c_data=f_data
-        // console.log("friends are here",c_data)
   
- 
-    }
-    const { data:r_data, error:r_err } = await supabase
-    .from('Chat_room')
-    .select('room_name')
-    .ilike("room_name", `%${email}%`)
-
-  if (r_data) {
-    roomNames = r_data;
-
-  }
-  
-  if(r_err){
-console.log("error")
-  }
+    
   }
 
   return (

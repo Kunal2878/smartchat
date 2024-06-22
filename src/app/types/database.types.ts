@@ -10,7 +10,8 @@ export interface Friend_list{
 export interface Room_names{
 Rooms:{
 
-  room_name:string
+  room_name:string;
+  chat_bg:string;
 }
 
 

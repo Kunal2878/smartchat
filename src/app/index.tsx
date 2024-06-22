@@ -20,7 +20,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [rmsg, setRmsg] = useState<any>([]);
   const [isThemeMenu, setIsThemeMenu] = useState<boolean>(false);
   const [isInvite, setIsInvite] = useState<boolean>(false);
-  const [chatTheme, setChatTheme] = useState<string>('/chatbg.jpg');
+  const [chatTheme, setChatTheme] = useState<string>('/Design.png');
   const [testAvatar, setTestAvatar] = useState<string>('/solid_user.svg');
   const [testRoom, setTestRoom] = useState<string>('');
   const [testName, setTestName] = useState<string>('');
