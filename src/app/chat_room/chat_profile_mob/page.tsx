@@ -42,7 +42,7 @@ function Chat_profile_mob({profiles,roomNames}:any)
                 className="size-full "
               />
             </div>
-<span className=' w-3/4 text-[14px] flex flex-row justify-center items-center font-[400]  truncate '>{userName}</span>
+<span className=' w-3/4 text-[14px] text-white flex flex-row justify-center items-center font-[400]  truncate '>{userName}</span>
       </div>
 <div className="w-1/2 flex flex-row justify-between mr-2">
       <div className='size-8 flex justify-start rounded-full dark:bg-dots-dark bg-dots-light mr-2 ' onClick={()=>{isThemeMenu? setIsThemeMenu?.(false):setIsThemeMenu?.(true)}}></div>

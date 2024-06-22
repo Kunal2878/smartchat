@@ -5,7 +5,7 @@ import { Database,Friend_list , Room_names} from '../../types/database.types'
 import  {UseAppContext}  from '../../index'
 function Chat_profiles({ profiles, roomNames }: any) {  
 const context = UseAppContext();
-const { email,room,setRoom,setIsThemeMenu,isThemeMenu,userName } = context || {};
+const { email,room,setRoom,setIsThemeMenu,isThemeMenu,userName,isInvite,setIsInvite } = context || {};
 const findRoom = (f_mail:string) => {
 
   roomNames.map((itr:any) => {
@@ -16,7 +16,7 @@ const findRoom = (f_mail:string) => {
 
 }
   return (
-    <div className='dark:bg-gray-900 dark:text-white text-gray-900 bg-white  w-full h-screen flex-col justify-center align-middle overflow-hidden'>
+    <div className=' static dark:bg-gray-900 dark:text-white text-gray-900 bg-white  w-full h-screen flex-col justify-center align-middle overflow-hidden'>
 
 
 
@@ -45,6 +45,22 @@ const findRoom = (f_mail:string) => {
             </div>
           ))}
           </div>
+          <div className=' cursor-pointer absolute bottom-0 p-4 w-full flex flex-row justify-center items-center bg-white dark:bg-gray-900 h-12'
+          onClick={()=>{isInvite ? setIsInvite?.(false):setIsInvite?.(true)}}
+          >
+            
+              <span className='text-[20px] flex flex-row justify-center items-center'>Invite your friends</span>
+            <div className="add size-10 flex justify-start rounded-full bg-slate-400">
+                <Image
+                unoptimized={true}
+                  src={'/plus.svg'}
+                  width={42}
+                  height={42}
+                  alt="Picture of the author"
+                  className='size-full rounded-full'
+                />
+              </div>
+              </div>
       </div>
     </div>
   );
