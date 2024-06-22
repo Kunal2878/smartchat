@@ -172,6 +172,58 @@ var email:string|undefined
       
       
     }
+    const InsertRoom= async () => {
+      try{
+        const { data: Data, error: r_err } = await supabase
+        .from("Friends")
+        .select("f_name, f_avatar, f_mail")
+        .eq("user", email)
+        .eq("ischat", false);
+
+      if (Data) {
+        var mail=email?.split("@")[0];
+        Data.map(async (item) => {
+          var mail2=item.f_mail.split("@")[0];
+          try {
+            
+            const {  data: chatRoomData ,error: chatRoomError,} = await supabase
+            .from("Chat_room")
+            .select("room_name")
+            .eq("room_name",`${mail}${mail2}${email?.split('@')[0]}`)
+            // .eq("room_name",`${email?.split("@")[0]}${item.f_mail.split("@")[0]}`)
+            const {  data: chatRoomData2, error: chatRoomError2, } = await supabase
+            .from("Chat_room")
+            .select("room_name")
+            .eq("room_name",`${email?.split('@')[0]}${item.f_mail.split('@')[0]}`)
+            if (!chatRoomData && !chatRoomData2) {
+              const { data: c_data, error: c_err } = await supabase
+              .from("Chat_room")
+              .insert({
+                room_name: `${email?.split("@")[0]}${item.f_mail.split("@")[0]}`
+              });
+              if (c_data || c_err ) {
+                console.log("Error creating chat room:", c_err);
+                console.log("data insreted", c_data);
+              }
+            }
+
+            const { data: updateData,error: updateError } = await supabase
+            .from("Friends")
+            .update({ ischat: true })
+            .eq("user", email)
+            .eq("f_mail", `${item.f_mail}`);
+       
+       
+       
+          }
+        catch {}
+      });
+      }
+    }
+      catch{
+
+      }
+    }
     
     
     React.useEffect(() => {
