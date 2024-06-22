@@ -177,10 +177,10 @@ var email:string|undefined
         const { data: Data, error: r_err } = await supabase
         .from("Friends")
         .select("f_name, f_avatar, f_mail")
-        .eq("user", email)
+        .eq("user", Email)
         .eq("ischat", false);
-
-      if (Data) {
+console.log(r_err, Data)
+      if (Data && Data.length > 0) {
        console.log(Data)
         Data.map(async (item) => {
         
@@ -189,18 +189,18 @@ var email:string|undefined
             const {  data: chatRoomData ,error: chatRoomError,} = await supabase
             .from("Chat_room")
             .select("room_name")
-            .eq("room_name",`${email?.split('@')[0]}${item.f_mail.split('@')[0]}`)
-            // .eq("room_name",`${email?.split("@")[0]}${item.f_mail.split("@")[0]}`)
+            .eq("room_name",`${Email?.split('@')[0]}${item.f_mail.split('@')[0]}`)
+            // .eq("room_name",`${Email?.split("@")[0]}${item.f_mail.split("@")[0]}`)
             const {  data: chatRoomData2, error: chatRoomError2, } = await supabase
             .from("Chat_room")
             .select("room_name")
-            .eq("room_name",`${email?.split('@')[0]}${item.f_mail.split('@')[0]}`)
-
+            .eq("room_name",`${Email?.split('@')[0]}${item.f_mail.split('@')[0]}`)
+console.log(chatRoomData, chatRoomError, chatRoomData2, chatRoomError2)
             if (chatRoomError && chatRoomError2) {
               const { data: c_data, error: c_err } = await supabase
               .from("Chat_room")
               .insert({
-                room_name: `${email?.split("@")[0]}${item.f_mail.split("@")[0]}`
+                room_name: `${Email?.split("@")[0]}${item.f_mail.split("@")[0]}`
               });
               if (c_data || c_err ) {
                 console.log("Error creating chat room:", c_err);
@@ -211,7 +211,7 @@ var email:string|undefined
             const { data: updateData,error: updateError } = await supabase
             .from("Friends")
             .update({ ischat: true })
-            .eq("user", email)
+            .eq("user", Email)
             .eq("f_mail", `${item.f_mail}`);
        if (updateData)
         {
