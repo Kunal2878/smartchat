@@ -21,8 +21,31 @@ function TopBar() {
                 className="size-full "
               />
             </div>
+
+
           </div>
+          <div className=" size-8">
+                <Image
+                  unoptimized={true}
+                  src={'/home.svg'}
+                  width={42}
+                  height={42}
+                  alt="Picture of the author"
+                  className='size-full rounded-full object-cover'
+                />
+              </div>
+      <div className=" size-8  animate-ping ">
+                <Image
+                  unoptimized={true}
+                  src={'/bell.svg'}
+                  width={42}
+                  height={42}
+                  alt="Picture of the author"
+                  className='size-full rounded-full object-cover'
+                />
+              </div>
           <div className={`${room===''?'hidden':'flex'} w-1/2 mr-0 flex flex-row justify-end`}>
+          
           <div className='size-8 flex justify-start rounded-full dark:bg-dots-dark bg-dots-light mr-2 ' onClick={()=>{isThemeMenu ? setIsThemeMenu?.(false):setIsThemeMenu?.(true)}}></div>
           </div>
           <div className=" size-8">

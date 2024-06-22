@@ -181,7 +181,7 @@ var email:string|undefined
         .eq("ischat", false);
 
       if (Data && Data.length > 0) {
-       console.log(Data)
+  
         Data.map(async (item) => {
                   try {
             
@@ -189,7 +189,6 @@ var email:string|undefined
             .from("Chat_room")
             .select("room_name")
             .eq("room_name",`${Email?.split('@')[0]}${item.f_mail.split('@')[0]}`)
-            // .eq("room_name",`${Email?.split("@")[0]}${item.f_mail.split("@")[0]}`)
             const {  data: chatRoomData2, error: chatRoomError2, } = await supabase
             .from("Chat_room")
             .select("room_name")
@@ -197,9 +196,9 @@ var email:string|undefined
             const {  data: chatRoomData3, error: chatRoomError3, } = await supabase
             .from("Chat_room")
             .select("room_name")
-            .or(`room_name.eq.${email?.split("@")[0]}${item.f_mail.split("@")[0]}, room_name.eq.${item.f_mail?.split("@")[0]}${email?.split("@")[0]}`)  
+            .or(`room_name.eq.${Email?.split("@")[0]}${item.f_mail.split("@")[0]}, room_name.eq.${item.f_mail?.split("@")[0]}${Email?.split("@")[0]}`)  
 
-            console.log("or",chatRoomData3)
+            console.log("or",chatRoomData,chatRoomData2,chatRoomData3)
             if (chatRoomData?.length===0 && chatRoomData2?.length===0) {
               const { data: c_data, error: c_err } = await supabase
               .from("Chat_room")
@@ -211,18 +210,14 @@ var email:string|undefined
                 console.log("data insreted", c_data);
               }
             }
-console.log("updating")
+
             const { data: updateData,error: updateError } = await supabase
             .from("Friends")
             .update({ ischat: true })
             .eq("user", Email)
             .eq("f_mail", `${item.f_mail}`);
-     
-
-       
-       
           }
-        catch {}
+        catch (error) {}
       });
       }
     }
