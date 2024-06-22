@@ -43,7 +43,7 @@ if(session)
     }
     const { data:r_data, error:r_err } = await supabase
     .from('Chat_room')
-    .select('room_name')
+    .select('*')
     .ilike("room_name", `%${email}%`)
 
   if (r_data) {
