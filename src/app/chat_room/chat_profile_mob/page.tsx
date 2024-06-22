@@ -9,11 +9,10 @@ function Chat_profile_mob({profiles,roomNames}:any)
 
     const context = UseAppContext();
     const { email,room,setRoom,avatar,isThemeMenu,setIsThemeMenu,isInvite,setIsInvite,userName } = context || {};
-    
+    console.log("Room names from mobile", roomNames)
     const findRoom = (f_mail:string) => {
-      const mail= f_mail.split('@')[0]
   roomNames.map((itr:any) => {
-    if(itr.room_name===`${email?.split("@")[0]}${mail}`||itr.room_name===`${mail}${email?.split("@")[0]}`){
+    if(itr.room_name ===`${email?.split("@")[0]}${f_mail.split('@')[0]}` || itr.room_name ===`${f_mail.split('@')[0]}${email?.split("@")[0]}`){
       setRoom?.(itr.room_name)
     }
       })

@@ -167,6 +167,7 @@ var email:string|undefined
     
       if (r_data) {
         setRoomNames( r_data);
+        console.log("rooms", r_data)
     
       }
       
@@ -185,21 +186,21 @@ var email:string|undefined
         Data.map(async (item) => {
                   try {
             
-            const {  data: chatRoomData ,error: chatRoomError,} = await supabase
-            .from("Chat_room")
-            .select("room_name")
-            .eq("room_name",`${Email?.split('@')[0]}${item.f_mail.split('@')[0]}`)
-            const {  data: chatRoomData2, error: chatRoomError2, } = await supabase
-            .from("Chat_room")
-            .select("room_name")
-            .eq("room_name",`${item.f_mail.split('@')[0]}${Email?.split('@')[0]}`)
+            // const {  data: chatRoomData ,error: chatRoomError,} = await supabase
+            // .from("Chat_room")
+            // .select("room_name")
+            // .eq("room_name",`${Email?.split('@')[0]}${item.f_mail.split('@')[0]}`)
+            // const {  data: chatRoomData2, error: chatRoomError2, } = await supabase
+            // .from("Chat_room")
+            // .select("room_name")
+            // .eq("room_name",`${item.f_mail.split('@')[0]}${Email?.split('@')[0]}`)
             const {  data: chatRoomData3, error: chatRoomError3, } = await supabase
             .from("Chat_room")
             .select("room_name")
             .or(`room_name.eq.${Email?.split("@")[0]}${item.f_mail.split("@")[0]}, room_name.eq.${item.f_mail?.split("@")[0]}${Email?.split("@")[0]}`)  
 
-            console.log("or",chatRoomData,chatRoomData2,chatRoomData3)
-            if (chatRoomData?.length===0 && chatRoomData2?.length===0) {
+            // console.log("or",chatRoomData,chatRoomData2,chatRoomData3)
+            if (chatRoomData3?.length!==0) {
               const { data: c_data, error: c_err } = await supabase
               .from("Chat_room")
               .insert({

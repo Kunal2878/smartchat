@@ -7,9 +7,9 @@ function Chat_profiles({ profiles, roomNames }: any) {
 const context = UseAppContext();
 const { email,room,setRoom,setIsThemeMenu,isThemeMenu,userName } = context || {};
 const findRoom = (f_mail:string) => {
-  const mail= f_mail.split('@')[0]
+console.log("from chat profiles",roomNames)
   roomNames.map((itr:any) => {
-    if(itr.room_name===`${email?.split("@")[0]}${mail}`||itr.room_name===`${mail}${email?.split("@")[0]}`){
+    if(itr.room_name===`${email?.split("@")[0]}${f_mail.split('@')[0]}`|| itr.room_name===`${f_mail.split('@')[0]}${email?.split("@")[0]}`){
       setRoom?.(itr.room_name)
     }
   })
