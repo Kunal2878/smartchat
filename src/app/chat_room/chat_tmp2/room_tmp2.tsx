@@ -183,8 +183,7 @@ var email:string|undefined
       if (Data && Data.length > 0) {
        console.log(Data)
         Data.map(async (item) => {
-        
-          try {
+                  try {
             
             const {  data: chatRoomData ,error: chatRoomError,} = await supabase
             .from("Chat_room")
@@ -195,8 +194,13 @@ var email:string|undefined
             .from("Chat_room")
             .select("room_name")
             .eq("room_name",`${item.f_mail.split('@')[0]}${Email?.split('@')[0]}`)
-console.log(chatRoomData, chatRoomError, chatRoomData2, chatRoomError2)
-            if (chatRoomError===null && chatRoomError2===null) {
+            const {  data: chatRoomData3, error: chatRoomError3, } = await supabase
+            .from("Chat_room")
+            .select("room_name")
+            .or(`room_name.eq.${email?.split("@")[0]}${item.f_mail.split("@")[0]}, room_name.eq.${item.f_mail?.split("@")[0]}${email?.split("@")[0]}`)  
+
+            console.log("or",chatRoomData3)
+            if (chatRoomData?.length===0 && chatRoomData2?.length===0) {
               const { data: c_data, error: c_err } = await supabase
               .from("Chat_room")
               .insert({

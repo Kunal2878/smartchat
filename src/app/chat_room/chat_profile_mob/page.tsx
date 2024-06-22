@@ -32,7 +32,8 @@ function Chat_profile_mob({profiles,roomNames}:any)
 
  
       <div className='w-full flex flex-row justify-between p-2 mb-4 dark:bg-gradient-to-tr dark:from-indigo-700 dark:via-indigo-800 dark:to-gray-900 bg-gradient-to-tr from-purple-400 via-purple-300 to-gray-400'>
-      <div className="size-8 mt-1 flex justify-between rounded-full bg-slate-400">
+      <div className='w-1/4 flex flex-row justify-center '>
+      <div className="size-8 mt-1 flex flex-row rounded-full bg-slate-400 mr-1">
               <Image
                 unoptimized={true}
                 src="/brand.svg"
@@ -42,8 +43,30 @@ function Chat_profile_mob({profiles,roomNames}:any)
                 className="size-full "
               />
             </div>
+<span className=' w-1/2 text-16px flex flex-row justify-start font-bold bg-clip-text text-transparent  bg-gradient-to-r from-green-300 via-blue-500 to-purple-600'>{userName}</span>
+      </div>
 <div className="w-3/4 flex flex-row justify-end mr-2">
       <div className='size-8 flex justify-start rounded-full dark:bg-dots-dark bg-dots-light mr-2 ' onClick={()=>{isThemeMenu? setIsThemeMenu?.(false):setIsThemeMenu?.(true)}}></div>
+      <div className=" size-8">
+                <Image
+                  unoptimized={true}
+                  src={'/home.svg'}
+                  width={42}
+                  height={42}
+                  alt="Picture of the author"
+                  className='size-full rounded-full object-cover'
+                />
+              </div>
+      <div className=" size-8">
+                <Image
+                  unoptimized={true}
+                  src={'/bell.svg'}
+                  width={42}
+                  height={42}
+                  alt="Picture of the author"
+                  className='size-full rounded-full object-cover'
+                />
+              </div>
       <div className=" size-8">
                 <Image
                   unoptimized={true}
