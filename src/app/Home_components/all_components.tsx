@@ -261,18 +261,35 @@ for (const mail of flist) {
         .eq("ischat", false);
 
       if (Data) {
+        var mail=email?.split("@")[0]
         Data.map(async (item) => {
+          var mail2=item.f_mail.split("@")[0]
           try {
+            const { error: updateError } = await supabase
+            .from("Friends")
+            .update({ ischat: true })
+            .eq("user", email)
+            .eq("f_mail", `${item.f_mail}`)
+    
+          if (updateError) {
+            console.error("Error updating ischat:", updateError);
+          }
             const { error: chatRoomError, data: chatRoomData } = await supabase
               .from("Chat_room")
               .select("room_name")
-              .or(`room_name.eq.${email?.split("@")[0]}${item.f_mail.split("@")[0]}, room_name.eq.${item.f_mail?.split("@")[0]}${email?.split("@")[0]}`)
-            console.log( "data from all components", chatRoomData, "error from all components",chatRoomError);
-            if (!chatRoomData) {
+              // .eq("room_name",`${email?.split("@")[0]}${item.f_mail.split("@")[0]}`)
+              .eq("room_name",`${mail}${mail2}`)
+            const {  data: chatRoomData2, error: chatRoomError2, } = await supabase
+              .from("Chat_room")
+              .select("room_name")
+              .eq("room_name",`${mail2}${mail}`)
+            //   .or(`room_name.eq.${email?.split("@")[0]}${item.f_mail.split("@")[0]}, room_name.eq.${item.f_mail?.split("@")[0]}${email?.split("@")[0]}`)
+            // console.log( "data from all components", chatRoomData, "error from all components",chatRoomError);
+            if (!chatRoomData && !chatRoomData2) {
               const { data: c_data, error: c_err } = await supabase
                 .from("Chat_room")
                 .insert({
-                  room_name: `${email?.split("@")[0]}${item.f_mail.split("@")[0]}`,
+                  room_name: `${mail}${mail2}`,
                 });
 
               if (c_err) {
@@ -292,14 +309,7 @@ for (const mail of flist) {
           console.log("error occurred", r_err);
         }
 
-        const { error: updateError } = await supabase
-          .from("Friends")
-          .update({ ischat: true })
-          .eq("user", email);
-
-        if (updateError) {
-          console.error("Error updating ischat:", updateError);
-        }
+      
       } else {
         console.error("Error fetching invites:", r_err);
       }
