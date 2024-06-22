@@ -266,10 +266,8 @@ for (const mail of flist) {
             const { error: chatRoomError, data: chatRoomData } = await supabase
               .from("Chat_room")
               .select("room_name")
-              .or(`room_name.eq'${email?.split("@")[0]}${item.f_mail.split("@")[0]}',room_name.eq.'${item.f_mail?.split("@")[0]}${email?.split("@")[0]}'`)
-              .gt("room_name", 0)
-              .single();
-            console.log(chatRoomError, "error", chatRoomData);
+              .or(`room_name.eq.${email?.split("@")[0]}${item.f_mail.split("@")[0]}, room_name.eq.${item.f_mail?.split("@")[0]}${email?.split("@")[0]}`)
+            console.log( "data from all components", chatRoomData, "error from all components",chatRoomError);
             if (chatRoomError) {
               const { data: c_data, error: c_err } = await supabase
                 .from("Chat_room")
