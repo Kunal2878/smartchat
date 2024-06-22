@@ -108,7 +108,7 @@ width={8}
 height={8}
 alt='loading'
 onClick={()=>setTestAvatar?.(itr.img)}
-className='size-16 mr-2 ml-2 rounded-full border-2 shadow-black dark:shadow-white shadow-md border-red-400 dark:border-cyan-400 cursor-pointer dark:active:border-red-600 active:border-cyan-400'
+className='size-16 mr-2 ml-2 rounded-full border-2 shadow-black dark:shadow-white shadow-md border-red-400 dark:border-cyan-400 cursor-pointer dark:active:border-red-600 active:border-cyan-400 active:bg-red-600 dark:active:bg-cyan-400'
 />
 ))
 }

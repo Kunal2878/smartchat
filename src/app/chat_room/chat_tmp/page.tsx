@@ -6,7 +6,7 @@ import Chat_profiles_mob from '../chat_profile_mob/page'
 import { Database,Friend_list , Room_names} from '../../types/database.types'
 import { Session,createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import Chat_server from '../../server_runner/page'
+
 import Chat_msg from '../../api/socket_client/client'
 import { Metadata } from 'next'
 type F_type=Friend_list['frnd']
@@ -15,9 +15,6 @@ type C_type=Database['public']['Tables']["Chat_room"]['Row']
 
 export const metadata: Metadata = {
   title: 'Chatroom',
-
-
-
 }
 async function RoomTemp() {
 var email:string|undefined
@@ -36,36 +33,39 @@ var roomNames:r_type[]=[]
     data: { session },
   } = await supabase.auth.getSession();
 
-if(session)
-  {
-    email = session?.user.email;
-    const { data:f_data, error:f_err } = await supabase
-      .from("Friends")
-      .select("f_name, f_avatar, f_mail")
-      .eq("user", email);
-    if (f_data) {
-        c_data=f_data
+while(true){
+
+  if(session)
+    {
+      email = session?.user.email;
+      const { data:f_data, error:f_err } = await supabase
+        .from("Friends")
+        .select("f_name, f_avatar, f_mail")
+        .eq("user", email);
+      if (f_data) {
+          c_data=f_data
+    
+   
+      }
+      const { data:r_data, error:r_err } = await supabase
+      .from('Chat_room')
+      .select('room_name')
+      .ilike("room_name", `%${email?.split("@")[0]}%`)
   
- 
+    if (r_data) {
+      roomNames = r_data;
+  console.log(r_data)
     }
-    const { data:r_data, error:r_err } = await supabase
-    .from('Chat_room')
-    .select('room_name')
-    .ilike("room_name", `%${email?.split("@")[0]}%`)
-
-  if (r_data) {
-    roomNames = r_data;
-console.log(r_data)
-  }
+    
+    if(r_err){
+  // window.alert("Error in fetching chat")
+    }
   
-  if(r_err){
-// window.alert("Error in fetching chat")
-  }
-
-
-
   
-  }
+  
+    
+    }
+}
 
 
 

@@ -56,7 +56,7 @@ function Navbar() {
         <div className="w-1/5 md:w-1/2 flex justify-center md:justify-center items-center  mr-4 ml-4 md:ml-0 md:mr-0">
           <div className="size-12 md:size-8 flex justify-start rounded-full bg-gradient-to-r from-yellow-200 to-black ">
             {isSession?(
-  <Link href="/chat_room/chat_tmp">
+  <Link href="/chat_room/chat_tmp2">
   <Image
     src="/send_icon.png"
     width={10}

@@ -8,15 +8,15 @@ import { createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 type Invite = Database['public']['Tables']['Invite']['Row']
 type F_type=Friend_list['frnd']
 
-// export default function Notification({ invites,f_list }: any) 
 export default function Notification() 
 
 {
   const [invites, setInvites] = React.useState<Invite[]>([]);
   const [f_list, setFlist] = React.useState<any>([]);
   const [accept, setAccept] = React.useState<string>("Add friend");
-  const [toast, setToast] = React.useState<string>("processing");
+  const [toast, setToast] = React.useState<string>("Processing...");
   const [toastbol, setToastbol] = React.useState<boolean>(true);
+  const [count, setCount] = React.useState<number>(0);
   const context = UseAppContext();
   const { setIsNotify, isSession,setIsLogin,email } = context || {};
 
@@ -55,11 +55,11 @@ export default function Notification()
       if(Data)
       {
     setToastbol(false);
-console.log("data is here from notification",Data)
-setFlist(Data);
+    setFlist(Data);
       }
       if(!data && !Data){
-        setToast("You don't have any pending invites and you have not sent any invites yet");
+        setToastbol(false);
+        setToast("You have no notifications");
       }
       else {
         console.error("Error fetching invites:", error);
@@ -76,11 +76,22 @@ setFlist(Data);
   React.useEffect(() => {
     fetchInvites();
  
-  }, [invites]);
+  }, [count]);
+
+  React.useEffect(() => {
+setTimeout(()=>{
+setCount(count + 1)
+},2000)
+ 
+  }, [count]);
+
+
 
   const ConfirmInvite = async (sender_email: string, receiver_email: string) => {
+
+    
     setAccept("Accepting...");
-    console.log("adding")
+
     try {
       const { error } = await supabase
         .from('Invite')
@@ -137,7 +148,7 @@ setFlist(Data);
 
         {
         
-        isSession && (invites?.length >= 0 || f_list?.length >= 0) ? (
+        isSession && (invites?.length > 0 || f_list?.length > 0) ? (
           <>
             {invites.map((itr:any) => (
               <div
