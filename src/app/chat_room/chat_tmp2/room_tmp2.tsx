@@ -195,7 +195,7 @@ var email:string|undefined
             .from("Chat_room")
             .select("room_name")
             .eq("room_name",`${email?.split('@')[0]}${item.f_mail.split('@')[0]}`)
-            
+
             if (chatRoomError && chatRoomError2) {
               const { data: c_data, error: c_err } = await supabase
               .from("Chat_room")
@@ -237,6 +237,7 @@ var email:string|undefined
           const result1= await fetchFriendsRoom();
           const result2 = await fetchSendConfirmInvites();
           const result3 = await fetchRecConfirmInvites();
+          const result4 = await InsertRoom();
   
           
         } catch (error) {
