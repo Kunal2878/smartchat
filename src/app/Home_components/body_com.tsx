@@ -4,8 +4,8 @@ function Body_com() {
 const show=[
     {id:1,img:"chat_img_1.png",text:"Effortless Communication",des:"Our platform is intuitive for smooth and enjoyable conversations"},
     {id:2,img:"chat_img_2.png",text:"Secure Sign-In", des:"Your privacy matters. We offer secure login options to keep your chats safe"},
-    {id:3,img:"chat_img_3.png",text:"Login Your Way", des:"Choose your comfort. Login with social media, fingerprint, or password - it's up to you"},
-    {id:4,img:"chat_img_4.png",text:"Stay Connected, Simplified", des:"Choose your comfort. Login with social media, fingerprint, or password - it's up to you"},
+    {id:3,img:"chat_img_3.png",text:"Login Your Way", des:"Choose your comfort. Login with social media,  or password - it's up to you"},
+    {id:4,img:"chat_img_4.png",text:"Stay Connected, Simplified", des:"Save your time to get relogin"},
 ]
 
 
