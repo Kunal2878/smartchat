@@ -32,6 +32,7 @@ const Chat_msg =   () => {
 
 // join in a room or channel
 useEffect(() => {
+  console.log(testRoom)
   const channel = pusher.subscribe(`${testRoom}`);
   channel.bind('new-message', (data: any) => {
     console.log(testRoom, data)
