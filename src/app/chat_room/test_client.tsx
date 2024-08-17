@@ -32,14 +32,13 @@ const Chat_msg =   () => {
 
 // join in a room or channel
 useEffect(() => {
-  console.log(testRoom)
   const channel = pusher.subscribe(`${testRoom}`);
   channel.bind('new-message', (data: any) => {
     console.log(testRoom, data)
     setMessages(prevMessages => [...prevMessages, data]);
-    console.log(messages)
+
   });
-  console.log("Outside message",messages)
+  
   // return () => channel.unsubscribe();
 }, [testRoom]);
 
