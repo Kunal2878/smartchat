@@ -39,7 +39,7 @@ useEffect(() => {
     console.log(messages)
   });
   console.log("Outside message",messages)
-  return () => channel.unsubscribe();
+  // return () => channel.unsubscribe();
 }, [testRoom]);
 
 function generateAlphabeticKey() {
